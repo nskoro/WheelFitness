@@ -36,21 +36,18 @@ angular.module('starter', ['ionic', 'fitness.splash','fitness.home','fitness.log
       templateUrl: 'pages/splash/splash.html',
       controller: 'SplashCtrl as splashCtrl'
     })
+
+   .state('login', {
+      url: '/login',
+        templateUrl: 'pages/login/login.html',
+        controller: 'LoginCtrl as loginCtrl'
+    })
   .state('app.home', {
     url: '/home',
     views: {
       'menuContent': {
         templateUrl: 'pages/home/home.html',
         controller: 'HomeCtrl as homeCtrl'
-      }
-    }
-  })
-   .state('app.login', {
-    url: '/login',
-    views: {
-      'menuContent': {
-        templateUrl: 'pages/login/login.html',
-        controller: 'LoginCtrl as loginCtrl'
       }
     }
   })
@@ -73,5 +70,7 @@ angular.module('starter', ['ionic', 'fitness.splash','fitness.home','fitness.log
       }
     });
   // if none of the above states are matched, use this as the fallback
+  alert(window.location.hash);
+  
   $urlRouterProvider.otherwise('/splash');
 });
