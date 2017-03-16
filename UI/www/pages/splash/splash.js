@@ -9,9 +9,9 @@ angular.module('fitness.splash', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-console.log(window.location.hash);
+ console.log(window.location.hash);
 
- // $state.go('login');
+  $state.go('app.home');
 
   
 })
