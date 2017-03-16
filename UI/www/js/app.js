@@ -88,6 +88,7 @@ angular.module('starter', ['ionic', 'fitness.splash','fitness.home','fitness.log
       );
 
       fitbitAccessToken = fragmentQueryParameters.access_token;
+      window.fitbitAccessToken = fitbitAccessToken ;
       console.log('accessToken is : ' + fitbitAccessToken );
 
       $urlRouterProvider.otherwise('/splash');
