@@ -29,25 +29,25 @@ angular.module('starter', ['ionic', 'fitness.splash','fitness.home','fitness.log
       url: '/app',
       abstract: true,
       templateUrl: 'pages/menu/menu.html',
-      controller: 'AppCtrl as appCtrl'
+      controller: 'AppCtrl as vm'
   })
   .state('splash', {
       url: '/splash',
       templateUrl: 'pages/splash/splash.html',
-      controller: 'SplashCtrl as splashCtrl'
+      controller: 'SplashCtrl as vm'
     })
 
    .state('login', {
       url: '/login',
         templateUrl: 'pages/login/login.html',
-        controller: 'LoginCtrl as loginCtrl'
+        controller: 'LoginCtrl as vm'
     })
   .state('app.home', {
     url: '/home',
     views: {
       'menuContent': {
         templateUrl: 'pages/home/home.html',
-        controller: 'HomeCtrl as homeCtrl'
+        controller: 'HomeCtrl as vm'
       }
     }
   })
@@ -56,7 +56,7 @@ angular.module('starter', ['ionic', 'fitness.splash','fitness.home','fitness.log
       views: {
         'menuContent': {
           templateUrl: 'pages/settings/settings.html',
-          controller: 'SettingsCtrl as settingsCtrl'
+          controller: 'SettingsCtrl as vm'
         }
       }
     })
@@ -65,7 +65,7 @@ angular.module('starter', ['ionic', 'fitness.splash','fitness.home','fitness.log
       views: {
         'menuContent': {
           templateUrl: 'pages/rankings/rankings.html',
-          controller: 'RankCtrl as rankCtrl'
+          controller: 'RankCtrl as vm'
         }
       }
     });

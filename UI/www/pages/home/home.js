@@ -2,6 +2,15 @@ angular.module('fitness.home', [])
 
 .controller('HomeCtrl', function($scope, $ionicModal, $timeout, $http) {
 
+    var self = this ;
+
+    self.name = "Bret";
+    
+    self.foo = function() {
+
+    }
+
+
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -28,6 +37,7 @@ angular.module('fitness.home', [])
               method: 'GET',
               url: 'https://api.fitbit.com/1/user/-/activities/steps/date/today/1m.json'
             }).then(function successCallback(response) {
+                
                 alert(JSON.stringify(response));
 
             });
