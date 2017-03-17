@@ -1,1 +1,17 @@
 /* Empty. Add your own CSS if you like */
+
+.backgroundImage{
+   background: url(../img/background.jpg);
+    background-size: cover;
+    background-color: black;
+    color: white;
+}
+h1{
+    color: #FFF !important;
+}
+body{
+    color: #FFF !important;
+}
+.nav-bar-block, .bar {
+  background-color: #eee !important;
+}
