@@ -15,3 +15,17 @@ body{
 .nav-bar-block, .bar {
   background-color: #eee ;
 }
+.character {
+	font-size: 15px;
+	width: 20px;
+	text-align: center;
+}
+.word {
+	display: inline-block;
+	margin-right: 20px;
+	margin-top: 10px;
+	margin-top: 10px;
+}
+.progress-container {
+	
+}

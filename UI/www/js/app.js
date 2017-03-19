@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'fitness.splash','fitness.home','fitness.login','fitness.menu', 'fitness.settings', 'fitness.rankings'])
+angular.module('starter', ['ionic', 'fitness.splash','fitness.home','fitness.login','fitness.menu', 'fitness.settings', 'fitness.rankings', 'fitness.game'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -48,6 +48,15 @@ angular.module('starter', ['ionic', 'fitness.splash','fitness.home','fitness.log
       'menuContent': {
         templateUrl: 'pages/home/home.html',
         controller: 'HomeCtrl as vm'
+      }
+    }
+  })
+  .state('app.game', {
+    url: '/game',
+    views: {
+      'menuContent': {
+        templateUrl: 'pages/game/game.html',
+        controller: 'GameCtrl as vm'
       }
     }
   })
