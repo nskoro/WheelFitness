@@ -1,6 +1,6 @@
 angular.module('fitness.home', [])
 
-.controller('HomeCtrl', function($scope, $ionicModal, $timeout, $http) {
+.controller('HomeCtrl', function($scope, $state, $ionicModal, $timeout, $http) {
 
     var self = this ;
 
@@ -35,6 +35,11 @@ angular.module('fitness.home', [])
 
             });
   });
+
+  this.loadNewGame = function(length){
+
+      $state.go('app.game');
+  }
 
   
 })

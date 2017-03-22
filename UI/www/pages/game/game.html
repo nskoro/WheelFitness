@@ -1,17 +1,40 @@
-<ion-view view-title="Game">
+<ion-view view-title="Game" class="backgroundImage">
 <style>
 </style>
-  <ion-content>
+  <ion-content class="centerAlign">
   	<div id="friend" class="row">
-  		<h2>Allied Forces</h2>
-  		<div id="friend-progress"></div>
+
+			<div class="container col">
+				<p>Allied Forces</p>
+			</div>
+  		
+  		<div class="container col-30">
+					<div id="friend-progress"></div>
+			</div>
+		
   	</div>
-  	<div class="word" ng-repeat="word in vm.phrase track by $index">
-  		<input class="character" ng-repeat="char in word track by $index" value="*" ng-model="vm.answer[$parent.$index][$index]" ng-disabled="true">
-  	</div>
-  	<div id="enemy">
-  		<h2>Enemy Forces</h2>
-  		<div id="enemy-progress"></div>
+		
+		<div class="container">
+
+				<div class="word" ng-repeat="word in vm.phrase track by $index">
+					<input class="character" ng-repeat="char in word track by $index" value="*" ng-model="vm.answer[$parent.$index][$index]" ng-disabled="true">
+				</div>
+			
+		</div>
+		
+		<div class="container">
+				<button class="button button-positive fullWidth">Solve Puzzle</button>
+		</div>
+	
+  
+		<div id="enemy" class="row">
+  		<div class="container col">
+				<p>Enemy Forces</p>
+			</div>
+  		
+  		<div class="container col-30">
+					<div id="enemy-progress" style="width:30px; height:100px;"></div>
+			</div>
   	</div>
   </ion-content>
 </ion-view>
