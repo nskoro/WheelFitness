@@ -3,7 +3,7 @@ angular.module('fitness.game', [])
 .controller('GameCtrl', function($ionicPopup) {
 	var vm = this;
 
-	var data = "whats good for the goose is good for the gander";
+	var data = "I've got a good feeling about this!";
 	data = data.toUpperCase();
 	var parts = data.split(" ");
 	vm.phrase = [];
@@ -11,8 +11,12 @@ angular.module('fitness.game', [])
 	parts.forEach(function(d) {
 		vm.phrase.push(d.split(''));
 		var temp = [];
-		for(var i = 0; i < d.length; i++) {
-			temp.push('*')
+		for(var x = 0; x < d.length; x++) {
+			if(!d[x].match(/[a-z]/i)) {
+				temp.push(d[x]);
+			} else {
+				temp.push('*');
+			}
 		}
 		vm.answer.push(temp)
 	});
