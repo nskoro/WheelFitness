@@ -3,10 +3,13 @@
   <ion-content>
     <div class="centerAlign padding">
      
-          <button class="button fullWidth margin-10" ng-click="vm.loadNewGame(short)">Start New Short Game</button>
-
-          <button class="button fullWidth margin-10" ng-click="vm.loadNewGame(long)">Start New Long Game</button>
-     
+     <div class="container">
+           <button class="button button-positive" ng-click="vm.loadNewGame(short)">Start New Short Game</button>
+     </div>
+       
+       <div class="container">
+          <button class="button button-positive" ng-click="vm.loadNewGame(long)">Start New Long Game</button>
+       </div>
     </div>
        
   </ion-content>
