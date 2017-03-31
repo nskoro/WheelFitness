@@ -17,7 +17,7 @@
 		<div class="container">
 
 				<div class="word" ng-repeat="word in vm.phrase track by $index">
-					<span class="character" ng-repeat="char in word track by $index">{{ vm.phrase[$parent.$index][$index].model }}</span>
+					<span class="character" style="padding-top:5px; text-decoration: underline;" ng-repeat="char in word track by $index">{{ vm.phrase[$parent.$index][$index].model }}</span>
 				</div>
 			
 		</div>
