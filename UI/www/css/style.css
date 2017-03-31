@@ -16,9 +16,19 @@ body{
   background-color: #eee ;
 }
 .character {
-	font-size: 15px;
-	width: 20px;
-	text-align: center;
+	font-size: 35px;
+	font-family: monospace;
+	margin-left:3px;
+	margin-right:3px;
+}
+.test {
+	font-size: 35px;
+	font-family: monospace;
+	display: inline-block;
+}
+.space {
+	display: inline-block;
+	width: 10px;
 }
 .word {
 	display: inline-block;

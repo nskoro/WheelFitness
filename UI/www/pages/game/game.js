@@ -2,24 +2,94 @@ angular.module('fitness.game', [])
 
 .controller('GameCtrl', function($ionicPopup) {
 	var vm = this;
+	var vowels = ['A', 'E', 'I', 'O', 'U'];
+	var numVowels = 0;
+	var numCons = 0;
+	var vowelStack, consStack;
 
-	var data = "I've got a good feeling about this!";
+	var data = "The rain in spain falls mainly on the plain";
 	data = data.toUpperCase();
+
+	// count vowels and consonants so we know the range for random numbers
+	for(var i = 0; i < data.length; i++) {
+		// don't care if it's a space
+		if(data.charAt(i) === " ") {
+			continue;
+		} 
+		// increment vowel count
+		else if(vowels.includes(data.charAt(i))) {
+			numVowels++;
+		}
+		// increment consonant count
+		else {
+			numCons++;
+		}
+	}
+	
+	var orderVowels = [];
+	for(var a = 0; a < numVowels; a++) {
+		orderVowels[a] = a;
+	}
+
+	var orderCons = [];
+	for(var b = 0; b < numCons; b++) {
+		orderCons[b] = b;
+	}
+
+	orderVowels = shuffleArray(orderVowels);
+	orderCons = shuffleArray(orderCons);
+
+	vowelStack = new Array(numVowels);
+	consStack = new Array(numCons);
+
 	var parts = data.split(" ");
 	vm.phrase = [];
-	vm.answer = [];
 	parts.forEach(function(d) {
-		vm.phrase.push(d.split(''));
 		var temp = [];
 		for(var x = 0; x < d.length; x++) {
-			if(!d[x].match(/[a-z]/i)) {
-				temp.push(d[x]);
+			var obj = {
+				letter: d[x],
+				revealed: false,
+				model: "_"
+			};
+
+			if(vowels.includes(d[x])) {
+				obj.letterType = "V";
+				obj.order = orderVowels.shift();
+				vowelStack[obj.order] = obj;
+			} else if(d === ' ') {
+				obj.letterType = "S";
 			} else {
-				temp.push('*');
+				obj.letterType = "C";
+				obj.order = orderCons.shift();
+				consStack[obj.order] = obj;
 			}
+			temp.push(obj);
 		}
-		vm.answer.push(temp)
+		vm.phrase.push(temp)
 	});
+
+	// button click handler, exhausts vowels first, then consonants
+	vm.reveal = function() {
+		if(vowelStack.length == 0) {
+			var curr = consStack.shift();
+			curr.model = curr.letter;
+		} else {
+			var curr = vowelStack.shift();
+			curr.model = curr.letter;
+		}
+	};
+
+	// stole this from http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+	function shuffleArray(array) {
+	    for (var i = array.length - 1; i > 0; i--) {
+	        var j = Math.floor(Math.random() * (i + 1));
+	        var temp = array[i];
+	        array[i] = array[j];
+	        array[j] = temp;
+	    }
+	    return array;
+	}
 
 	var friendlyProgress = jQuery("#friend-progress").radialMultiProgress("init", {
 		'fill': 25,
