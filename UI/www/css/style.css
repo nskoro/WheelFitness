@@ -20,6 +20,8 @@ body{
 	font-family: monospace;
 	margin-left:3px;
 	margin-right:3px;
+    padding-top:5px; 
+    text-decoration: underline;
 }
 .test {
 	font-size: 35px;
