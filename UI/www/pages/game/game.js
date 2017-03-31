@@ -50,7 +50,7 @@ angular.module('fitness.game', [])
 			var obj = {
 				letter: d[x],
 				revealed: false,
-				model: "*"
+				model: "."
 			};
 
 			if(vowels.includes(d[x])) {
