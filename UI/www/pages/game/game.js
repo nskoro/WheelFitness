@@ -97,8 +97,6 @@ angular.module('fitness.game', [])
 		}
 	};
 
-
-
 	this.friendlyProgress = jQuery("#friend-progress").radialMultiProgress("init", {
 		'fill': 25,
 		'font-size': 14,
