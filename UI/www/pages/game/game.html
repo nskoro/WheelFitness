@@ -15,15 +15,20 @@
   	</div>
 		
 		<div class="container">
-
+			<div style="padding:20px; text-align: left;">
+				<label style="opacity: 0.4;">Solve the phrase displayed below to win the game. Click 'Solve The Puzzle' button to make a guess.</label>
+			</div>
 				<div class="word" ng-repeat="word in vm.phrase track by $index">
 					<span class="character" ng-repeat="char in word track by $index">{{ vm.phrase[$parent.$index][$index].model }}</span>
 				</div>
-			
+
+			<div style="padding:20px;">
+				<label style="opacity: 0.4;">Hint: Things in France</label>
+			</div>
 		</div>
 		
 		<div class="container">
-				<button class="button button-positive fullWidth" ng-click="vm.reveal()">Solve Puzzle</button>
+				<button class="button button-positive fullWidth" ng-click="vm.reveal()">Solve The Puzzle</button>
 		</div>
 	
   
