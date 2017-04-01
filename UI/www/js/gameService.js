@@ -46,7 +46,8 @@ this.updateTime = function(time){
 
             },function errorCallback(response) {
                 console.log(response.statusText);
-           //     window.location.replace('http://localhost:8100');
+                if ( response.statusText != "Too Many Requests")
+                     window.location.replace('http://localhost:8100');
             });
   }
    

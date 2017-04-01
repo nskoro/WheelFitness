@@ -165,6 +165,6 @@ angular.module('fitness.game', [])
 
 	$interval.cancel(self.queryInterval);
 
-	self.queryInterval = $interval( function(){ gameService.getFitbitData();} , 60000);
+	self.queryInterval = $interval( function(){ gameService.getFitbitData();} , 35000);
 	self.drawFriendly();
 });
