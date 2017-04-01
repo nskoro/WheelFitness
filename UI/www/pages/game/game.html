@@ -2,10 +2,15 @@
 <style>
 </style>
   <ion-content class="centerAlign">
-  	<div id="friend" class="row">
+  
+  	<div id="friend" class="row padding">
 
-			<div class="container col">
-				<p>Your Progress:</p>
+			<div class="container col leftAlign">
+				<p class="strong opacity">Your Progress:</p>
+				<hr class="opacity margin" />
+				<p class="steps"><i class="icon ion-android-walk"></i> Steps taken : 200</p>
+				<p class="stairs"><i class="icon ion-connection-bars"></i> Flights of Stairs climbed : 14</p>
+				<p class="time"><i class="icon ion-android-time"></i> Time Remaining : 20 min</p>
 			</div>
   		
   		<div class="container col-30">
@@ -23,7 +28,7 @@
 				</div>
 
 			<div style="padding:20px;">
-				<label style="opacity: 0.5;">Hint: Things in France</label>
+				<label style="opacity: 0.5;">Hint: Things in Spain</label>
 			</div>
 
 			<button class="button button-dark fullWidth" ng-click="vm.reveal()">Solve The Puzzle</button>

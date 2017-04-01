@@ -98,7 +98,7 @@ angular.module('fitness.game', [])
 		'data': [
 			{'color': "#2DB1E4", 'range': [0, 12]},
 			{'color': "#9CCA13", 'range': [0, 59]},
-			{'color': "#A4075E", 'range': [0, 59]}
+			{'color': "#cf2583", 'range': [0, 59]}
 		]
 	});
 

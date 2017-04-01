@@ -12,6 +12,15 @@ h1{
 body{
     color: #FFF ;
 }
+.steps{
+    color: #2DB1E4;
+}
+.stairs{
+    color: #9CCA13;
+}
+.time{
+    color: #cf2583;
+}
 .nav-bar-block, .bar {
   background-color: #eee ;
 }
@@ -64,9 +73,18 @@ body{
     text-align: center;
 
 }
+.leftAlign{
+    text-align: left;
+}
 .padding{
     padding:20px;
 }
 .margin-10{
     margin:10px;
+}
+.strong{
+    font-weight: bold;
+}
+.opacity{
+    opacity: 0.7;
 }
