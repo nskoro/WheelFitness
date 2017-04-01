@@ -3,31 +3,33 @@
 </style>
   <ion-content class="centerAlign">
   
-  	<div id="friend" class="row padding">
+  	<div id="friend" class="row">
 
 			<div class="container col leftAlign">
+				<!--
 				<p class="strong opacity">Your Progress:</p>
 				<hr class="opacity margin" />
-				<p class="steps"><i class="icon ion-android-walk"></i> Steps taken : 200</p>
-				<p class="stairs"><i class="icon ion-connection-bars"></i> Flights of Stairs climbed : 14</p>
-				<p class="time"><i class="icon ion-android-time"></i> Time Remaining : 20 min</p>
+				-->
+				<p class="steps"><i class="icon ion-android-walk"></i> Steps taken: 200 (consonants)</p>
+				<p class="stairs"><i class="icon ion-connection-bars"></i> Stairs climbed: 14 (vowels)</p>
+				<p class="time"><i class="icon ion-android-time"></i> Time Left: 20 min</p>
 			</div>
   		
-  		<div class="container col-30">
-					<div id="friend-progress"></div>
+			<div class="container col-30">
+						<div id="friend-progress"></div>
 			</div>
 		
   	</div>
 		
 		<div class="container">
-			<div style="padding:20px; text-align: left;">
-				<label style="opacity: 0.6;">Solve the phrase displayed below to win the game. Click 'Solve The Puzzle' button when you are ready to make a guess.</label>
+			<div style="padding:8px; text-align: left;">
+				<label style="opacity: 0.6;">Walking reveals consonants and climbing stairs reveals vowels.</label>
 			</div>
 				<div class="word" ng-repeat="word in vm.phrase track by $index">
 					<span class="character" ng-repeat="char in word track by $index">{{ vm.phrase[$parent.$index][$index].model }}</span>
 				</div>
 
-			<div style="padding:20px;">
+			<div style="padding:8px;">
 				<label style="opacity: 0.5;">Hint: Things in Spain</label>
 			</div>
 

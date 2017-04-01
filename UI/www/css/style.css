@@ -56,11 +56,11 @@ body{
 }
 .container{
     background-color: #000;
-    padding:15px;
+    padding:8px;
     border: 1.5px solid #2a94cb;
     border-radius: 6px;
     color: #fff;
-    margin:8px;
+    margin:4px;
     opacity:1;
 }
 .fullWidth{
