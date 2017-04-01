@@ -114,21 +114,24 @@ angular.module('fitness.game', [])
 	        h = date.getHours() % 12,
 	        m = date.getMinutes(),
 	        s = date.getSeconds();
+			
+			self.fitbitData.time = m ;
+
 	    if (dh !== h) {
 	    	friendlyProgress.radialMultiProgress("to", {
-	      		"index": 0, 'perc': h, 'time': (h ? 100 : 10)
+	      		"index": 0, 'perc': self.fitbitData.steps, 'time': (h ? 100 : 10)
 	      	});
 	    	dh = h;
 	    }
 	    if (dm !== m) {
 	    	friendlyProgress.radialMultiProgress("to", {
-	    		"index": 1, 'perc': m, 'time': (m ? 100 : 10)
+	    		"index": 1, 'perc': self.fitbitData.floors, 'time': (m ? 100 : 10)
 	    	});
 	    	dm = m;
 	    }
 	    if (ds !== s) {
 	    	friendlyProgress.radialMultiProgress("to", {
-	    		"index": 2, 'perc': s, 'time': (s ? 100 : 10)
+	    		"index": 2, 'perc': m, 'time': (s ? 100 : 10)
 	    	});
 	    	ds = s;
 	    }
