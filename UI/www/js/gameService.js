@@ -33,8 +33,10 @@ app.service('gameService', function($http) {
             }).then(function successCallback(response) {
                 
                 console.log(JSON.stringify(response));
-           //     self.data.steps = response.data.summary.steps ;
-           //     self.data.floors = response.data.summary.steps ;
+
+                self.data.steps = response.data.summary.steps ;
+                self.data.floors = response.data.summary.steps ;
+                
                 console.log('steps are: ' + self.data.steps);
                 console.log('floors are: ' + self.data.floors);
 
