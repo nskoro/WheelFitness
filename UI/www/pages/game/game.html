@@ -1,11 +1,11 @@
-<ion-view view-title="Game" class="backgroundImage">
+<ion-view view-title="Wheel of Fitness" class="backgroundImage">
 <style>
 </style>
   <ion-content class="centerAlign">
   	<div id="friend" class="row">
 
 			<div class="container col">
-				<p>Allied Forces</p>
+				<p>Your Progress:</p>
 			</div>
   		
   		<div class="container col-30">
@@ -16,21 +16,19 @@
 		
 		<div class="container">
 			<div style="padding:20px; text-align: left;">
-				<label style="opacity: 0.4;">Solve the phrase displayed below to win the game. Click 'Solve The Puzzle' button to make a guess.</label>
+				<label style="opacity: 0.6;">Solve the phrase displayed below to win the game. Click 'Solve The Puzzle' button when you are ready to make a guess.</label>
 			</div>
 				<div class="word" ng-repeat="word in vm.phrase track by $index">
 					<span class="character" ng-repeat="char in word track by $index">{{ vm.phrase[$parent.$index][$index].model }}</span>
 				</div>
 
 			<div style="padding:20px;">
-				<label style="opacity: 0.4;">Hint: Things in France</label>
+				<label style="opacity: 0.5;">Hint: Things in France</label>
 			</div>
-		</div>
-		
-		<div class="container">
-				<button class="button button-positive fullWidth" ng-click="vm.reveal()">Solve The Puzzle</button>
-		</div>
+
+			<button class="button button-dark fullWidth" ng-click="vm.reveal()">Solve The Puzzle</button>
 	
+		</div>
   
 		<div id="enemy" class="row">
   		<div class="container col">
