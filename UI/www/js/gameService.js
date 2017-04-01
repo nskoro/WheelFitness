@@ -1,6 +1,7 @@
 // Game logic service
 app.service('gameService', function($http) {
 
+ console.log('game service loaded!');
  var self = this;
 
  // sample variables
@@ -8,6 +9,10 @@ app.service('gameService', function($http) {
  this.phrase = {} ;
  this.player.steps = {} ;
  this.player.flights = {} ;
+
+ this.data = {} ;
+ this.data.steps = 0 ;
+ this.data.floors = 0 ;
 
 // define game logic here
     this.sampleFunction = function(){
@@ -23,15 +28,18 @@ app.service('gameService', function($http) {
       
       $http({
               method: 'GET',
-              url: 'https://api.fitbit.com/1/user/-/activities/steps/date/today/1m.json'
+              url: 'https://api.fitbit.com/1/user/-/activities/date/today.json'
             }).then(function successCallback(response) {
                 
                 console.log(JSON.stringify(response));
-                self.steps = response ;
+                self.data.steps = response.data.summary.steps ;
+                self.data.floors = response.data.summary.steps ;
+                console.log('steps are: ' + self.data.steps);
+                console.log('floors are: ' + self.data.floors);
 
             },function errorCallback(response) {
                 console.log(response.statusText);
-                window.location.replace('http://localhost:8100');
+           //     window.location.replace('http://localhost:8100');
             });
   }
    

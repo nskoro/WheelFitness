@@ -79,7 +79,7 @@ var app = angular.module('starter', ['ionic', 'LocalForageModule', 'fitness.spla
       }
     });
   // if none of the above states are matched, use this as the fallback
-  console.log(window.location.hash);
+  //console.log(window.location.hash);
   var fitbitAccessToken;
 
   console.log(window.location.hash);

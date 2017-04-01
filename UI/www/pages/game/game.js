@@ -1,10 +1,10 @@
 angular.module('fitness.game', [])
 
-.controller('GameCtrl', function($ionicPopup, gameService, $scope, $state) {
+.controller('GameCtrl', function($ionicPopup, $timeout, $interval, gameService, $scope, $state) {
 
 	console.log('Game Controller loaded');
 
-	var vm = this;
+	var self = this;
 	var vowels = ['A', 'E', 'I', 'O', 'U'];
 	var numVowels = 0;
 	var numCons = 0;
@@ -46,7 +46,7 @@ angular.module('fitness.game', [])
 	consStack = new Array(numCons);
 
 	var parts = data.split(" ");
-	vm.phrase = [];
+	self.phrase = [];
 	parts.forEach(function(d) {
 		var temp = [];
 		for(var x = 0; x < d.length; x++) {
@@ -69,11 +69,11 @@ angular.module('fitness.game', [])
 			}
 			temp.push(obj);
 		}
-		vm.phrase.push(temp)
+		self.phrase.push(temp)
 	});
 
 	// button click handler, exhausts vowels first, then consonants
-	vm.reveal = function() {
+	self.reveal = function() {
 		if(vowelStack.length == 0) {
 			var curr = consStack.shift();
 			if (curr)
@@ -101,9 +101,9 @@ angular.module('fitness.game', [])
 		'font-size': 14,
 		'size': 100,
 		'data': [
-			{'color': "#2DB1E4", 'range': [0, 12]},
-			{'color': "#9CCA13", 'range': [0, 59]},
-			{'color': "#cf2583", 'range': [0, 59]}
+			{'color': "#2DB1E4", 'range': [0, 500]}, // steps
+			{'color': "#9CCA13", 'range': [0, 30]}, // floors
+			{'color': "#cf2583", 'range': [0, 59]} // time
 		]
 	});
 
@@ -137,6 +137,11 @@ angular.module('fitness.game', [])
 	drawFriendly();
 
 	$scope.$on('$ionicView.enter', function(e) {
+	
+		self.fitbitData = {} ;
+		self.fitbitData = gameService.data ;
+	
+		console.log('steps in game.js: ' + self.fitbitData.steps);
     
 		console.log('getting access token from storage');
 		localforage.getItem('fitbitToken').then(function(token){
@@ -147,7 +152,9 @@ angular.module('fitness.game', [])
 			console.log('saving token to game service: ' + token);
 			gameService.getFitbitData();
 		});
-
-		 
 	});
+
+	$interval.cancel(self.queryInterval);
+
+	self.queryInterval = $interval( function(){ gameService.getFitbitData();} , 60000);
 });
