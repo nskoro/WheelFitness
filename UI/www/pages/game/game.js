@@ -1,6 +1,9 @@
 angular.module('fitness.game', [])
 
-.controller('GameCtrl', function($ionicPopup) {
+.controller('GameCtrl', function($ionicPopup, gameService, $scope, $state) {
+
+	console.log('Game Controller loaded');
+
 	var vm = this;
 	var vowels = ['A', 'E', 'I', 'O', 'U'];
 	var numVowels = 0;
@@ -73,10 +76,12 @@ angular.module('fitness.game', [])
 	vm.reveal = function() {
 		if(vowelStack.length == 0) {
 			var curr = consStack.shift();
-			curr.model = curr.letter;
+			if (curr)
+				curr.model = curr.letter;
 		} else {
 			var curr = vowelStack.shift();
-			curr.model = curr.letter;
+			if (curr)
+				curr.model = curr.letter;
 		}
 	};
 
@@ -130,4 +135,19 @@ angular.module('fitness.game', [])
 	  }, 1000);
 	};
 	drawFriendly();
+
+	$scope.$on('$ionicView.enter', function(e) {
+    
+		console.log('getting access token from storage');
+		localforage.getItem('fitbitToken').then(function(token){
+			if (!token)
+				window.location.replace('http://localhost:8100');
+
+			gameService.fitbitToken = token;
+			console.log('saving token to game service: ' + token);
+			gameService.getFitbitData();
+		});
+
+		 
+	});
 });
