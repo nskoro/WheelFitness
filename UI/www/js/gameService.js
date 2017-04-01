@@ -11,10 +11,14 @@ app.service('gameService', function($http) {
  this.player.flights = {} ;
 
  this.data = {} ;
+
  this.data.steps = 300 ;
  this.data.floors = 30 ;
  this.data.time = 24 ;
 
+this.updateTime = function(time){
+    this.data.time = time ;
+}
 // define game logic here
     this.sampleFunction = function(){
 
@@ -36,7 +40,7 @@ app.service('gameService', function($http) {
 
                 self.data.steps = response.data.summary.steps ;
                 self.data.floors = response.data.summary.steps ;
-                
+
                 console.log('steps are: ' + self.data.steps);
                 console.log('floors are: ' + self.data.floors);
 

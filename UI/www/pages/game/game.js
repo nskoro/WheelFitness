@@ -13,6 +13,18 @@ angular.module('fitness.game', [])
 	var data = "The rain in spain falls mainly on the plain";
 	data = data.toUpperCase();
 
+
+	// stole this from http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+	this.shuffleArray = function(array) {
+	    for (var i = array.length - 1; i > 0; i--) {
+	        var j = Math.floor(Math.random() * (i + 1));
+	        var temp = array[i];
+	        array[i] = array[j];
+	        array[j] = temp;
+	    }
+	    return array;
+	}
+
 	// count vowels and consonants so we know the range for random numbers
 	for(var i = 0; i < data.length; i++) {
 		// don't care if it's a space
@@ -39,8 +51,8 @@ angular.module('fitness.game', [])
 		orderCons[b] = b;
 	}
 
-	orderVowels = shuffleArray(orderVowels);
-	orderCons = shuffleArray(orderCons);
+	orderVowels = self.shuffleArray(orderVowels);
+	orderCons = self.shuffleArray(orderCons);
 
 	vowelStack = new Array(numVowels);
 	consStack = new Array(numCons);
@@ -73,7 +85,7 @@ angular.module('fitness.game', [])
 	});
 
 	// button click handler, exhausts vowels first, then consonants
-	self.reveal = function() {
+	this.reveal = function() {
 		if(vowelStack.length == 0) {
 			var curr = consStack.shift();
 			if (curr)
@@ -85,18 +97,9 @@ angular.module('fitness.game', [])
 		}
 	};
 
-	// stole this from http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-	function shuffleArray(array) {
-	    for (var i = array.length - 1; i > 0; i--) {
-	        var j = Math.floor(Math.random() * (i + 1));
-	        var temp = array[i];
-	        array[i] = array[j];
-	        array[j] = temp;
-	    }
-	    return array;
-	}
 
-	var friendlyProgress = jQuery("#friend-progress").radialMultiProgress("init", {
+
+	this.friendlyProgress = jQuery("#friend-progress").radialMultiProgress("init", {
 		'fill': 25,
 		'font-size': 14,
 		'size': 100,
@@ -107,37 +110,42 @@ angular.module('fitness.game', [])
 		]
 	});
 
-	var drawFriendly = function() {
+	this.drawFriendly = function() {
 		var dh, dm, ds;
 		setInterval(function() {
+			console.log('in the draw circle func.');
+
 			var date = new Date(),
 	        h = date.getHours() % 12,
 	        m = date.getMinutes(),
 	        s = date.getSeconds();
+
+			gameService.updateTime(m);
 			
-			self.fitbitData.time = m ;
+			console.log('m is ' + m);
+
 
 	    if (dh !== h) {
-	    	friendlyProgress.radialMultiProgress("to", {
+	    	self.friendlyProgress.radialMultiProgress("to", {
 	      		"index": 0, 'perc': self.fitbitData.steps, 'time': (h ? 100 : 10)
 	      	});
 	    	dh = h;
 	    }
 	    if (dm !== m) {
-	    	friendlyProgress.radialMultiProgress("to", {
+	    	self.friendlyProgress.radialMultiProgress("to", {
 	    		"index": 1, 'perc': self.fitbitData.floors, 'time': (m ? 100 : 10)
 	    	});
 	    	dm = m;
 	    }
 	    if (ds !== s) {
-	    	friendlyProgress.radialMultiProgress("to", {
+	    	self.friendlyProgress.radialMultiProgress("to", {
 	    		"index": 2, 'perc': m, 'time': (s ? 100 : 10)
 	    	});
 	    	ds = s;
 	    }
 	  }, 1000);
 	};
-	drawFriendly();
+
 
 	$scope.$on('$ionicView.enter', function(e) {
 	
@@ -160,4 +168,5 @@ angular.module('fitness.game', [])
 	$interval.cancel(self.queryInterval);
 
 	self.queryInterval = $interval( function(){ gameService.getFitbitData();} , 60000);
+	self.drawFriendly();
 });
