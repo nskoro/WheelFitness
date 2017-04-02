@@ -170,8 +170,14 @@ angular.module('fitness.game', [])
 
 		$interval.cancel(self.queryInterval);
 
-		self.queryInterval = $interval( function(){ gameService.getFitbitData();} , 45000);
+		self.queryInterval = $interval( function(){ gameService.getFitbitData();} , 120000);
 	
 		$timeout( self.drawFriendly, 750);
 	});
+
+	this.refreshData = function(){
+
+		gameService.getFitbitData();
+		$scope.$broadcast('scroll.refreshComplete');
+	}
 });

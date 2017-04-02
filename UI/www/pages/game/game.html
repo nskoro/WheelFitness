@@ -2,6 +2,11 @@
 <style>
 </style>
   <ion-content class="centerAlign">
+
+	   <ion-refresher
+		pulling-text="Pull to refresh..."
+		on-refresh="vm.refreshData()">
+	</ion-refresher>
   
   	<div id="friend" class="row">
 
