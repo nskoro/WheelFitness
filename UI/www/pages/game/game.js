@@ -245,25 +245,16 @@ angular.module('fitness.game', [])
 			
 			console.log('hours is ' + h);
 
-
-	    if (dh !== h) {
 	    	self.friendlyProgress.radialMultiProgress("to", {
 	      		"index": 0, 'perc': self.fitbitData.steps, 'time': 10
 	      	});
-	    	dh = h;
-	    }
-	    if (dm !== m) {
 	    	self.friendlyProgress.radialMultiProgress("to", {
 	    		"index": 1, 'perc': self.fitbitData.floors, 'time': 10
 	    	});
-	    	dm = m;
-	    }
-	    if (ds !== s) {
 	    	self.friendlyProgress.radialMultiProgress("to", {
-	    		"index": 2, 'perc': h, 'time': 100
+	    		"index": 2, 'perc': h, 'time': 10
 	    	});
-	    	ds = s;
-	    }
+	  //  }
 //	  }, 1000);
 	};
 
