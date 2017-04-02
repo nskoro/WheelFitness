@@ -101,6 +101,8 @@ angular.module('fitness.game', [])
 
 		console.log('goal steps ' + self.fitbitData.goals.steps);
 
+		jQuery("#friend-progress").empty();
+		
 			self.friendlyProgress = jQuery("#friend-progress").radialMultiProgress("init", {
 				'fill': 25,
 				'font-size': 14,
