@@ -113,7 +113,7 @@ angular.module('fitness.game', [])
 			});
 			
 		var dh, dm, ds;
-		setInterval(function() {
+	//	setInterval(function() {
 			console.log('in the draw circle func.');
 
 			var date = new Date(),
@@ -144,7 +144,7 @@ angular.module('fitness.game', [])
 	    	});
 	    	ds = s;
 	    }
-	  }, 1000);
+//	  }, 1000);
 	};
 
 
@@ -170,7 +170,7 @@ angular.module('fitness.game', [])
 
 		$interval.cancel(self.queryInterval);
 
-		self.queryInterval = $interval( function(){ gameService.getFitbitData();} , 120000);
+		self.queryInterval = $interval( function(){ self.refreshData(); } , 120000);
 	
 		$timeout( self.drawFriendly, 750);
 	});
@@ -178,6 +178,7 @@ angular.module('fitness.game', [])
 	this.refreshData = function(){
 
 		gameService.getFitbitData();
+		$timeout( self.drawFriendly, 750);
 		$scope.$broadcast('scroll.refreshComplete');
 	}
 });
