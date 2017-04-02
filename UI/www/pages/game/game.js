@@ -128,19 +128,19 @@ angular.module('fitness.game', [])
 
 	    if (dh !== h) {
 	    	self.friendlyProgress.radialMultiProgress("to", {
-	      		"index": 0, 'perc': self.fitbitData.steps, 'time': (self.fitbitData.steps ? 100 : 10)
+	      		"index": 0, 'perc': self.fitbitData.steps, 'time': 10
 	      	});
 	    	dh = h;
 	    }
 	    if (dm !== m) {
 	    	self.friendlyProgress.radialMultiProgress("to", {
-	    		"index": 1, 'perc': self.fitbitData.floors, 'time': (self.fitbitData.floors ? 100 : 10)
+	    		"index": 1, 'perc': self.fitbitData.floors, 'time': 10
 	    	});
 	    	dm = m;
 	    }
 	    if (ds !== s) {
 	    	self.friendlyProgress.radialMultiProgress("to", {
-	    		"index": 2, 'perc': h, 'time': (s ? 100 : 10)
+	    		"index": 2, 'perc': h, 'time': 100
 	    	});
 	    	ds = s;
 	    }
