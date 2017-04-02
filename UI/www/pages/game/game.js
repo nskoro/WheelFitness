@@ -108,7 +108,7 @@ angular.module('fitness.game', [])
 				'data': [
 					{'color': "#2DB1E4", 'range': [0, self.fitbitData.goals.steps]}, // steps
 					{'color': "#9CCA13", 'range': [0, self.fitbitData.goals.floors]}, // floors
-					{'color': "#cf2583", 'range': [0, 59]} // time
+					{'color': "#cf2583", 'range': [0, 24]} // time
 				]
 			});
 			
@@ -117,30 +117,30 @@ angular.module('fitness.game', [])
 			console.log('in the draw circle func.');
 
 			var date = new Date(),
-	        h = date.getHours() % 12,
+	        h = date.getHours(),
 	        m = date.getMinutes(),
 	        s = date.getSeconds();
 
-			gameService.updateTime(m);
+			self.fitbitData.time = gameService.updateTime(24-h);
 			
-			console.log('m is ' + m);
+			console.log('hours is ' + h);
 
 
 	    if (dh !== h) {
 	    	self.friendlyProgress.radialMultiProgress("to", {
-	      		"index": 0, 'perc': self.fitbitData.steps, 'time': (h ? 100 : 10)
+	      		"index": 0, 'perc': self.fitbitData.steps, 'time': (self.fitbitData.steps ? 100 : 10)
 	      	});
 	    	dh = h;
 	    }
 	    if (dm !== m) {
 	    	self.friendlyProgress.radialMultiProgress("to", {
-	    		"index": 1, 'perc': self.fitbitData.floors, 'time': (m ? 100 : 10)
+	    		"index": 1, 'perc': self.fitbitData.floors, 'time': (self.fitbitData.floors ? 100 : 10)
 	    	});
 	    	dm = m;
 	    }
 	    if (ds !== s) {
 	    	self.friendlyProgress.radialMultiProgress("to", {
-	    		"index": 2, 'perc': m, 'time': (s ? 100 : 10)
+	    		"index": 2, 'perc': h, 'time': (s ? 100 : 10)
 	    	});
 	    	ds = s;
 	    }

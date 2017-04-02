@@ -20,6 +20,8 @@ app.service('gameService', function($http) {
 
 this.updateTime = function(time){
     this.data.time = time ;
+
+    return time ;
 }
 // define game logic here
     this.sampleFunction = function(){
@@ -44,7 +46,8 @@ this.updateTime = function(time){
                 self.data.floors = response.data.summary.floors ;
 
                 self.data.goals = response.data.goals ;
-
+                var date = new Date();
+                self.data.time =  24 - date.getHours(); 
                 console.log('steps are: ' + self.data.steps);
                 console.log('floors are: ' + self.data.floors);
 
