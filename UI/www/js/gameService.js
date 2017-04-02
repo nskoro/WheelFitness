@@ -15,6 +15,8 @@ app.service('gameService', function($http) {
  this.data.steps = 300 ;
  this.data.floors = 30 ;
  this.data.time = 24 ;
+ this.data.goals = {};
+ this.data.goals.steps = 0;
 
 this.updateTime = function(time){
     this.data.time = time ;
@@ -39,7 +41,9 @@ this.updateTime = function(time){
                 console.log(JSON.stringify(response));
 
                 self.data.steps = response.data.summary.steps ;
-                self.data.floors = response.data.summary.steps ;
+                self.data.floors = response.data.summary.floors ;
+
+                self.data.goals = response.data.goals ;
 
                 console.log('steps are: ' + self.data.steps);
                 console.log('floors are: ' + self.data.floors);
@@ -47,8 +51,12 @@ this.updateTime = function(time){
             },function errorCallback(response) {
                 console.log(response.statusText);
                 if ( response.statusText != "Too Many Requests")
-                     window.location.replace('http://localhost:8100');
+                   self.reload();
             });
+  }
+
+  this.reload = function(){
+      window.location.replace('http://localhost:8100');
   }
    
 });

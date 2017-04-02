@@ -32,7 +32,7 @@ angular.module('fitness.home', [])
         console.log('getting access token from storage');
 		localforage.getItem('fitbitToken').then(function(token){
 			if (!token)
-			    window.location.replace('http://localhost:8100');
+			    gameService.reload();
        
 			gameService.fitbitToken = token;
             fitbitToken = token ;
@@ -49,6 +49,4 @@ angular.module('fitness.home', [])
 
       $state.go('app.game');
   }
-
-  
-})
+});

@@ -97,18 +97,21 @@ angular.module('fitness.game', [])
 		}
 	};
 
-	this.friendlyProgress = jQuery("#friend-progress").radialMultiProgress("init", {
-		'fill': 25,
-		'font-size': 14,
-		'size': 100,
-		'data': [
-			{'color': "#2DB1E4", 'range': [0, 500]}, // steps
-			{'color': "#9CCA13", 'range': [0, 30]}, // floors
-			{'color': "#cf2583", 'range': [0, 59]} // time
-		]
-	});
-
 	this.drawFriendly = function() {
+
+		console.log('goal steps ' + self.fitbitData.goals.steps);
+
+			self.friendlyProgress = jQuery("#friend-progress").radialMultiProgress("init", {
+				'fill': 25,
+				'font-size': 14,
+				'size': 100,
+				'data': [
+					{'color': "#2DB1E4", 'range': [0, self.fitbitData.goals.steps]}, // steps
+					{'color': "#9CCA13", 'range': [0, self.fitbitData.goals.floors]}, // floors
+					{'color': "#cf2583", 'range': [0, 59]} // time
+				]
+			});
+			
 		var dh, dm, ds;
 		setInterval(function() {
 			console.log('in the draw circle func.');
@@ -148,23 +151,27 @@ angular.module('fitness.game', [])
 	$scope.$on('$ionicView.enter', function(e) {
 	
 		self.fitbitData = {} ;
+		self.fitbitData.goals = {} ;
+
 		self.fitbitData = gameService.data ;
+
 	
 		console.log('steps in game.js: ' + self.fitbitData.steps);
     
 		console.log('getting access token from storage');
 		localforage.getItem('fitbitToken').then(function(token){
 			if (!token)
-				window.location.replace('http://localhost:8100');
+				gameService.reload();
 
 			gameService.fitbitToken = token;
 			console.log('saving token to game service: ' + token);
 			gameService.getFitbitData();
 		});
+
+		$interval.cancel(self.queryInterval);
+
+		self.queryInterval = $interval( function(){ gameService.getFitbitData();} , 35000);
+	
+		$timeout( self.drawFriendly, 2000);
 	});
-
-	$interval.cancel(self.queryInterval);
-
-	self.queryInterval = $interval( function(){ gameService.getFitbitData();} , 35000);
-	self.drawFriendly();
 });
