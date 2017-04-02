@@ -21,80 +21,82 @@ angular.module('fitness.game', [])
 	var vowelsRevealed = 0;
 	var consRevealed = 0;
 	var vowelStack, consStack;
+	var data;
 
-	var data = "The rain in spain falls mainly on the plain";
-	data = data.toUpperCase();
+	(function() {
+		data = "The rain in spain falls mainly on the plain";
+		data = data.toUpperCase();
 
-
-	// stole this from http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-	this.shuffleArray = function(array) {
-	    for (var i = array.length - 1; i > 0; i--) {
-	        var j = Math.floor(Math.random() * (i + 1));
-	        var temp = array[i];
-	        array[i] = array[j];
-	        array[j] = temp;
-	    }
-	    return array;
-	}
-
-	// count vowels and consonants so we know the range for random numbers
-	for(var i = 0; i < data.length; i++) {
-		// don't care if it's a space
-		if(data.charAt(i) === " ") {
-			continue;
-		} 
-		// increment vowel count
-		else if(vowels.includes(data.charAt(i))) {
-			numVowels++;
+		// stole this from http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+		self.shuffleArray = function(array) {
+		    for (var i = array.length - 1; i > 0; i--) {
+		        var j = Math.floor(Math.random() * (i + 1));
+		        var temp = array[i];
+		        array[i] = array[j];
+		        array[j] = temp;
+		    }
+		    return array;
 		}
-		// increment consonant count
-		else {
-			numCons++;
-		}
-	}
-	
-	var orderVowels = [];
-	for(var a = 0; a < numVowels; a++) {
-		orderVowels[a] = a;
-	}
 
-	var orderCons = [];
-	for(var b = 0; b < numCons; b++) {
-		orderCons[b] = b;
-	}
-
-	orderVowels = self.shuffleArray(orderVowels);
-	orderCons = self.shuffleArray(orderCons);
-
-	vowelStack = new Array(numVowels);
-	consStack = new Array(numCons);
-
-	var parts = data.split(" ");
-	self.phrase = [];
-	parts.forEach(function(d) {
-		var temp = [];
-		for(var x = 0; x < d.length; x++) {
-			var obj = {
-				letter: d[x],
-				revealed: false,
-				model: "."
-			};
-
-			if(vowels.includes(d[x])) {
-				obj.letterType = "V";
-				obj.order = orderVowels.shift();
-				vowelStack[obj.order] = obj;
-			} else if(d === ' ') {
-				obj.letterType = "S";
-			} else {
-				obj.letterType = "C";
-				obj.order = orderCons.shift();
-				consStack[obj.order] = obj;
+		// count vowels and consonants so we know the range for random numbers
+		for(var i = 0; i < data.length; i++) {
+			// don't care if it's a space
+			if(data.charAt(i) === " ") {
+				continue;
+			} 
+			// increment vowel count
+			else if(vowels.includes(data.charAt(i))) {
+				numVowels++;
 			}
-			temp.push(obj);
+			// increment consonant count
+			else {
+				numCons++;
+			}
 		}
-		self.phrase.push(temp)
-	});
+
+		var orderVowels = [];
+		for(var a = 0; a < numVowels; a++) {
+			orderVowels[a] = a;
+		}
+
+		var orderCons = [];
+		for(var b = 0; b < numCons; b++) {
+			orderCons[b] = b;
+		}
+
+		orderVowels = self.shuffleArray(orderVowels);
+		orderCons = self.shuffleArray(orderCons);
+
+		vowelStack = new Array(numVowels);
+		consStack = new Array(numCons);
+
+		var parts = data.split(" ");
+		self.phrase = [];
+		parts.forEach(function(d) {
+			var temp = [];
+			for(var x = 0; x < d.length; x++) {
+				var obj = {
+					letter: d[x],
+					revealed: false,
+					model: "."
+				};
+
+				if(vowels.includes(d[x])) {
+					obj.letterType = "V";
+					obj.order = orderVowels.shift();
+					vowelStack[obj.order] = obj;
+				} else if(d === ' ') {
+					obj.letterType = "S";
+				} else {
+					obj.letterType = "C";
+					obj.order = orderCons.shift();
+					consStack[obj.order] = obj;
+				}
+				temp.push(obj);
+			}
+			self.phrase.push(temp)
+		});
+	}());
 
 	// button click handler, exhausts vowels first, then consonants
 	this.reveal = function() {
@@ -124,13 +126,13 @@ angular.module('fitness.game', [])
 					type: 'button-dark' 
 				},
 				{ 
-					text: 'Guess',
+					text: 'Solve',
 					type: 'button-positive',
 					onTap: function(e) {
 						if(self.guess.toUpperCase() === data) {
-							goodGuess();
+							self.goodGuess();
 						} else {
-							badGuess();
+							self.badGuess();
 						}
 					}
 				}
@@ -138,18 +140,18 @@ angular.module('fitness.game', [])
 		});
 	};
 
-	function goodGuess() {
+	this.goodGuess = function() {
 		console.log("good guess!")
-		revealAll();
-	}
+		self.revealAll();
+	};
 
-	function badGuess() {
+	this.badGuess = function() {
 		self.guess = "";
 		console.log("bad guess!")
-	}
+	};
 
 	// this will replace the existing reveal function
-	function reveal1(letterType) {
+	this.reveal1 = function(letterType) {
 		var curr;
 		if(letterType === "V" && vowelStack.length != 0) {
 			curr = vowelStack.shift();
@@ -169,7 +171,7 @@ angular.module('fitness.game', [])
 	}
 
 	// reveals the entire phrase
-	function revealAll() {
+	this.revealAll = function() {
 		vowelStack.forEach(function(d) {
 			d.model = d.letter;
 		});
@@ -180,21 +182,21 @@ angular.module('fitness.game', [])
 	}
 
 	// takes the number of vowels and consonants that should be revealed and reveals them
-	function catchUp(vowels, consonants) {
+	this.catchUp = function(vowels, consonants) {
 		if(vowels < 0 || consonants < 0) {
 			return;
 		}
 
 		for(var a = 0; a < vowels; a++) {
-			reveal1("V");
+			self.reveal1("V");
 		}
 
 		for(var b = 0; b < consonants; b++) {
-			reveal1("C");
+			self.reveal1("C");
 		}
 	}
 
-	function saveState() {
+	this.saveState = function() {
 		console.log(data)
 		console.log(self.phrase);
 		console.log(vowelStack)
@@ -205,7 +207,7 @@ angular.module('fitness.game', [])
 		// localforage.setItem("tbd_CSTACK", consStack);
 	}
 
-	function loadState() {
+	this.loadState = function() {
 		return localforage.getItem("tbd_PHRASE").then(function(value1) {
 			return localforage.getItem("tbd_PHRASE");
 		}).then(function(value2) {
