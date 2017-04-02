@@ -124,7 +124,7 @@ angular.module('fitness.game', [])
 					type: 'button-dark' 
 				},
 				{ 
-					text: 'Guess',
+					text: 'Solve',
 					type: 'button-positive',
 					onTap: function(e) {
 						if(self.guess.toUpperCase() === data) {
