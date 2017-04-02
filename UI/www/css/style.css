@@ -66,9 +66,13 @@ body{
 .fullWidth{
     width: 100%;
 }
+.halfWidth{
+    width:49%;
+}
 .marginAuto{
     margin: auto;
 }
+
 .centerAlign{
     text-align: center;
 

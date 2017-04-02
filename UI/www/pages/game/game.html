@@ -10,8 +10,8 @@
 				<p class="strong opacity">Your Progress:</p>
 				<hr class="opacity margin" />
 				-->
-				<p class="steps"><i class="icon ion-android-walk"></i> Steps walked: {{vm.fitbitData.steps}} (consonants)</p>
-				<p class="stairs"><i class="icon ion-connection-bars"></i> Floors climbed: {{vm.fitbitData.floors}} (vowels)</p>
+				<p class="steps"><i class="icon ion-android-walk"></i> Steps Walked: {{vm.fitbitData.steps}} / {{vm.fitbitData.goals.steps}}</p>
+				<p class="stairs"><i class="icon ion-connection-bars"></i> Floors Climbed: {{vm.fitbitData.floors}} / {{vm.fitbitData.goals.floors}}</p>
 				<p class="time"><i class="icon ion-android-time"></i> Time Left: {{vm.fitbitData.time}} hours</p>
 			</div>
   		
@@ -23,7 +23,7 @@
 		
 		<div class="container">
 			<div style="padding:8px; text-align: left;">
-				<label style="opacity: 0.6;">Walking reveals consonants and climbing stairs reveals vowels.</label>
+				<label style="opacity: 0.6;">Walking reveals consonants and climbing stairs reveals vowels. Click on 'Solve The Puzzle' button when you are ready to make a guess!</label>
 			</div>
 				<div class="word" ng-repeat="word in vm.phrase track by $index">
 					<span class="character" ng-repeat="char in word track by $index">{{ vm.phrase[$parent.$index][$index].model }}</span>
@@ -33,10 +33,18 @@
 				<label style="opacity: 0.5;">Hint: Things in Spain</label>
 			</div>
 
-			<button class="button button-dark fullWidth" ng-click="vm.reveal()">Solve The Puzzle</button>
+			<button class="button button-positive fullWidth" ng-click="vm.reveal()">Solve The Puzzle</button>
+			
+			<div class="margin opacity">
+				<label>or</label>
+			</div>
+			
+			
+			<button class="button button-dark fullWidth">Give Up</button>
 	
 		</div>
   
+		<!--
 		<div id="enemy" class="row">
   		<div class="container col">
 				<p>Enemy Forces</p>
@@ -45,6 +53,7 @@
   		<div class="container col-30">
 					<div id="enemy-progress" style="width:30px; height:100px;"></div>
 			</div>
+		-->
   	</div>
   </ion-content>
 </ion-view>

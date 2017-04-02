@@ -172,6 +172,6 @@ angular.module('fitness.game', [])
 
 		self.queryInterval = $interval( function(){ gameService.getFitbitData();} , 35000);
 	
-		$timeout( self.drawFriendly, 2000);
+		$timeout( self.drawFriendly, 750);
 	});
 });
