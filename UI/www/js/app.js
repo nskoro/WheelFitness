@@ -86,7 +86,7 @@ var app = angular.module('starter', ['ionic', 'LocalForageModule', 'fitness.spla
 
   if (!window.location.hash) {
       console.log('loading fitbit auth');
-      window.location.replace('https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=228D84&redirect_uri=http%3A%2F%2Flocalhost%3A8100&scope=activity%20nutrition%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight');
+      window.location.replace('https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=228D84&redirect_uri=http%3A%2F%2Flocalhost%3A8100&expires_in=31536000&scope=activity%20nutrition%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight');
   } else {
     //http%3A%2F%2Flocalhost%3A8100
       console.log('loading access token');
