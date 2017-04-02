@@ -1,5 +1,15 @@
 angular.module('fitness.game', [])
 
+// directive for auto-focusing popup input when shown
+.directive('focusMe', function($timeout) {
+  return {
+    link: function(scope, element, attrs) {
+      $timeout(function() {
+        element[0].focus(); 
+      }, 150);
+    }
+  };
+})
 .controller('GameCtrl', function($ionicPopup, $timeout, $interval, gameService, $scope, $state) {
 
 	console.log('Game Controller loaded');
@@ -8,6 +18,8 @@ angular.module('fitness.game', [])
 	var vowels = ['A', 'E', 'I', 'O', 'U'];
 	var numVowels = 0;
 	var numCons = 0;
+	var vowelsRevealed = 0;
+	var consRevealed = 0;
 	var vowelStack, consStack;
 
 	var data = "The rain in spain falls mainly on the plain";
@@ -88,14 +100,118 @@ angular.module('fitness.game', [])
 	this.reveal = function() {
 		if(vowelStack.length == 0) {
 			var curr = consStack.shift();
-			if (curr)
+			if (curr) {
 				curr.model = curr.letter;
+				vowelsRevealed++;
+			}
 		} else {
 			var curr = vowelStack.shift();
-			if (curr)
+			if (curr) {
 				curr.model = curr.letter;
+				consRevealed++;
+			}
 		}
 	};
+
+	this.showPopup = function() {
+		var guessPopup = $ionicPopup.show({
+			template: '<input focus-me class="popup-input" ng-model="vm.guess">',
+			title: 'Enter Phrase',
+			scope: $scope,
+			buttons: [
+				{ 
+					text: 'Cancel',
+					type: 'button-dark' 
+				},
+				{ 
+					text: 'Guess',
+					type: 'button-positive',
+					onTap: function(e) {
+						if(self.guess.toUpperCase() === data) {
+							goodGuess();
+						} else {
+							badGuess();
+						}
+					}
+				}
+			]
+		});
+	};
+
+	function goodGuess() {
+		console.log("good guess!")
+		revealAll();
+	}
+
+	function badGuess() {
+		self.guess = "";
+		console.log("bad guess!")
+	}
+
+	// this will replace the existing reveal function
+	function reveal1(letterType) {
+		var curr;
+		if(letterType === "V" && vowelStack.length != 0) {
+			curr = vowelStack.shift();
+			if (curr) {
+				curr.model = curr.letter;
+				vowelsRevealed++;
+			}
+		} else if(letterType === "C" && consStack.length != 0) {
+			curr = consStack.shift();
+			if (curr) {
+				curr.model = curr.letter;
+				consRevealed++;
+			}
+		} else {
+			// either we have a bad lettertype or both stacks are empty
+		}
+	}
+
+	// reveals the entire phrase
+	function revealAll() {
+		vowelStack.forEach(function(d) {
+			d.model = d.letter;
+		});
+
+		consStack.forEach(function(d) {
+			d.model = d.letter;
+		});
+	}
+
+	// takes the number of vowels and consonants that should be revealed and reveals them
+	function catchUp(vowels, consonants) {
+		if(vowels < 0 || consonants < 0) {
+			return;
+		}
+
+		for(var a = 0; a < vowels; a++) {
+			reveal1("V");
+		}
+
+		for(var b = 0; b < consonants; b++) {
+			reveal1("C");
+		}
+	}
+
+	function saveState() {
+		console.log(data)
+		console.log(self.phrase);
+		console.log(vowelStack)
+		console.log(consStack)
+		// localforage.setItem("tbd_PHRASE", data);
+		// localforage.setItem("tbd_VIEWMODEL", self.phrase);
+		// localforage.setItem("tbd_VSTACK", vowelStack);
+		// localforage.setItem("tbd_CSTACK", consStack);
+	}
+
+	function loadState() {
+		return localforage.getItem("tbd_PHRASE").then(function(value1) {
+			return localforage.getItem("tbd_PHRASE");
+		}).then(function(value2) {
+
+		});
+	}
 
 	this.drawFriendly = function() {
 

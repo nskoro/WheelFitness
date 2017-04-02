@@ -32,10 +32,21 @@ body{
     padding-top:5px; 
     text-decoration: underline;
 }
-.test {
-	font-size: 35px;
+.popup-input {
 	font-family: monospace;
-	display: inline-block;
+	text-align: center;
+	text-transform: uppercase;
+	background-color: #000;
+	border: 1.5px solid #2a94cb;
+	color: #fff;
+}
+.popup {
+	width: 100% !important;
+	background-color: #000 !important;
+	border: 1.5px solid #2a94cb;
+}
+.popup-head h3 {
+	color: #fff !important;
 }
 .space {
 	display: inline-block;
