@@ -27,23 +27,29 @@ angular.module('fitness.game', [])
 		console.log('init game function');
 		var obj = {} ;
 
-		if (gameService.activeGame)
-			obj = gameService.activeGame ;
+		if (gameService.activeGame) {
+			console.info("new game!")
+			self.loadGame();
+		}
 
-		else obj = gameService.startGame();
+		else {
+			console.info("continue game!")
+			obj = gameService.startGame();
 
-		gameService.activeGame = obj ;
-		gameService.activeGameFlag = true ;
+			gameService.activeGame = obj ;
+			gameService.activeGameFlag = true ;
 
-		numVowels = obj.numVowels;
-		numCons = obj.numCons;
-		vowelsRevealed = 0;
-		consRevealed = 0;
-		vowelStack = obj.vowelStack;
-		consStack = obj.consStack;
-		self.phrase = obj.viewModel;
-		thePhrase = obj.phrase;
-		noSpace = obj.noSpace;
+			numVowels = obj.numVowels;
+			numCons = obj.numCons;
+			vowelsRevealed = 0;
+			consRevealed = 0;
+			vowelStack = obj.vowelStack;
+			consStack = obj.consStack;
+			self.phrase = obj.viewModel;
+			thePhrase = obj.phrase;
+			noSpace = obj.noSpace;
+		}
+
 		console.info(thePhrase)
 	};
 
@@ -129,6 +135,46 @@ angular.module('fitness.game', [])
 		}
 	};
 
+	this.saveGame = function() {
+		console.info("game saved!")
+		var state = {
+			numVowels: numVowels,
+			numCons: numCons,
+			vowelsRevealed: vowelsRevealed,
+			consRevealed: consRevealed,
+			vowelStack: vowelStack,
+			consStack: consStack,
+			viewModel: self.phrase,
+			thePhrase: thePhrase,
+			noSpace: noSpace
+		};
+
+		return localforage.setItem("gameState", state);
+	};
+
+	this.loadGame = function() {
+		console.info("game loaded!")
+		localforage.getItem("gameState").then(function(savedState) {
+			numVowels = savedState.numVowels;
+			numCons = savedState.numCons;
+			vowelsRevealed = savedState.vowelsRevealed;
+			consRevealed = savedState.consRevealed;
+			vowelStack = savedState.vowelStack;
+			consStack = savedState.consStack;
+			self.phrase = savedState.viewModel;
+			thePhrase = savedState.thePhrase;
+			noSpace = savedState.noSpace;
+		});
+	};
+
+	this.testReveal = function() {
+		if(vowelStack.length > 0) {
+			self.reveal("V");
+		} else {
+			self.reveal("C");
+		}
+	}
+
 	this.drawFriendly = function() {
 
 		console.log('goal steps ' + self.fitbitData.goals.steps);
@@ -171,6 +217,10 @@ angular.module('fitness.game', [])
 	  //  }
 //	  }, 1000);
 	};
+
+	$scope.$on('$ionicView.leave', function(e) {
+		self.saveGame();
+	});
 
 
 	$scope.$on('$ionicView.enter', function(e) {
