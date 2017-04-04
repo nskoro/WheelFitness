@@ -46,6 +46,19 @@ body{
 	background-color: #000 !important;
 	border: 1.5px solid #2a94cb;
 }
+.stat-item {
+    border: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    color: #fff;
+    font-size: 18px;
+}
+.item-note {
+    color: #fff;
+    font-size: 18px;
+}
+.stat-break {
+    border-color: #2a94cb;
+}
 .popup-head h3 {
 	color: #fff !important;
 }

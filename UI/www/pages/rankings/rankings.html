@@ -1,30 +1,26 @@
 <ion-view  class="backgroundImage" view-title="Fitness Stats">
   <ion-content>
-    <div class="row margin">
-       <h1 class="container fullWidth">Today's Fitness Stats</h1>
-    </div>
    
-      <div class="row">
-        <div class="col container">
-            <p>Active Score: {{vm.data.summary.activeScore}}</p>
-            <p>Active Calories: {{vm.data.summary.activityCalories}}</p>
-            <p>Marginal Calories: {{vm.data.summary.marginalCalories}}</p>
-            <p>Calories BMR: {{vm.data.summary.caloriesBMR}}</p>
-            <p>Calories Out: {{vm.data.summary.caloriesOut}}</p>
+   <div class="container">
+      <div class="list">
+            <span class="item stat-item">Active Score <span class="item-note">{{vm.data.summary.activeScore}}</span></span>
+            <span class="item stat-item">Active Calories <span class="item-note">{{vm.data.summary.activityCalories}}</span></span>
+            <span class="item stat-item">Marginal Calories <span class="item-note">{{vm.data.summary.marginalCalories}}</span></span>
+            <span class="item stat-item">Calories BMR <span class="item-note">{{vm.data.summary.caloriesBMR}}</span></span>
+            <span class="item stat-item">Calories Out <span class="item-note">{{vm.data.summary.caloriesOut}}</span></span>
           
-            <hr />
-            <p>Elevation Climbed: {{vm.data.summary.elevation}}</p>
-            <p>Floors Climbed: {{vm.data.summary.floors}}</p>
-            <p>Steps Taken: {{vm.data.summary.steps}}</p>
-            <hr />
+            <hr class="stat-break" />
+            <span class="item stat-item">Elevation Climbed <span class="item-note">{{vm.data.summary.elevation}}</span></span>
+            <span class="item stat-item">Floors Climbed <span class="item-note">{{vm.data.summary.floors}}</span></span>
+            <span class="item stat-item">Steps Taken <span class="item-note">{{vm.data.summary.steps}}</span></span>
+            <hr class="stat-break" />
 
-            <p>Sedentary Minutes: {{vm.data.summary.sedentaryMinutes}}</p>
-            <p>Lightly Active Minutes: {{vm.data.summary.lightlyActiveMinutes}}</p>
-            <p>Fairly Active Minutes: {{vm.data.summary.fairlyActiveMinutes}}</p>
-            <p>Very Active Minutes: {{vm.data.summary.veryActiveMinutes}}</p>
-          
-        </div>
+            <span class="item stat-item">Sedentary Minutes <span class="item-note">{{vm.data.summary.sedentaryMinutes}}</span></span>
+            <span class="item stat-item">Lightly Active Minutes <span class="item-note">{{vm.data.summary.lightlyActiveMinutes}}</span></span>
+            <span class="item stat-item">Fairly Active Minutes <span class="item-note">{{vm.data.summary.fairlyActiveMinutes}}</span></span>
+            <span class="item stat-item">Very Active Minutes <span class="item-note">{{vm.data.summary.veryActiveMinutes}}</span></span>
       </div>
+    </div>
 
   </ion-content>
 </ion-view>
