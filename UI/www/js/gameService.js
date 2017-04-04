@@ -17,6 +17,86 @@ app.service('gameService', function($http) {
  this.data.time = 24 ;
  this.data.goals = {};
  this.data.goals.steps = 0;
+ this.vowels = ['A', 'E', 'I', 'O', 'U'];
+
+ this.startGame = function() {
+  var index = self.getRandomInt(0, self.dataArray.length);
+  var phraseData = self.dataArray[index];
+  var numVowels = phraseData["Vowels Count"];
+  var numCons = phraseData["Consonants Count"];
+  var phrase = phraseData["Phrase"].toUpperCase();
+  var noSpace = phraseData["Phrase Without Spaces"].toUpperCase();
+
+  var orderVowels = [];
+  for(var a = 0; a < numVowels; a++) {
+    orderVowels[a] = a;
+  }
+
+  var orderCons = [];
+  for(var b = 0; b < numCons; b++) {
+    orderCons[b] = b;
+  }
+
+  var orderVowels = self.shuffleArray(orderVowels);
+  var orderCons = self.shuffleArray(orderCons);
+
+  var vowelStack = new Array(numVowels);
+  var consStack = new Array(numCons);
+
+  var parts = phrase.split(" ");
+  var viewModel = [];
+  parts.forEach(function(d) {
+    var temp = [];
+    for(var x = 0; x < d.length; x++) {
+      var obj = {
+        letter: d[x],
+        revealed: false,
+        model: "."
+      };
+
+      if(self.vowels.includes(d[x])) {
+        obj.letterType = "V";
+        obj.order = orderVowels.shift();
+        vowelStack[obj.order] = obj;
+      } else if(d === ' ') {
+        obj.letterType = "S";
+      } else {
+        obj.letterType = "C";
+        obj.order = orderCons.shift();
+        consStack[obj.order] = obj;
+      }
+      temp.push(obj);
+    }
+    viewModel.push(temp)
+  });
+
+  return {
+    numVowels: numVowels,
+    numCons: numCons,
+    phrase: phrase,
+    noSpace: noSpace,
+    vowelStack: vowelStack,
+    consStack: consStack,
+    viewModel: viewModel
+  };
+};
+
+self.getRandomInt = function(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+// stole this from http://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
+self.shuffleArray = function(array) {
+  for (var i = array.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+  }
+  return array;
+}
 
 this.updateTime = function(time){
     this.data.time = time ;
@@ -85,4 +165,241 @@ this.updateTime = function(time){
             });
 
   }
+
+  this.dataArray = [
+   {
+     "Phrase": "Take care of the pennies and the pounds will take care of themselves",
+     "Word Count": 13,
+     "Character Count": 68,
+     "Phrase Without Spaces": "takecareofthepenniesandthepoundswilltakecareofthemselves",
+     "Consonants": "tkcrfthpnnsndthpndswlltkcrfthmslvs",
+     "Consonants Count": 34,
+     "Vowels Count": 34
+   },
+   {
+     "Phrase": "Sticks and stones may break my bones but words will never hurt me",
+     "Word Count": 13,
+     "Character Count": 65,
+     "Phrase Without Spaces": "sticksandstonesmaybreakmybonesbutwordswillneverhurtme",
+     "Consonants": "stcksndstnsmybrkmybnsbtwrdswllnvrhrtm",
+     "Consonants Count": 37,
+     "Vowels Count": 28
+   },
+   {
+     "Phrase": "It is no use locking the stable door after the horse has bolted",
+     "Word Count": 13,
+     "Character Count": 63,
+     "Phrase Without Spaces": "itisnouselockingthestabledoorafterthehorsehasbolted",
+     "Consonants": "tsnslckngthstbldrftrthhrshsbltd",
+     "Consonants Count": 31,
+     "Vowels Count": 32
+   },
+   {
+     "Phrase": "There are more ways of killing a cat than choking it with cream",
+     "Word Count": 13,
+     "Character Count": 63,
+     "Phrase Without Spaces": "therearemorewaysofkillingacatthanchokingitwithcream",
+     "Consonants": "thrrmrwysfkllngctthnchkngtwthcrm",
+     "Consonants Count": 32,
+     "Vowels Count": 31
+   },
+   {
+     "Phrase": "Better to have loved and lost than never to have loved at all",
+     "Word Count": 13,
+     "Character Count": 61,
+     "Phrase Without Spaces": "bettertohavelovedandlostthannevertohavelovedatall",
+     "Consonants": "bttrthvlvdndlstthnnvrthvlvdtll",
+     "Consonants Count": 30,
+     "Vowels Count": 31
+   },
+   {
+     "Phrase": "One half of the world does not know how the other half lives",
+     "Word Count": 13,
+     "Character Count": 60,
+     "Phrase Without Spaces": "onehalfoftheworlddoesnotknowhowtheotherhalflives",
+     "Consonants": "nhlffthwrlddsntknwhwththrhlflvs",
+     "Consonants Count": 31,
+     "Vowels Count": 29
+   },
+   {
+     "Phrase": "The only disability in life is a bad attitude Scott Hamilton",
+     "Word Count": 11,
+     "Character Count": 60,
+     "Phrase Without Spaces": "theonlydisabilityinlifeisabadattitudescotthamilton",
+     "Consonants": "thnlydsbltynlfsbdtttdsctthmltn",
+     "Consonants Count": 30,
+     "Vowels Count": 30
+   },
+   {
+     "Phrase": "Laugh and the world laughs with you weep and you weep alone",
+     "Word Count": 12,
+     "Character Count": 59,
+     "Phrase Without Spaces": "laughandtheworldlaughswithyouweepandyouweepalone",
+     "Consonants": "lghndthwrldlghswthywpndywpln",
+     "Consonants Count": 28,
+     "Vowels Count": 31
+   },
+   {
+     "Phrase": "Those who do not learn from history are doomed to repeat it",
+     "Word Count": 12,
+     "Character Count": 59,
+     "Phrase Without Spaces": "thosewhodonotlearnfromhistoryaredoomedtorepeatit",
+     "Consonants": "thswhdntlrnfrmhstryrdmdtrptt",
+     "Consonants Count": 28,
+     "Vowels Count": 31
+   },
+   {
+     "Phrase": "History repeats itself and it does not care what it repeats",
+     "Word Count": 11,
+     "Character Count": 59,
+     "Phrase Without Spaces": "historyrepeatsitselfanditdoesnotcarewhatitrepeats",
+     "Consonants": "hstryrptstslfndtdsntcrwhttrpts",
+     "Consonants Count": 30,
+     "Vowels Count": 29
+   },
+   {
+     "Phrase": "You can lead a horse to water but you cannot make it drink",
+     "Word Count": 13,
+     "Character Count": 58,
+     "Phrase Without Spaces": "youcanleadahorsetowaterbutyoucannotmakeitdrink",
+     "Consonants": "ycnldhrstwtrbtycnntmktdrnk",
+     "Consonants Count": 26,
+     "Vowels Count": 32
+   },
+   {
+     "Phrase": "Hunger never knows the taste sleep never knows the comfort",
+     "Word Count": 10,
+     "Character Count": 58,
+     "Phrase Without Spaces": "hungerneverknowsthetastesleepneverknowsthecomfort",
+     "Consonants": "hngrnvrknwsthtstslpnvrknwsthcmfrt",
+     "Consonants Count": 33,
+     "Vowels Count": 25
+   },
+   {
+     "Phrase": "He who lives by the sword shall die by the sword",
+     "Word Count": 11,
+     "Character Count": 48,
+     "Phrase Without Spaces": "hewholivesbytheswordshalldiebythesword",
+     "Consonants": "hwhlvsbythswrdshlldbythswrd",
+     "Consonants Count": 27,
+     "Vowels Count": 21
+   },
+   {
+     "Phrase": "The innocent seldom find an uncomfortable pillow",
+     "Word Count": 7,
+     "Character Count": 48,
+     "Phrase Without Spaces": "theinnocentseldomfindanuncomfortablepillow",
+     "Consonants": "thnncntsldmfndnncmfrtblpllw",
+     "Consonants Count": 27,
+     "Vowels Count": 21
+   },
+   {
+     "Phrase": "There is none so blind as those who will not see",
+     "Word Count": 11,
+     "Character Count": 48,
+     "Phrase Without Spaces": "thereisnonesoblindasthosewhowillnotsee",
+     "Consonants": "thrsnnsblndsthswhwllnts",
+     "Consonants Count": 23,
+     "Vowels Count": 25
+   },
+   {
+     "Phrase": "An ounce of prevention is worth a pound of cure",
+     "Word Count": 10,
+     "Character Count": 47,
+     "Phrase Without Spaces": "anounceofpreventionisworthapoundofcure",
+     "Consonants": "nncfprvntnswrthpndfcr",
+     "Consonants Count": 21,
+     "Vowels Count": 26
+   },
+   {
+     "Phrase": "Give a man rope enough and he will hang himself",
+     "Word Count": 10,
+     "Character Count": 47,
+     "Phrase Without Spaces": "giveamanropeenoughandhewillhanghimself",
+     "Consonants": "gvmnrpnghndhwllhnghmslf",
+     "Consonants Count": 23,
+     "Vowels Count": 24
+   },
+   {
+     "Phrase": "It is better to travel hopefully than to arrive",
+     "Word Count": 9,
+     "Character Count": 47,
+     "Phrase Without Spaces": "itisbettertotravelhopefullythantoarrive",
+     "Consonants": "tsbttrttrvlhpfllythntrrv",
+     "Consonants Count": 24,
+     "Vowels Count": 23
+   },
+   {
+     "Phrase": "They that sow the wind shall reap the whirlwind",
+     "Word Count": 9,
+     "Character Count": 47,
+     "Phrase Without Spaces": "theythatsowthewindshallreapthewhirlwind",
+     "Consonants": "thythtswthwndshllrpthwhrlwnd",
+     "Consonants Count": 28,
+     "Vowels Count": 19
+   },
+   {
+     "Phrase": "Genius is an infinite capacity for taking pains",
+     "Word Count": 8,
+     "Character Count": 47,
+     "Phrase Without Spaces": "geniusisaninfinitecapacityfortakingpains",
+     "Consonants": "gnssnnfntcpctyfrtkngpns",
+     "Consonants Count": 23,
+     "Vowels Count": 24
+   },
+   {
+     "Phrase": "Keep your friends close and your enemies closer",
+     "Word Count": 8,
+     "Character Count": 47,
+     "Phrase Without Spaces": "keepyourfriendscloseandyourenemiescloser",
+     "Consonants": "kpyrfrndsclsndyrnmsclsr",
+     "Consonants Count": 23,
+     "Vowels Count": 24
+   },
+   {
+     "Phrase": "Lightning never strikes twice in the same place",
+     "Word Count": 8,
+     "Character Count": 47,
+     "Phrase Without Spaces": "lightningneverstrikestwiceinthesameplace",
+     "Consonants": "lghtnngnvrstrkstwcnthsmplc",
+     "Consonants Count": 26,
+     "Vowels Count": 21
+   },
+   {
+     "Phrase": "If a job is worth doing it is worth doing well",
+     "Word Count": 11,
+     "Character Count": 46,
+     "Phrase Without Spaces": "ifajobisworthdoingitisworthdoingwell",
+     "Consonants": "fjbswrthdngtswrthdngwll",
+     "Consonants Count": 23,
+     "Vowels Count": 23
+   },
+   {
+     "Phrase": "The bread never falls but on its buttered side",
+     "Word Count": 9,
+     "Character Count": 46,
+     "Phrase Without Spaces": "thebreadneverfallsbutonitsbutteredside",
+     "Consonants": "thbrdnvrfllsbtntsbttrdsd",
+     "Consonants Count": 24,
+     "Vowels Count": 22
+   },
+   {
+     "Phrase": "The hand that rocks the cradle rules the world",
+     "Word Count": 9,
+     "Character Count": 46,
+     "Phrase Without Spaces": "thehandthatrocksthecradlerulestheworld",
+     "Consonants": "thhndthtrcksthcrdlrlsthwrld",
+     "Consonants Count": 27,
+     "Vowels Count": 19
+   },
+   {
+     "Phrase": "The road to Hell is paved with good intentions",
+     "Word Count": 9,
+     "Character Count": 46,
+     "Phrase Without Spaces": "theroadtohellispavedwithgoodintentions",
+     "Consonants": "thrdthllspvdwthgdntntns",
+     "Consonants Count": 23,
+     "Vowels Count": 23
+   }
+  ];
 });
