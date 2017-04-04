@@ -247,7 +247,7 @@ angular.module('fitness.game', [])
 
 		$interval.cancel(self.queryInterval);
 
-		self.queryInterval = $interval( function(){ self.refreshData(); } , 220000);
+		self.queryInterval = $interval( function(){ self.refreshData(); } , 260000);
 	
 		$timeout( self.drawFriendly, 750);
 	});

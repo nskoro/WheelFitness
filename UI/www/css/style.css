@@ -8,7 +8,7 @@
 }
 h1{
     color: #FFF ;
-    font-size:22px;
+    font-size:18px;
 }
 body{
     color: #FFF ;
@@ -26,7 +26,7 @@ body{
   background-color: #eee ;
 }
 .character {
-	font-size: 30px;
+	font-size: 18px;
 	font-family: monospace;
 	margin-left:3px;
 	margin-right:3px;
@@ -50,11 +50,11 @@ body{
     border: 0px;
     background-color: rgba(0, 0, 0, 0);
     color: #fff;
-    font-size: 18px;
+    font-size: 14px;
 }
 .item-note {
     color: #fff;
-    font-size: 18px;
+    font-size: 14px;
 }
 .stat-break {
     border-color: #2a94cb;
@@ -117,6 +117,6 @@ body{
 .opacity{
     opacity: 0.6;
 }
-.font-16{
-    font-size: 16px;
+.font-14{
+    font-size: 14px;
 }
