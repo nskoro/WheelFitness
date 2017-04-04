@@ -28,7 +28,7 @@
 		
 		<div class="container">
 			<div style="padding:8px; text-align: left;">
-				<label style="opacity: 0.6;">Walking reveals consonants and climbing stairs reveals vowels. Click on 'Solve The Puzzle' button when you are ready to make a guess!</label>
+				<label class="opacity">Walking reveals consonants and climbing stairs reveals vowels.</label>
 			</div>
 				<div class="word" ng-repeat="word in vm.phrase track by $index">
 					<span class="character" ng-repeat="char in word track by $index">{{ vm.phrase[$parent.$index][$index].model }}</span>
