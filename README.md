@@ -1,6 +1,10 @@
 # WheelFitness
 FitBit Game similar to Wheel of Fortune
 
+### Install NPM (package manager)
+
+[https://docs.npmjs.com/cli/install](https://docs.npmjs.com/cli/install)
+
 
 ### Install `ionic` utility with the following command:
 
