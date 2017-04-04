@@ -142,6 +142,7 @@ this.updateTime = function(time){
 
                 self.data.steps = response.data.summary.steps ;
                 self.data.floors = response.data.summary.floors ;
+                self.data.summary = response.data.summary ;
 
                 self.data.goals = response.data.goals ;
                 var date = new Date();

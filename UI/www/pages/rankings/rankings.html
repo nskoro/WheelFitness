@@ -1,5 +1,30 @@
-<ion-view  class="backgroundImage" view-title="Rankings">
+<ion-view  class="backgroundImage" view-title="Stats">
   <ion-content>
-    <h1>Rankings</h1>
+    <div class="row margin">
+       <h1 class="container fullWidth">Your Fitness Stats</h1>
+    </div>
+   
+      <div class="row">
+        <div class="col container">
+            <p>Active Score: {{vm.data.summary.activeScore}}</p>
+            <p>Active Calories: {{vm.data.summary.activityCalories}}</p>
+            <p>Marginal Calories: {{vm.data.summary.marginalCalories}}</p>
+            <p>Calories BMR: {{vm.data.summary.caloriesBMR}}</p>
+            <p>Calories Out: {{vm.data.summary.caloriesOut}}</p>
+          
+            <hr />
+            <p>Elevation Climbed: {{vm.data.summary.elevation}}</p>
+            <p>Floors Climbed: {{vm.data.summary.floors}}</p>
+            <p>Steps Taken: {{vm.data.summary.steps}}</p>
+            <hr />
+
+            <p>Sedentary Minutes: {{vm.data.summary.sedentaryMinutes}}</p>
+            <p>Lightly Active Minutes: {{vm.data.summary.lightlyActiveMinutes}}</p>
+            <p>Fairly Active Minutes: {{vm.data.summary.fairlyActiveMinutes}}</p>
+            <p>Very Active Minutes: {{vm.data.summary.veryActiveMinutes}}</p>
+          
+        </div>
+      </div>
+
   </ion-content>
 </ion-view>
