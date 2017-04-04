@@ -1,6 +1,6 @@
 angular.module('fitness.menu', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, gameService, $ionicModal, $timeout) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -9,4 +9,7 @@ angular.module('fitness.menu', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
+  this.logout = function(){
+    gameService.logout();
+  }
 })

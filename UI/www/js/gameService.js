@@ -61,5 +61,28 @@ this.updateTime = function(time){
   this.reload = function(){
       window.location.replace('http://localhost:8100');
   }
-   
+
+  this.logout = function(){
+      var logoutToken = btoa('228D84:8344dafa189daab385897122cb0c87b3');
+    
+      console.log(logoutToken);
+
+        $http.defaults.headers.common['Authorization'] = 'Basic ' + logoutToken;
+        $http.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
+        
+
+        $http({
+              method: 'POST',
+              url: 'https://api.fitbit.com/oauth2/revoke?token='+self.fitbitToken
+            }).then(function successCallback(response) {
+                
+                console.log(JSON.stringify(response));  
+               // self.reload();
+               window.location.replace('https://www.fitbit.com/logout?disableThirdPartyLogin=true&redirect=%2Foauth2%2Fauthorize%3Fclient_id%3D228D84%26expires_in%3D31536000%26redirect_uri%3Dhttp%253A%252F%252Flocalhost%253A8100%26response_type%3Dtoken%26scope%3Dactivity%2Bnutrition%2Bheartrate%2Blocation%2Bnutrition%2Bprofile%2Bsettings%2Bsleep%2Bsocial%2Bweight%26state&requestCredentials=true');
+            },function errorCallback(response) {
+                console.log(JSON.stringify(response));
+               
+            });
+
+  }
 });
