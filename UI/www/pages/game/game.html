@@ -30,7 +30,7 @@
 			<div style="padding:8px; text-align: left;">
 				<label class="opacity">Walking reveals consonants and climbing stairs reveals vowels.</label>
 			</div>
-				<div class="word" ng-repeat="word in vm.phrase track by $index">
+				<div class="word" ng-repeat="word in vm.phrase track by $index" ng-click="vm.testReveal();">
 					<span class="character" ng-repeat="char in word track by $index">{{ vm.phrase[$parent.$index][$index].model }}</span>
 				</div>
 
@@ -45,7 +45,7 @@
 			</div>
 			
 			<button class="button button-dark fullWidth" ng-click="vm.closeGame();">Give Up</button>
-			<button class="button button-stable fullWidth" ng-click="vm.testReveal();">Test Reveal</button>
+		<!--	<button class="button button-stable fullWidth" ng-click="vm.testReveal();">Test Reveal</button> -->
 	
 		</div>
   

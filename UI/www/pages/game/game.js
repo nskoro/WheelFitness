@@ -257,6 +257,17 @@ angular.module('fitness.game', [])
 		gameService.getFitbitData();
 		$timeout( self.drawFriendly, 750);
 		$scope.$broadcast('scroll.refreshComplete');
+		self.computeGameLogic();
+		
+	}
+
+	this.computeGameLogic = function(){
+		var vowelWorth = parseInt( self.fitbitData.goals.floors /  numVowels);
+		var consWorth = parseInt(self.fitbitData.goals.steps /  numCons) ;
+		
+		var vowelCount = parseInt(self.fitbitData.floors / vowelWorth );
+		var consCount = parseInt(self.fitbitData.steps / consWorth );
+		this.catchUp( vowelCount, consCount );
 	}
 
 	this.closeGame = function(){
