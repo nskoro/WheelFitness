@@ -4,6 +4,8 @@ angular.module('fitness.home', [])
 
     var self = this ;
 
+    this.data = {} ;
+    this.data.activeGame = false ;
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -22,6 +24,9 @@ angular.module('fitness.home', [])
         method: 'GET'
     }*/
     
+      self.data.activeGame = gameService.activeGame ;
+
+      console.log('setting active game flag to : ' + self.data.activeGame);
       var fitbitToken = window.fitbitAccessToken;
 
       if (fitbitToken){
@@ -48,5 +53,11 @@ angular.module('fitness.home', [])
   this.loadNewGame = function(length){
 
       $state.go('app.game');
+  }
+
+  this.continueGame = function(){
+
+        $state.go('app.game');
+      
   }
 });

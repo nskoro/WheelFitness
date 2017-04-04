@@ -18,7 +18,8 @@ app.service('gameService', function($http) {
  this.data.goals = {};
  this.data.goals.steps = 0;
  this.vowels = ['A', 'E', 'I', 'O', 'U'];
-
+ this.activeGame = false ;
+ 
  this.startGame = function() {
   var index = self.getRandomInt(0, self.dataArray.length);
   var phraseData = self.dataArray[index];

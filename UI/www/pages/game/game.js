@@ -23,8 +23,18 @@ angular.module('fitness.game', [])
 	var vowelStack, consStack, thePhrase, noSpace;
 	var thePhrase;
 
-	(function() {
-		var obj = gameService.startGame();
+	this.init = function(){
+		console.log('init game function');
+		var obj = {} ;
+
+		if (gameService.activeGame)
+			obj = gameService.activeGame ;
+
+		else obj = gameService.startGame();
+
+		gameService.activeGame = obj ;
+		gameService.activeGameFlag = true ;
+
 		numVowels = obj.numVowels;
 		numCons = obj.numCons;
 		vowelsRevealed = 0;
@@ -35,7 +45,7 @@ angular.module('fitness.game', [])
 		thePhrase = obj.phrase;
 		noSpace = obj.noSpace;
 		console.info(thePhrase)
-	}());
+	};
 
 	this.showPopup = function() {
 		var guessPopup = $ionicPopup.show({
@@ -183,6 +193,8 @@ angular.module('fitness.game', [])
 			gameService.getFitbitData();
 		});
 
+		self.init();
+
 		$interval.cancel(self.queryInterval);
 
 		self.queryInterval = $interval( function(){ self.refreshData(); } , 120000);
@@ -195,5 +207,12 @@ angular.module('fitness.game', [])
 		gameService.getFitbitData();
 		$timeout( self.drawFriendly, 750);
 		$scope.$broadcast('scroll.refreshComplete');
+	}
+
+	this.closeGame = function(){
+		// needs a prompt
+
+		gameService.activeGame = false;
+		$state.transitionTo('app.home');
 	}
 });

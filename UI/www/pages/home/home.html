@@ -5,9 +5,9 @@
      
      <div class="container">
        
-           <button class="button margin fullWidth button-dark" ng-click="vm.loadNewGame(short)">Start New Game</button>
+           <button class="button margin fullWidth button-dark" ng-show="!vm.data.activeGame" ng-click="vm.loadNewGame(long)">Start New Game</button>
    
-          <button class="button margin fullWidth button-positive" ng-click="vm.loadNewGame(long)">Continue Game</button>
+          <button class="button margin fullWidth button-positive" ng-show="vm.data.activeGame" ng-click="vm.continueGame()">Continue Game</button>
    
      </div>
        
