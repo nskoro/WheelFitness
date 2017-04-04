@@ -264,6 +264,12 @@ angular.module('fitness.game', [])
 	this.computeGameLogic = function(){
 		var vowelWorth = parseInt( self.fitbitData.goals.floors /  numVowels);
 		var consWorth = parseInt(self.fitbitData.goals.steps /  numCons) ;
+
+		if (consWorth < 100)
+			consWorth = 100 ;
+
+		if (vowelWorth < 2)
+			vowelWorth = 2 ;
 		
 		var vowelCount = parseInt(self.fitbitData.floors / vowelWorth );
 		var consCount = parseInt(self.fitbitData.steps / consWorth );
