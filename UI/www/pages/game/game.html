@@ -17,7 +17,7 @@
 				
 				<p class="steps"><i class="icon ion-android-walk"></i> Steps Walked: {{vm.fitbitData.steps}} / {{vm.fitbitData.goals.steps}}</p>
 				<p class="stairs"><i class="icon ion-connection-bars"></i> Floors Climbed: {{vm.fitbitData.floors}} / {{vm.fitbitData.goals.floors}}</p>
-				<p class="time"><i class="icon ion-android-time"></i> Time Left: {{vm.fitbitData.time}} hours</p>
+				<p class="time"><i class="icon ion-android-time"></i> Hours Spent: {{vm.fitbitData.time}} / 24</p>
 			</div>
   		
 			<div class="container col-30" style="padding-top: 15px;">
@@ -43,7 +43,6 @@
 			<div class="margin opacity">
 				<label>or</label>
 			</div>
-			
 			
 			<button class="button button-dark fullWidth" ng-click="vm.closeGame();">Give Up</button>
 	

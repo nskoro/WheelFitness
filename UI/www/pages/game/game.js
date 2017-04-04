@@ -155,7 +155,7 @@ angular.module('fitness.game', [])
 	        m = date.getMinutes(),
 	        s = date.getSeconds();
 
-			self.fitbitData.time = gameService.updateTime(24-h);
+			self.fitbitData.time = gameService.updateTime(h);
 			
 			console.log('hours is ' + h);
 

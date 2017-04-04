@@ -25,7 +25,7 @@ angular.module('fitness.home', [])
     }*/
     
       self.data.activeGame = gameService.activeGame ;
-
+      self.fitbitData = gameService.data ;
       console.log('setting active game flag to : ' + self.data.activeGame);
       var fitbitToken = window.fitbitAccessToken;
 
