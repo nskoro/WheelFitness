@@ -22,10 +22,28 @@ app.service('gameService', function($http) {
  this.startGame = function() {
   var index = self.getRandomInt(0, self.dataArray.length);
   var phraseData = self.dataArray[index];
-  var numVowels = phraseData["Vowels Count"];
-  var numCons = phraseData["Consonants Count"];
+  var numVowels = 0;
+  var numCons = 0;
   var phrase = phraseData["Phrase"].toUpperCase();
   var noSpace = phraseData["Phrase Without Spaces"].toUpperCase();
+
+  for(var i = 0; i < phrase.length; i++) {
+     // don't care if it's a space
+     if(phrase.charAt(i) === " ") {
+       continue;
+     } 
+     // increment vowel count
+     else if(self.vowels.includes(phrase.charAt(i))) {
+       numVowels++;
+     }
+     // increment consonant count
+     else {
+       numCons++;
+     }
+  }
+
+  console.info("MY VOWELS: "+numVowels + " THEIR VOWELS: " + phraseData["Vowels Count"])
+  console.info("MY CONS: "+numCons + " THEIR CONS: " + phraseData["Consonants Count"])
 
   var orderVowels = [];
   for(var a = 0; a < numVowels; a++) {

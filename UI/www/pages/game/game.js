@@ -88,9 +88,10 @@ angular.module('fitness.game', [])
 				consRevealed++;
 			}
 		} else {
+			console.error("something went wrong")
 			// either we have a bad lettertype or both stacks are empty
 		}
-	}
+	};
 
 	// reveals the entire phrase
 	this.revealAll = function() {
@@ -116,26 +117,7 @@ angular.module('fitness.game', [])
 		for(var b = 0; b < consonants; b++) {
 			self.reveal("C");
 		}
-	}
-
-	this.saveState = function() {
-		console.log(data)
-		console.log(self.phrase);
-		console.log(vowelStack)
-		console.log(consStack)
-		// localforage.setItem("tbd_PHRASE", data);
-		// localforage.setItem("tbd_VIEWMODEL", self.phrase);
-		// localforage.setItem("tbd_VSTACK", vowelStack);
-		// localforage.setItem("tbd_CSTACK", consStack);
-	}
-
-	this.loadState = function() {
-		return localforage.getItem("tbd_PHRASE").then(function(value1) {
-			return localforage.getItem("tbd_PHRASE");
-		}).then(function(value2) {
-
-		});
-	}
+	};
 
 	this.drawFriendly = function() {
 
