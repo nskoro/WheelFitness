@@ -21,7 +21,7 @@ angular.module('fitness.game', [])
 	var vowelsRevealed;
 	var consRevealed;
 	var vowelStack, consStack, thePhrase, noSpace;
-	var data;
+	var thePhrase;
 
 	(function() {
 		var obj = gameService.startGame();
@@ -51,7 +51,7 @@ angular.module('fitness.game', [])
 					text: 'Solve',
 					type: 'button-positive',
 					onTap: function(e) {
-						if(self.guess.toUpperCase() === data) {
+						if(self.guess.toUpperCase() === thePhrase) {
 							self.goodGuess();
 						} else {
 							self.badGuess();
@@ -73,7 +73,7 @@ angular.module('fitness.game', [])
 	};
 
 	// this will replace the existing reveal function
-	this.reveal1 = function(letterType) {
+	this.reveal = function(letterType) {
 		var curr;
 		if(letterType === "V" && vowelStack.length != 0) {
 			curr = vowelStack.shift();
@@ -110,11 +110,11 @@ angular.module('fitness.game', [])
 		}
 
 		for(var a = 0; a < vowels; a++) {
-			self.reveal1("V");
+			self.reveal("V");
 		}
 
 		for(var b = 0; b < consonants; b++) {
-			self.reveal1("C");
+			self.reveal("C");
 		}
 	}
 
