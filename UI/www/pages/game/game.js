@@ -10,7 +10,7 @@ angular.module('fitness.game', [])
     }
   };
 })
-.controller('GameCtrl', function($ionicPopup, $timeout, $interval, gameService, $scope, $state) {
+.controller('GameCtrl', function($ionicPopup, $ionicModal, $timeout, $interval, gameService, $scope, $state) {
 
 	console.log('Game Controller loaded');
 
@@ -81,11 +81,25 @@ angular.module('fitness.game', [])
 	this.goodGuess = function() {
 		console.log("good guess!")
 		self.revealAll();
+		self.initModal("pages/game/win-modal.html");
 	};
 
 	this.badGuess = function() {
 		self.guess = "";
-		console.log("bad guess!")
+		$ionicPopup.alert({
+	     title: 'Wrong Guess!',
+	     template: 'Try again!'
+	   });
+	};
+
+	this.initModal = function(template) {
+		$ionicModal.fromTemplateUrl(template, {
+			scope: $scope,
+			animation: 'slide-in-up'
+		}).then(function(modal) {
+			self.modal = modal;
+			self.modal.show();
+		});
 	};
 
 	// this will replace the existing reveal function
@@ -275,6 +289,19 @@ angular.module('fitness.game', [])
 		var consCount = parseInt(self.fitbitData.steps / consWorth );
 		this.catchUp( vowelCount, consCount );
 	}
+
+	this.openGiveUpAlert = function() {
+		$ionicPopup.confirm({
+	     title: 'Confirm Give Up?',
+	     template: 'Are you sure you want to give up on this puzzle?'
+	   }).then(function(res) {
+	   	if(res) {
+	   		self.closeGame();
+	   	} else {
+	   		// do nothing
+	   	}
+	   });
+	};
 
 	this.closeGame = function(){
 		// needs a prompt
