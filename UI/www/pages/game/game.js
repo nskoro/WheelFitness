@@ -336,9 +336,9 @@ angular.module('fitness.game', [])
 
 	this.openGiveUpAlert = function() {
 		$ionicPopup.confirm({
-	     title: 'Give Up?',
-	     template: 'Are you sure you want to give up on this puzzle? You will lose all progress on this puzzle.',
-		 okText: 'Give Up'
+	     title: 'Aww You\'re Ready To Give Up Already?',
+	     template: 'Are you sure you want to give up on this puzzle? All progress will be lost.',
+		 okText: 'I Give Up'
 	   }).then(function(res) {
 	   	if(res) {
 	   		self.closeGame();
@@ -350,6 +350,8 @@ angular.module('fitness.game', [])
 
 	this.closeGame = function(){
 		// needs a prompt
+
+		localforage.removeItem("gameState");
 
 		gameService.activeGame = false;
 		$state.transitionTo('app.home');
