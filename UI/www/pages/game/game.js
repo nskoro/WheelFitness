@@ -294,6 +294,7 @@ angular.module('fitness.game', [])
 			gameService.fitbitToken = token;
 			console.log('saving token to game service: ' + token);
 			gameService.getFitbitData();
+			$timeout( self.computeGameLogic, 2000);
 		});
 
 		self.init();
@@ -302,7 +303,7 @@ angular.module('fitness.game', [])
 
 		self.queryInterval = $interval( function(){ self.refreshData(); } , 260000);
 	
-		$timeout( self.drawFriendly, 750);
+		$timeout( self.drawFriendly, 1000);
 	});
 
 	this.refreshData = function(){
@@ -323,8 +324,8 @@ angular.module('fitness.game', [])
 		if (vowelWorth < 2) // min floors required
 			vowelWorth = 2 ;
 		
-		var vowelCount = parseInt(self.fitbitData.floors / vowelWorth );
-		var consCount = parseInt(self.fitbitData.steps / consWorth );
+		var vowelCount = parseInt(self.fitbitData.floors / vowelWorth ) - vowelsRevealed;
+		var consCount = parseInt(self.fitbitData.steps / consWorth ) - consRevealed;
 		self.catchUp( vowelCount, consCount );
 	}
 
