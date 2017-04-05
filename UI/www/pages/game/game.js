@@ -89,7 +89,7 @@ angular.module('fitness.game', [])
 				if(self.phrase[a][b].revealed) {
 					str += self.phrase[a][b].letter;
 				} else {
-					str += "*";
+					str += ".";
 				}
 			}
 			str += " ";
