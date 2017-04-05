@@ -42,7 +42,7 @@ body{
 	color: #fff;
 }
 .popup {
-	width: 100% !important;
+	width: 90% !important;
 	background-color: #000 !important;
 	border: 1.5px solid #2a94cb;
 }
@@ -68,6 +68,12 @@ body{
     color: #fff;
     font-size: 14px;
 }
+ .activity-item{
+     font-size: 14px;
+ }
+ .icon{
+     font-size: 22px !important;
+ }
 .stat-break {
     border-color: #2a94cb;
 }

@@ -55,7 +55,7 @@ angular.module('fitness.game', [])
 
 	this.showPopup = function() {
 		var guessPopup = $ionicPopup.show({
-			template: '<input focus-me class="popup-input" ng-model="vm.guess">',
+			template: '<textArea focus-me class="popup-input" ng-model="vm.guess"></textArea>',
 			title: 'Enter Phrase',
 			scope: $scope,
 			buttons: [
@@ -292,8 +292,9 @@ angular.module('fitness.game', [])
 
 	this.openGiveUpAlert = function() {
 		$ionicPopup.confirm({
-	     title: 'Confirm Give Up?',
-	     template: 'Are you sure you want to give up on this puzzle?'
+	     title: 'Give Up?',
+	     template: 'Are you sure you want to give up on this puzzle? You will lose all progress on this puzzle.',
+		 okText: 'Give Up'
 	   }).then(function(res) {
 	   	if(res) {
 	   		self.closeGame();
