@@ -55,8 +55,9 @@ angular.module('fitness.game', [])
 	};
 
 	this.showPopup = function() {
+		$scope.data = self.stringifyViewModel();
 		var guessPopup = $ionicPopup.show({
-			template: '<textArea focus-me class="popup-input" ng-model="vm.guess"></textArea>',
+			templateUrl: 'pages/game/guess-popup.html',
 			title: 'Enter Phrase',
 			scope: $scope,
 			buttons: [
@@ -78,6 +79,23 @@ angular.module('fitness.game', [])
 				}
 			]
 		});
+	};
+
+	this.stringifyViewModel = function() {
+		var str = "";
+		console.info(self.phrase)
+		for(var a = 0; a < self.phrase.length; a++) {
+			for(var b = 0; b < self.phrase[a].length; b++) {
+				if(self.phrase[a][b].revealed) {
+					str += self.phrase[a][b].letter;
+				} else {
+					str += "*";
+				}
+			}
+			str += " ";
+		}
+
+		return str;
 	};
 
 	this.goodGuess = function() {
@@ -127,12 +145,14 @@ angular.module('fitness.game', [])
 			curr = vowelStack.shift();
 			if (curr) {
 				curr.model = curr.letter;
+				curr.revealed = true;
 				vowelsRevealed++;
 			}
 		} else if(letterType === "C" && consStack.length != 0) {
 			curr = consStack.shift();
 			if (curr) {
 				curr.model = curr.letter;
+				curr.revealed = true;
 				consRevealed++;
 			}
 		} else {
