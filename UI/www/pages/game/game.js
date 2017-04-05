@@ -89,7 +89,7 @@ angular.module('fitness.game', [])
 				if(self.phrase[a][b].revealed) {
 					str += self.phrase[a][b].letter;
 				} else {
-					str += "*";
+					str += ".";
 				}
 			}
 			str += " ";
@@ -116,6 +116,17 @@ angular.module('fitness.game', [])
 	     template: 'Try again!'
 	   });
 	};
+
+	this.timeExpired = function(){
+		self.guess = "";
+			$ionicPopup.alert({
+	  		   title: 'Time Expired!',
+	  		   template: 'Uh no! You ran out of time. Better luck next time!'
+	   });
+
+	   $state.go('app.home');
+
+	}
 
 	this.initModal = function(template) {
 		$ionicModal.fromTemplateUrl(template, {
@@ -306,10 +317,10 @@ angular.module('fitness.game', [])
 		var vowelWorth = parseInt( self.fitbitData.goals.floors /  numVowels);
 		var consWorth = parseInt(self.fitbitData.goals.steps /  numCons) ;
 
-		if (consWorth < 100)
-			consWorth = 100 ;
+		if (consWorth < 200) // min steps required
+			consWorth = 200 ;
 
-		if (vowelWorth < 2)
+		if (vowelWorth < 2) // min floors required
 			vowelWorth = 2 ;
 		
 		var vowelCount = parseInt(self.fitbitData.floors / vowelWorth );
