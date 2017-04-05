@@ -90,7 +90,7 @@ angular.module('fitness.game', [])
 	   });
 		self.revealAll();
 		self.initModal("pages/game/win-modal.html");
-		$state.go('app.home');
+		self.closeGame();
 	};
 
 	this.badGuess = function() {
@@ -340,7 +340,7 @@ angular.module('fitness.game', [])
 			vowelCount = 0;
 		if (consCount < 0)
 			consCount = 0 ;
-			
+
 		self.catchUp( vowelCount, consCount );
 	}
 
