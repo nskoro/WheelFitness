@@ -35,6 +35,7 @@ angular.module('fitness.game', [])
 		else {
 			console.info("continue game!")
 			obj = gameService.startGame();
+			self.guess = "" ;
 
 			gameService.activeGame = obj ;
 			gameService.activeGameFlag = true ;
