@@ -99,6 +99,17 @@ angular.module('fitness.game', [])
 	   });
 	};
 
+	this.timeExpired = function(){
+		self.guess = "";
+			$ionicPopup.alert({
+	  		   title: 'Time Expired!',
+	  		   template: 'Uh no! You ran out of time. Better luck next time!'
+	   });
+
+	   $state.go('app.home');
+
+	}
+
 	this.initModal = function(template) {
 		$ionicModal.fromTemplateUrl(template, {
 			scope: $scope,
