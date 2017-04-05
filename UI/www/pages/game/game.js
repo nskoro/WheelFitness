@@ -336,6 +336,12 @@ angular.module('fitness.game', [])
 		
 		var vowelCount = parseInt(self.fitbitData.floors / vowelWorth ) - vowelsRevealed;
 		var consCount = parseInt(self.fitbitData.steps / consWorth ) - consRevealed;
+		
+		if (vowelCount < 0)
+			vowelCount = 0;
+		if (consCount < 0)
+			consCount = 0 ;
+			
 		self.catchUp( vowelCount, consCount );
 	}
 
