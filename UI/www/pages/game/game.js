@@ -76,7 +76,7 @@ angular.module('fitness.game', [])
 					str += ".";
 				}
 			}
-			str += " ";
+			str += "  ";
 		}
 
 		return str;
