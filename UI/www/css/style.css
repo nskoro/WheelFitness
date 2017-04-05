@@ -43,6 +43,7 @@ body{
 }
 .popup {
 	width: 90% !important;
+    margin-bottom:75%;
   
 
 	background-color: #000 !important;
