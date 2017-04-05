@@ -165,3 +165,8 @@ ion-header-bar button {
 .font-14{
     font-size: 14px;
 }
+
+#friend {
+    padding-left: 0px;
+    padding-right: 0px;
+}
