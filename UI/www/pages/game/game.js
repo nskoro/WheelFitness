@@ -69,6 +69,7 @@ angular.module('fitness.game', [])
 					type: 'button-positive',
 					onTap: function(e) {
 						if(self.guess.toUpperCase() === thePhrase) {
+							guessPopup.close();
 							self.goodGuess();
 						} else {
 							self.badGuess();
@@ -87,7 +88,7 @@ angular.module('fitness.game', [])
 	   });
 		self.revealAll();
 		self.initModal("pages/game/win-modal.html");
-		$scope.go('app.home');
+		$state.go('app.home');
 	};
 
 	this.badGuess = function() {
