@@ -46,11 +46,23 @@ body{
 	background-color: #000 !important;
 	border: 1.5px solid #2a94cb;
 }
+.popup-body {
+    font-size: 15px;
+}
 .stat-item {
     border: 0px;
     background-color: rgba(0, 0, 0, 0);
     color: #fff;
     font-size: 14px;
+}
+.activity-item {
+    border: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+.activity-note {
+    float: right;
 }
 .item-note {
     color: #fff;
