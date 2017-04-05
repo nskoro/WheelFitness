@@ -8,11 +8,12 @@
      		<div class="container leftAlign font-16">
 				
 		  		<p class="strong opacity">Today's Progress:</p>
-				
-				
-			  	<p class="steps"><i class="icon ion-android-walk"></i> Steps Walked: {{vm.fitbitData.steps}} / {{vm.fitbitData.goals.steps}}</p>
-			  	<p class="stairs"><i class="icon ion-connection-bars"></i> Floors Climbed: {{vm.fitbitData.floors}} / {{vm.fitbitData.goals.floors}}</p>
-			  	<p class="time"><i class="icon ion-android-time"></i> Hours Spent: {{vm.fitbitData.time}} / 24</p>
+
+			  	<div class="list">
+            <span class="item item-icon-left activity-item steps"><i class="icon ion-android-walk"></i> Steps Walked <span class="activity-note">{{vm.fitbitData.steps}} / {{vm.fitbitData.goals.steps}}</span></span>
+            <span class="item item-icon-left activity-item stairs"><i class="icon ion-connection-bars"></i> Floors Climbed <span class="activity-note">{{vm.fitbitData.floors}} / {{vm.fitbitData.goals.floors}}</span></span>
+            <span class="item item-icon-left activity-item time"><i class="icon ion-android-time"></i> Hours Spent <span class="activity-note">{{vm.fitbitData.time}} / 24</span></span>
+          </div>
 		
           <label class="opacity">Walking reveals consonants and climbing stairs reveals vowels. You must solve the puzzle before midnight in order to win the game!</label>
     	</div>
