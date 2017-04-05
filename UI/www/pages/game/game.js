@@ -80,8 +80,13 @@ angular.module('fitness.game', [])
 
 	this.goodGuess = function() {
 		console.log("good guess!")
+		$ionicPopup.alert({
+	     	title: 'You are correct!',
+	    	 template: 'Great Job! Play another.'
+	   });
 		self.revealAll();
 		self.initModal("pages/game/win-modal.html");
+		$scope.go('app.home');
 	};
 
 	this.badGuess = function() {
