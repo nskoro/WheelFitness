@@ -13,6 +13,26 @@ h1{
 body{
     color: #FFF ;
 }
+ion-header-bar {
+    background: url(../img/background.jpg) !important;
+}
+ion-header-bar .title {
+    color: white !important;
+}
+ion-header-bar button {
+    color: white !important;
+}
+.custom-background {
+    background: url(../img/background.jpg) !important;
+}
+.custom-background .item a {
+    background-color: #000;
+    color: #fff;
+}
+.custom-background .item {
+    background-color: #000;
+    color: #fff;
+}
 .steps{
     color: #2DB1E4;
 }
