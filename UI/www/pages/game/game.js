@@ -50,7 +50,7 @@ angular.module('fitness.game', [])
 					type: 'button-dark' 
 				},
 				{ 
-					text: 'Solve',
+					text: 'Solve The Puzzle',
 					type: 'button-positive',
 					onTap: function(e) {
 						if(self.guess && self.guess.toUpperCase() === thePhrase) {
@@ -349,7 +349,7 @@ angular.module('fitness.game', [])
 		$ionicPopup.confirm({
 	     title: 'Aww You\'re Ready To Give Up Already?',
 	     template: 'Are you sure you want to give up on this puzzle? All progress will be lost.',
-		 okText: 'I Give Up'
+		 okText: 'Give Up'
 	   }).then(function(res) {
 	   	if(res) {
 	   		self.closeGame();
