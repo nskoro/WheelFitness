@@ -63,6 +63,7 @@ body{
     background-color: rgba(0, 0, 0, 0);
     padding-top: 6px;
     padding-bottom: 6px;
+    font-size: 14px;
 }
 .activity-note {
     float: right;
@@ -71,11 +72,8 @@ body{
     color: #fff;
     font-size: 14px;
 }
- .activity-item{
-     font-size: 14px;
- }
  .icon{
-     font-size: 22px !important;
+     font-size: 18px !important;
  }
 .stat-break {
     border-color: #2a94cb;
