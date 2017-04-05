@@ -174,6 +174,10 @@ angular.module('fitness.game', [])
 
 	this.saveGame = function() {
 		console.info("game saved!")
+
+		if (!gameService.activeGame)
+			return null ;
+
 		var state = {
 			numVowels: numVowels,
 			numCons: numCons,
