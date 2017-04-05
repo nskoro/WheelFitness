@@ -69,7 +69,7 @@ angular.module('fitness.game', [])
 					text: 'Solve',
 					type: 'button-positive',
 					onTap: function(e) {
-						if(self.guess.toUpperCase() === thePhrase) {
+						if(self.guess && self.guess.toUpperCase() === thePhrase) {
 							guessPopup.close();
 							self.goodGuess();
 						} else {
@@ -294,7 +294,7 @@ angular.module('fitness.game', [])
 			gameService.fitbitToken = token;
 			console.log('saving token to game service: ' + token);
 			gameService.getFitbitData();
-			$timeout( self.computeGameLogic, 2000);
+			$timeout( self.computeGameLogic, 4000);
 		});
 
 		self.init();
