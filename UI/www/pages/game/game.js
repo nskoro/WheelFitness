@@ -91,6 +91,7 @@ angular.module('fitness.game', [])
 		self.revealAll();
 		self.initModal("pages/game/win-modal.html");
 		self.closeGame();
+
 	};
 
 	this.badGuess = function() {
