@@ -89,7 +89,8 @@ angular.module('fitness.game', [])
 	    	 template: 'Great Job! Play another.'
 	   });
 		self.revealAll();
-		self.initModal("pages/game/win-modal.html");
+		localforage.removeItem("gameState");
+		gameService.activeGame = false;
 		$state.go('app.home');
 	};
 
