@@ -71,7 +71,6 @@ ion-header-bar button {
 }
 .popup {
 	width: 90% !important;
-    margin-bottom:80%;
   
 	background-color: #000 !important;
 	border: 1.5px solid #2a94cb;
