@@ -31,24 +31,8 @@ angular.module('fitness.game', [])
 			console.info("new game!")
 			self.loadGame();
 		}
-
 		else {
-			console.info("continue game!")
-			obj = gameService.startGame();
-			self.guess = "" ;
-
-			gameService.activeGame = obj ;
-			gameService.activeGameFlag = true ;
-
-			numVowels = obj.numVowels;
-			numCons = obj.numCons;
-			vowelsRevealed = 0;
-			consRevealed = 0;
-			vowelStack = obj.vowelStack;
-			consStack = obj.consStack;
-			self.phrase = obj.viewModel;
-			thePhrase = obj.phrase;
-			noSpace = obj.noSpace;
+			self.loadGame();
 		}
 
 		console.info(thePhrase)
@@ -208,15 +192,36 @@ angular.module('fitness.game', [])
 	this.loadGame = function() {
 		console.info("game loaded!")
 		localforage.getItem("gameState").then(function(savedState) {
-			numVowels = savedState.numVowels;
-			numCons = savedState.numCons;
-			vowelsRevealed = savedState.vowelsRevealed;
-			consRevealed = savedState.consRevealed;
-			vowelStack = savedState.vowelStack;
-			consStack = savedState.consStack;
-			self.phrase = savedState.viewModel;
-			thePhrase = savedState.thePhrase;
-			noSpace = savedState.noSpace;
+			if (savedState){
+					numVowels = savedState.numVowels;
+					numCons = savedState.numCons;
+					vowelsRevealed = savedState.vowelsRevealed;
+					consRevealed = savedState.consRevealed;
+					vowelStack = savedState.vowelStack;
+					consStack = savedState.consStack;
+					self.phrase = savedState.viewModel;
+					thePhrase = savedState.thePhrase;
+					noSpace = savedState.noSpace;
+			}
+			else{
+				obj = gameService.startGame();
+				self.guess = "" ;
+
+				gameService.activeGame = obj ;
+				gameService.activeGameFlag = true ;
+
+				numVowels = obj.numVowels;
+				numCons = obj.numCons;
+				vowelsRevealed = 0;
+				consRevealed = 0;
+				vowelStack = obj.vowelStack;
+				consStack = obj.consStack;
+				self.phrase = obj.viewModel;
+				thePhrase = obj.phrase;
+				noSpace = obj.noSpace;
+
+			}
+			gameService.activeGame = true;
 		});
 	};
 

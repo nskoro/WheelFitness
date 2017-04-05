@@ -24,7 +24,14 @@ angular.module('fitness.home', [])
         method: 'GET'
     }*/
     
-      self.data.activeGame = gameService.activeGame ;
+    	localforage.getItem("gameState").then(function(savedState) {
+			if (savedState){
+                    self.data.activeGame = true ;
+                }
+                else    
+                     self.data.activeGame = false ;
+            });
+      
       self.fitbitData = gameService.data ;
       console.log('setting active game flag to : ' + self.data.activeGame);
       var fitbitToken = window.fitbitAccessToken;
