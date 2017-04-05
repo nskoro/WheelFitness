@@ -174,6 +174,7 @@ angular.module('fitness.game', [])
 
 	// takes the number of vowels and consonants that should be revealed and reveals them
 	this.catchUp = function(vowels, consonants) {
+		console.log('catch up to ' + vowels, consonants);
 		if(vowels < 0 || consonants < 0) {
 			return;
 		}
@@ -307,10 +308,9 @@ angular.module('fitness.game', [])
 	this.refreshData = function(){
 
 		gameService.getFitbitData();
+		$timeout( self.computeGameLogic, 2000);
 		$timeout( self.drawFriendly, 750);
 		$scope.$broadcast('scroll.refreshComplete');
-		self.computeGameLogic();
-		
 	}
 
 	this.computeGameLogic = function(){
@@ -325,7 +325,7 @@ angular.module('fitness.game', [])
 		
 		var vowelCount = parseInt(self.fitbitData.floors / vowelWorth );
 		var consCount = parseInt(self.fitbitData.steps / consWorth );
-		this.catchUp( vowelCount, consCount );
+		self.catchUp( vowelCount, consCount );
 	}
 
 	this.openGiveUpAlert = function() {
