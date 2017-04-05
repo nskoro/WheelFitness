@@ -331,8 +331,8 @@ angular.module('fitness.game', [])
 		if (consWorth < 200) // min steps required
 			consWorth = 200 ;
 
-		if (vowelWorth < 2) // min floors required
-			vowelWorth = 2 ;
+		if (vowelWorth < 1) // min floors required
+			vowelWorth = 1 ;
 		
 		var vowelCount = parseInt(self.fitbitData.floors / vowelWorth ) - vowelsRevealed;
 		var consCount = parseInt(self.fitbitData.steps / consWorth ) - consRevealed;
