@@ -27,19 +27,12 @@ angular.module('fitness.game', [])
 		console.log('init game function');
 		var obj = {} ;
 
-		if (gameService.activeGame) {
-			console.info("new game!")
-			self.loadGame();
-		}
-		else {
-			self.loadGame();
-		}
-
-		console.info(thePhrase)
+		self.loadGame();
 	};
 
 	this.showPopup = function() {
 		$scope.data = self.stringifyViewModel();
+		console.info(thePhrase)
 		var guessPopup = $ionicPopup.show({
 			templateUrl: 'pages/game/guess-popup.html',
 			title: 'Enter Phrase',
@@ -67,7 +60,6 @@ angular.module('fitness.game', [])
 
 	this.stringifyViewModel = function() {
 		var str = "";
-		console.info(self.phrase)
 		for(var a = 0; a < self.phrase.length; a++) {
 			for(var b = 0; b < self.phrase[a].length; b++) {
 				if(self.phrase[a][b].revealed) {
@@ -171,6 +163,8 @@ angular.module('fitness.game', [])
 		for(var b = 0; b < consonants; b++) {
 			self.reveal("C");
 		}
+
+		self.saveGame();
 	};
 
 	this.saveGame = function() {
@@ -224,6 +218,8 @@ angular.module('fitness.game', [])
 				self.phrase = obj.viewModel;
 				thePhrase = obj.phrase;
 				noSpace = obj.noSpace;
+
+				self.saveGame();
 
 			}
 			gameService.activeGame = true;
