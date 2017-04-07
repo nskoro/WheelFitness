@@ -185,13 +185,17 @@ angular.module('fitness.game', [])
 			noSpace: noSpace
 		};
 
-		return localforage.setItem("gameState", state);
+		return localforage.setItem("gameState", JSON.stringify(state));
 	};
 
 	this.loadGame = function() {
 		console.info("game loaded!")
 		localforage.getItem("gameState").then(function(savedState) {
+			
 			if (savedState){
+
+					savedState = JSON.parse(savedState);
+
 					numVowels = savedState.numVowels;
 					numCons = savedState.numCons;
 					vowelsRevealed = savedState.vowelsRevealed;
