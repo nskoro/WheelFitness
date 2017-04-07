@@ -119,7 +119,8 @@ app.service('gameService', function($http) {
     noSpace: noSpace,
     vowelStack: vowelStack,
     consStack: consStack,
-    viewModel: viewModel
+    viewModel: viewModel,
+    hint: phraseData["Hint"]
   };
 };
 
@@ -251,238 +252,274 @@ this.updateTime = function(time){
 
   this.dataArray = [
    {
-     "Phrase": "Take care of the pennies and the pounds will take care of themselves",
-     "Word Count": 13,
-     "Character Count": 68,
-     "Phrase Without Spaces": "takecareofthepenniesandthepoundswilltakecareofthemselves",
-     "Consonants": "tkcrfthpnnsndthpndswlltkcrfthmslvs",
-     "Consonants Count": 34,
-     "Vowels Count": 34
-   },
-   {
-     "Phrase": "Sticks and stones may break my bones but words will never hurt me",
-     "Word Count": 13,
-     "Character Count": 65,
-     "Phrase Without Spaces": "sticksandstonesmaybreakmybonesbutwordswillneverhurtme",
-     "Consonants": "stcksndstnsmybrkmybnsbtwrdswllnvrhrtm",
-     "Consonants Count": 37,
-     "Vowels Count": 28
-   },
-   {
-     "Phrase": "It is no use locking the stable door after the horse has bolted",
-     "Word Count": 13,
-     "Character Count": 63,
-     "Phrase Without Spaces": "itisnouselockingthestabledoorafterthehorsehasbolted",
-     "Consonants": "tsnslckngthstbldrftrthhrshsbltd",
-     "Consonants Count": 31,
-     "Vowels Count": 32
-   },
-   {
-     "Phrase": "There are more ways of killing a cat than choking it with cream",
-     "Word Count": 13,
-     "Character Count": 63,
-     "Phrase Without Spaces": "therearemorewaysofkillingacatthanchokingitwithcream",
-     "Consonants": "thrrmrwysfkllngctthnchkngtwthcrm",
-     "Consonants Count": 32,
-     "Vowels Count": 31
-   },
-   {
-     "Phrase": "Better to have loved and lost than never to have loved at all",
-     "Word Count": 13,
-     "Character Count": 61,
-     "Phrase Without Spaces": "bettertohavelovedandlostthannevertohavelovedatall",
-     "Consonants": "bttrthvlvdndlstthnnvrthvlvdtll",
-     "Consonants Count": 30,
-     "Vowels Count": 31
-   },
-   {
-     "Phrase": "One half of the world does not know how the other half lives",
-     "Word Count": 13,
-     "Character Count": 60,
-     "Phrase Without Spaces": "onehalfoftheworlddoesnotknowhowtheotherhalflives",
-     "Consonants": "nhlffthwrlddsntknwhwththrhlflvs",
-     "Consonants Count": 31,
-     "Vowels Count": 29
-   },
-   {
-     "Phrase": "The only disability in life is a bad attitude Scott Hamilton",
-     "Word Count": 11,
-     "Character Count": 60,
-     "Phrase Without Spaces": "theonlydisabilityinlifeisabadattitudescotthamilton",
-     "Consonants": "thnlydsbltynlfsbdtttdsctthmltn",
-     "Consonants Count": 30,
-     "Vowels Count": 30
-   },
-   {
-     "Phrase": "Laugh and the world laughs with you weep and you weep alone",
-     "Word Count": 12,
-     "Character Count": 59,
-     "Phrase Without Spaces": "laughandtheworldlaughswithyouweepandyouweepalone",
-     "Consonants": "lghndthwrldlghswthywpndywpln",
-     "Consonants Count": 28,
-     "Vowels Count": 31
-   },
-   {
-     "Phrase": "Those who do not learn from history are doomed to repeat it",
-     "Word Count": 12,
-     "Character Count": 59,
-     "Phrase Without Spaces": "thosewhodonotlearnfromhistoryaredoomedtorepeatit",
-     "Consonants": "thswhdntlrnfrmhstryrdmdtrptt",
-     "Consonants Count": 28,
-     "Vowels Count": 31
-   },
-   {
-     "Phrase": "History repeats itself and it does not care what it repeats",
-     "Word Count": 11,
-     "Character Count": 59,
-     "Phrase Without Spaces": "historyrepeatsitselfanditdoesnotcarewhatitrepeats",
-     "Consonants": "hstryrptstslfndtdsntcrwhttrpts",
-     "Consonants Count": 30,
-     "Vowels Count": 29
-   },
-   {
-     "Phrase": "You can lead a horse to water but you cannot make it drink",
-     "Word Count": 13,
-     "Character Count": 58,
-     "Phrase Without Spaces": "youcanleadahorsetowaterbutyoucannotmakeitdrink",
-     "Consonants": "ycnldhrstwtrbtycnntmktdrnk",
-     "Consonants Count": 26,
-     "Vowels Count": 32
-   },
-   {
-     "Phrase": "Hunger never knows the taste sleep never knows the comfort",
-     "Word Count": 10,
-     "Character Count": 58,
-     "Phrase Without Spaces": "hungerneverknowsthetastesleepneverknowsthecomfort",
-     "Consonants": "hngrnvrknwsthtstslpnvrknwsthcmfrt",
-     "Consonants Count": 33,
-     "Vowels Count": 25
-   },
-   {
-     "Phrase": "He who lives by the sword shall die by the sword",
-     "Word Count": 11,
-     "Character Count": 48,
-     "Phrase Without Spaces": "hewholivesbytheswordshalldiebythesword",
-     "Consonants": "hwhlvsbythswrdshlldbythswrd",
-     "Consonants Count": 27,
-     "Vowels Count": 21
-   },
-   {
-     "Phrase": "The innocent seldom find an uncomfortable pillow",
-     "Word Count": 7,
-     "Character Count": 48,
-     "Phrase Without Spaces": "theinnocentseldomfindanuncomfortablepillow",
-     "Consonants": "thnncntsldmfndnncmfrtblpllw",
-     "Consonants Count": 27,
-     "Vowels Count": 21
-   },
-   {
-     "Phrase": "There is none so blind as those who will not see",
-     "Word Count": 11,
-     "Character Count": 48,
-     "Phrase Without Spaces": "thereisnonesoblindasthosewhowillnotsee",
-     "Consonants": "thrsnnsblndsthswhwllnts",
-     "Consonants Count": 23,
-     "Vowels Count": 25
-   },
-   {
-     "Phrase": "An ounce of prevention is worth a pound of cure",
-     "Word Count": 10,
-     "Character Count": 47,
-     "Phrase Without Spaces": "anounceofpreventionisworthapoundofcure",
-     "Consonants": "nncfprvntnswrthpndfcr",
-     "Consonants Count": 21,
-     "Vowels Count": 26
-   },
-   {
-     "Phrase": "Give a man rope enough and he will hang himself",
-     "Word Count": 10,
-     "Character Count": 47,
-     "Phrase Without Spaces": "giveamanropeenoughandhewillhanghimself",
-     "Consonants": "gvmnrpnghndhwllhnghmslf",
-     "Consonants Count": 23,
-     "Vowels Count": 24
-   },
-   {
-     "Phrase": "It is better to travel hopefully than to arrive",
-     "Word Count": 9,
-     "Character Count": 47,
-     "Phrase Without Spaces": "itisbettertotravelhopefullythantoarrive",
-     "Consonants": "tsbttrttrvlhpfllythntrrv",
-     "Consonants Count": 24,
-     "Vowels Count": 23
-   },
-   {
-     "Phrase": "They that sow the wind shall reap the whirlwind",
-     "Word Count": 9,
-     "Character Count": 47,
-     "Phrase Without Spaces": "theythatsowthewindshallreapthewhirlwind",
-     "Consonants": "thythtswthwndshllrpthwhrlwnd",
-     "Consonants Count": 28,
-     "Vowels Count": 19
-   },
-   {
-     "Phrase": "Genius is an infinite capacity for taking pains",
-     "Word Count": 8,
-     "Character Count": 47,
-     "Phrase Without Spaces": "geniusisaninfinitecapacityfortakingpains",
-     "Consonants": "gnssnnfntcpctyfrtkngpns",
-     "Consonants Count": 23,
-     "Vowels Count": 24
-   },
-   {
-     "Phrase": "Keep your friends close and your enemies closer",
-     "Word Count": 8,
-     "Character Count": 47,
-     "Phrase Without Spaces": "keepyourfriendscloseandyourenemiescloser",
-     "Consonants": "kpyrfrndsclsndyrnmsclsr",
-     "Consonants Count": 23,
-     "Vowels Count": 24
-   },
-   {
-     "Phrase": "Lightning never strikes twice in the same place",
-     "Word Count": 8,
-     "Character Count": 47,
-     "Phrase Without Spaces": "lightningneverstrikestwiceinthesameplace",
-     "Consonants": "lghtnngnvrstrkstwcnthsmplc",
-     "Consonants Count": 26,
-     "Vowels Count": 21
-   },
-   {
-     "Phrase": "If a job is worth doing it is worth doing well",
-     "Word Count": 11,
-     "Character Count": 46,
-     "Phrase Without Spaces": "ifajobisworthdoingitisworthdoingwell",
-     "Consonants": "fjbswrthdngtswrthdngwll",
-     "Consonants Count": 23,
-     "Vowels Count": 23
-   },
-   {
-     "Phrase": "The bread never falls but on its buttered side",
-     "Word Count": 9,
-     "Character Count": 46,
-     "Phrase Without Spaces": "thebreadneverfallsbutonitsbutteredside",
-     "Consonants": "thbrdnvrfllsbtntsbttrdsd",
-     "Consonants Count": 24,
-     "Vowels Count": 22
-   },
-   {
-     "Phrase": "The hand that rocks the cradle rules the world",
-     "Word Count": 9,
-     "Character Count": 46,
-     "Phrase Without Spaces": "thehandthatrocksthecradlerulestheworld",
-     "Consonants": "thhndthtrcksthcrdlrlsthwrld",
-     "Consonants Count": 27,
-     "Vowels Count": 19
-   },
-   {
-     "Phrase": "The road to Hell is paved with good intentions",
-     "Word Count": 9,
-     "Character Count": 46,
-     "Phrase Without Spaces": "theroadtohellispavedwithgoodintentions",
-     "Consonants": "thrdthllspvdwthgdntntns",
-     "Consonants Count": 23,
-     "Vowels Count": 23
-   }
+   "Phrase": "Take care of the pennies and the pounds will take care of themselves",
+   "Word Count": 13,
+   "Character Count": 68,
+   "Phrase Without Spaces": "takecareofthepenniesandthepoundswilltakecareofthemselves",
+   "Consonants": "tkcrfthpnnsndthpndswlltkcrfthmslvs",
+   "Consonants Count": 34,
+   "Vowels Count": 34,
+   "Hint": "Money, money, money!"
+ },
+ {
+   "Phrase": "Sticks and stones may break my bones but words will never hurt me",
+   "Word Count": 13,
+   "Character Count": 65,
+   "Phrase Without Spaces": "sticksandstonesmaybreakmybonesbutwordswillneverhurtme",
+   "Consonants": "stcksndstnsmybrkmybnsbtwrdswllnvrhrtm",
+   "Consonants Count": 37,
+   "Vowels Count": 28,
+   "Hint": "Unbreakable"
+ },
+ {
+   "Phrase": "Better to have loved and lost than never to have loved at all",
+   "Word Count": 13,
+   "Character Count": 61,
+   "Phrase Without Spaces": "bettertohavelovedandlostthannevertohavelovedatall",
+   "Consonants": "bttrthvlvdndlstthnnvrthvlvdtll",
+   "Consonants Count": 30,
+   "Vowels Count": 31,
+   "Hint": "50/50"
+ },
+ {
+   "Phrase": "The only disability in life is a bad attitude",
+   "Word Count": 11,
+   "Character Count": 60,
+   "Phrase Without Spaces": "theonlydisabilityinlifeisabadattitudescotthamilton",
+   "Consonants": "thnlydsbltynlfsbdtttdsctthmltn",
+   "Consonants Count": 30,
+   "Vowels Count": 30,
+   "Hint": "Keep your chin up!"
+ },
+ {
+   "Phrase": "Laugh and the world laughs with you weep and you weep alone",
+   "Word Count": 12,
+   "Character Count": 59,
+   "Phrase Without Spaces": "laughandtheworldlaughswithyouweepandyouweepalone",
+   "Consonants": "lghndthwrldlghswthywpndywpln",
+   "Consonants Count": 28,
+   "Vowels Count": 31,
+   "Hint": "One is the loneliest number�"
+ },
+ {
+   "Phrase": "Those who do not learn from history are doomed to repeat it",
+   "Word Count": 12,
+   "Character Count": 59,
+   "Phrase Without Spaces": "thosewhodonotlearnfromhistoryaredoomedtorepeatit",
+   "Consonants": "thswhdntlrnfrmhstryrdmdtrptt",
+   "Consonants Count": 28,
+   "Vowels Count": 31,
+   "Hint": "History history."
+ },
+ {
+   "Phrase": "History repeats itself and it does not care what it repeats",
+   "Word Count": 11,
+   "Character Count": 59,
+   "Phrase Without Spaces": "historyrepeatsitselfanditdoesnotcarewhatitrepeats",
+   "Consonants": "hstryrptstslfndtdsntcrwhttrpts",
+   "Consonants Count": 30,
+   "Vowels Count": 29,
+   "Hint": "Is that an echo?"
+ },
+ {
+   "Phrase": "He who fights and runs away may live to fight another day",
+   "Word Count": 12,
+   "Character Count": 57,
+   "Phrase Without Spaces": "hewhofightsandrunsawaymaylivetofightanotherday",
+   "Consonants": "hwhfghtsndrnswymylvtfghtnthrdy",
+   "Consonants Count": 30,
+   "Vowels Count": 27,
+   "Hint": "Cowardly combatant"
+ },
+ {
+   "Phrase": "What the eye does not see the heart does not grieve over",
+   "Word Count": 12,
+   "Character Count": 56,
+   "Phrase Without Spaces": "whattheeyedoesnotseetheheartdoesnotgrieveover",
+   "Consonants": "whtthydsntsthhrtdsntgrvvr",
+   "Consonants Count": 25,
+   "Vowels Count": 31,
+   "Hint": "Out of sight, out of mind."
+ },
+ {
+   "Phrase": "Everybody wants to go to heaven but nobody wants to die",
+   "Word Count": 11,
+   "Character Count": 55,
+   "Phrase Without Spaces": "everybodywantstogotoheavenbutnobodywantstodie",
+   "Consonants": "vrybdywntstgthvnbtnbdywntstd",
+   "Consonants Count": 28,
+   "Vowels Count": 27,
+   "Hint": "The steep price of perfection."
+ },
+ {
+   "Phrase": "What you lose on the swings you gain on the roundabouts",
+   "Word Count": 11,
+   "Character Count": 55,
+   "Phrase Without Spaces": "whatyouloseontheswingsyougainontheroundabouts",
+   "Consonants": "whtylsnthswngsygnnthrndbts",
+   "Consonants Count": 26,
+   "Vowels Count": 29,
+   "Hint": "The stocks market, or the playground."
+ },
+ {
+   "Phrase": "People who live in glass houses should not throw stones",
+   "Word Count": 10,
+   "Character Count": 55,
+   "Phrase Without Spaces": "peoplewholiveinglasshousesshouldnotthrowstones",
+   "Consonants": "pplwhlvnglsshssshldntthrwstns",
+   "Consonants Count": 29,
+   "Vowels Count": 26,
+   "Hint": "Crystalline condo"
+ },
+ {
+   "Phrase": "A�journey�of a�thousand�miles begins with a single step",
+   "Word Count": 7,
+   "Character Count": 55,
+   "Phrase Without Spaces": "a�journey�ofa�thousand�milesbeginswithasinglestep",
+   "Consonants": "�jrny�f�thsnd�mlsbgnswthsnglstp",
+   "Consonants Count": 31,
+   "Vowels Count": 24,
+   "Hint": "Unless your prefer to fly."
+ },
+ {
+   "Phrase": "In the kingdom of the blind the one eyed man is king",
+   "Word Count": 12,
+   "Character Count": 52,
+   "Phrase Without Spaces": "inthekingdomoftheblindtheoneeyedmanisking",
+   "Consonants": "nthkngdmfthblndthnydmnskng",
+   "Consonants Count": 26,
+   "Vowels Count": 26,
+   "Hint": "H.G. Wells"
+ },
+ {
+   "Phrase": "March comes in like a lion and goes out like a lamb",
+   "Word Count": 12,
+   "Character Count": 51,
+   "Phrase Without Spaces": "marchcomesinlikealionandgoesoutlikealamb",
+   "Consonants": "mrchcmsnlklnndgstlklmb",
+   "Consonants Count": 22,
+   "Vowels Count": 29,
+   "Hint": "Don't ask about April."
+ },
+ {
+   "Phrase": "A place for everything and everything in its place",
+   "Word Count": 9,
+   "Character Count": 50,
+   "Phrase Without Spaces": "aplaceforeverythingandeverythinginitsplace",
+   "Consonants": "plcfrvrythngndvrythngntsplc",
+   "Consonants Count": 27,
+   "Vowels Count": 23,
+   "Hint": "OCD"
+ },
+ {
+   "Phrase": "Do not count your chickens before they are hatched",
+   "Word Count": 9,
+   "Character Count": 50,
+   "Phrase Without Spaces": "donotcountyourchickensbeforetheyarehatched",
+   "Consonants": "dntcntyrchcknsbfrthyrhtchd",
+   "Consonants Count": 26,
+   "Vowels Count": 24,
+   "Hint": "They might be snakes."
+ },
+ {
+   "Phrase": "Do unto others as you would have them do unto you",
+   "Word Count": 11,
+   "Character Count": 49,
+   "Phrase Without Spaces": "dountoothersasyouwouldhavethemdountoyou",
+   "Consonants": "dntthrssywldhvthmdnty",
+   "Consonants Count": 21,
+   "Vowels Count": 28,
+   "Hint": "The golden rule."
+ },
+ {
+   "Phrase": "A man with a hammer sees every problem as a nail",
+   "Word Count": 11,
+   "Character Count": 48,
+   "Phrase Without Spaces": "amanwithahammerseeseveryproblemasanail",
+   "Consonants": "mnwthhmmrssvryprblmsnl",
+   "Consonants Count": 22,
+   "Vowels Count": 26,
+   "Hint": "One tool to rule  them all."
+ },
+ {
+   "Phrase": "It needs a Hundred Lies to cover a Single Lie",
+   "Word Count": 10,
+   "Character Count": 45,
+   "Phrase Without Spaces": "itneedsahundredliestocoverasinglelie",
+   "Consonants": "tndshndrdlstcvrsngll",
+   "Consonants Count": 20,
+   "Vowels Count": 25,
+   "Hint": "Snowball effect"
+ },
+ {
+   "Phrase": "One law for the rich and another for the poor",
+   "Word Count": 10,
+   "Character Count": 45,
+   "Phrase Without Spaces": "onelawfortherichandanotherforthepoor",
+   "Consonants": "nlwfrthrchndnthrfrthpr",
+   "Consonants Count": 22,
+   "Vowels Count": 23,
+   "Hint": "It�s a hard knock life"
+ },
+ {
+   "Phrase": "If at first you do not succeed try try again",
+   "Word Count": 10,
+   "Character Count": 44,
+   "Phrase Without Spaces": "ifatfirstyoudonotsucceedtrytryagain",
+   "Consonants": "ftfrstydntsccdtrytrygn",
+   "Consonants Count": 22,
+   "Vowels Count": 22,
+   "Hint": "Verging on insanity"
+ },
+ {
+   "Phrase": "Do not throw the baby out with the bathwater",
+   "Word Count": 9,
+   "Character Count": 44,
+   "Phrase Without Spaces": "donotthrowthebabyoutwiththebathwater",
+   "Consonants": "dntthrwthbbytwththbthwtr",
+   "Consonants Count": 24,
+   "Vowels Count": 20,
+   "Hint": "Page 1, parenting manual."
+ },
+ {
+   "Phrase": "It is the squeaky wheel that gets the grease",
+   "Word Count": 9,
+   "Character Count": 44,
+   "Phrase Without Spaces": "itisthesqueakywheelthatgetsthegrease",
+   "Consonants": "tsthsqkywhlthtgtsthgrs",
+   "Consonants Count": 22,
+   "Vowels Count": 22,
+   "Hint": "�or replaced."
+ },
+ {
+   "Phrase": "A nod is as good as a wink to a blind horse",
+   "Word Count": 12,
+   "Character Count": 43,
+   "Phrase Without Spaces": "anodisasgoodasawinktoablindhorse",
+   "Consonants": "ndssgdswnktblndhrs",
+   "Consonants Count": 18,
+   "Vowels Count": 25,
+   "Hint": "Wasted efforts"
+ },
+ {
+   "Phrase": "Do not cut off your nose to spite your face",
+   "Word Count": 10,
+   "Character Count": 43,
+   "Phrase Without Spaces": "donotcutoffyournosetospiteyourface",
+   "Consonants": "dntctffyrnstsptyrfc",
+   "Consonants Count": 19,
+   "Vowels Count": 24,
+   "Hint": "Homemade plastic surgery"
+ },
+ {
+   "Phrase": "Life is not all beer and skittles",
+   "Word Count": 7,
+   "Character Count": 33,
+   "Phrase Without Spaces": "lifeisnotallbeerandskittles",
+   "Consonants": "lfsntllbrndskttls",
+   "Consonants Count": 17,
+   "Vowels Count": 16,
+   "Hint": "But it should be."
+ }
   ];
 });

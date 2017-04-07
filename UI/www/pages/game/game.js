@@ -119,9 +119,6 @@ angular.module('fitness.game', [])
 					onTap: function(e) {
 						var expected = thePhrase.toUpperCase().trim();
 						var actual = self.stringifyViewModel($scope.copy).toUpperCase().trim();
-						console.warn(expected)
-						console.warn(actual)
-						console.error(actual === expected)
 						if(actual && actual === expected) {
 							guessPopup.close();
 							self.goodGuess();
@@ -259,7 +256,8 @@ angular.module('fitness.game', [])
 			consStack: consStack,
 			viewModel: self.phrase,
 			thePhrase: thePhrase,
-			noSpace: noSpace
+			noSpace: noSpace,
+			hint: self.hint
 		};
 
 		return localforage.setItem("gameState", JSON.stringify(state));
@@ -282,6 +280,7 @@ angular.module('fitness.game', [])
 				self.phrase = savedState.viewModel;
 				thePhrase = savedState.thePhrase;
 				noSpace = savedState.noSpace;
+				self.hint = savedState.hint;
 			}
 			else{
 				obj = gameService.startGame();
@@ -299,6 +298,7 @@ angular.module('fitness.game', [])
 				self.phrase = obj.viewModel;
 				thePhrase = obj.phrase;
 				noSpace = obj.noSpace;
+				self.hint = obj.hint;
 
 				self.saveGame();
 

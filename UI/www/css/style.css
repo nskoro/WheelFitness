@@ -186,6 +186,12 @@ ion-header-bar button {
     color: #fff;
     text-transform: uppercase;
 }
+.hint {
+    color: #fff;
+    font-size: 14px;
+    font-family: monospace;
+    text-align: center;
+}
 
 #friend {
     padding-left: 0px;

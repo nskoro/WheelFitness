@@ -7,7 +7,7 @@
    "Consonants": "tkcrfthpnnsndthpndswlltkcrfthmslvs",
    "Consonants Count": 34,
    "Vowels Count": 34,
-   "FIELD8": "Money, money, money!"
+   "Hint": "Money, money, money!"
  },
  {
    "Phrase": "Sticks and stones may break my bones but words will never hurt me",
@@ -17,7 +17,7 @@
    "Consonants": "stcksndstnsmybrkmybnsbtwrdswllnvrhrtm",
    "Consonants Count": 37,
    "Vowels Count": 28,
-   "FIELD8": "Unbreakable"
+   "Hint": "Unbreakable"
  },
  {
    "Phrase": "Better to have loved and lost than never to have loved at all",
@@ -27,7 +27,7 @@
    "Consonants": "bttrthvlvdndlstthnnvrthvlvdtll",
    "Consonants Count": 30,
    "Vowels Count": 31,
-   "FIELD8": "50/50"
+   "Hint": "50/50"
  },
  {
    "Phrase": "The only disability in life is a bad attitude",
@@ -37,7 +37,7 @@
    "Consonants": "thnlydsbltynlfsbdtttdsctthmltn",
    "Consonants Count": 30,
    "Vowels Count": 30,
-   "FIELD8": "Keep your chin up!"
+   "Hint": "Keep your chin up!"
  },
  {
    "Phrase": "Laugh and the world laughs with you weep and you weep alone",
@@ -47,7 +47,7 @@
    "Consonants": "lghndthwrldlghswthywpndywpln",
    "Consonants Count": 28,
    "Vowels Count": 31,
-   "FIELD8": "One is the loneliest number�"
+   "Hint": "One is the loneliest number�"
  },
  {
    "Phrase": "Those who do not learn from history are doomed to repeat it",
@@ -57,7 +57,7 @@
    "Consonants": "thswhdntlrnfrmhstryrdmdtrptt",
    "Consonants Count": 28,
    "Vowels Count": 31,
-   "FIELD8": "History history."
+   "Hint": "History history."
  },
  {
    "Phrase": "History repeats itself and it does not care what it repeats",
@@ -67,7 +67,7 @@
    "Consonants": "hstryrptstslfndtdsntcrwhttrpts",
    "Consonants Count": 30,
    "Vowels Count": 29,
-   "FIELD8": "Is that an echo?"
+   "Hint": "Is that an echo?"
  },
  {
    "Phrase": "He who fights and runs away may live to fight another day",
@@ -77,7 +77,7 @@
    "Consonants": "hwhfghtsndrnswymylvtfghtnthrdy",
    "Consonants Count": 30,
    "Vowels Count": 27,
-   "FIELD8": "Cowardly combatant"
+   "Hint": "Cowardly combatant"
  },
  {
    "Phrase": "What the eye does not see the heart does not grieve over",
@@ -87,7 +87,7 @@
    "Consonants": "whtthydsntsthhrtdsntgrvvr",
    "Consonants Count": 25,
    "Vowels Count": 31,
-   "FIELD8": "Out of sight, out of mind."
+   "Hint": "Out of sight, out of mind."
  },
  {
    "Phrase": "Everybody wants to go to heaven but nobody wants to die",
@@ -97,7 +97,7 @@
    "Consonants": "vrybdywntstgthvnbtnbdywntstd",
    "Consonants Count": 28,
    "Vowels Count": 27,
-   "FIELD8": "The steep price of perfection."
+   "Hint": "The steep price of perfection."
  },
  {
    "Phrase": "What you lose on the swings you gain on the roundabouts",
@@ -107,7 +107,7 @@
    "Consonants": "whtylsnthswngsygnnthrndbts",
    "Consonants Count": 26,
    "Vowels Count": 29,
-   "FIELD8": "The stocks market, or the playground."
+   "Hint": "The stocks market, or the playground."
  },
  {
    "Phrase": "People who live in glass houses should not throw stones",
@@ -117,7 +117,7 @@
    "Consonants": "pplwhlvnglsshssshldntthrwstns",
    "Consonants Count": 29,
    "Vowels Count": 26,
-   "FIELD8": "Crystalline condo"
+   "Hint": "Crystalline condo"
  },
  {
    "Phrase": "A�journey�of a�thousand�miles begins with a single step",
@@ -127,7 +127,7 @@
    "Consonants": "�jrny�f�thsnd�mlsbgnswthsnglstp",
    "Consonants Count": 31,
    "Vowels Count": 24,
-   "FIELD8": "Unless your prefer to fly."
+   "Hint": "Unless your prefer to fly."
  },
  {
    "Phrase": "In the kingdom of the blind the one eyed man is king",
@@ -137,7 +137,7 @@
    "Consonants": "nthkngdmfthblndthnydmnskng",
    "Consonants Count": 26,
    "Vowels Count": 26,
-   "FIELD8": "H.G. Wells"
+   "Hint": "H.G. Wells"
  },
  {
    "Phrase": "March comes in like a lion and goes out like a lamb",
@@ -147,7 +147,7 @@
    "Consonants": "mrchcmsnlklnndgstlklmb",
    "Consonants Count": 22,
    "Vowels Count": 29,
-   "FIELD8": "Don't ask about April."
+   "Hint": "Don't ask about April."
  },
  {
    "Phrase": "A place for everything and everything in its place",
@@ -157,7 +157,7 @@
    "Consonants": "plcfrvrythngndvrythngntsplc",
    "Consonants Count": 27,
    "Vowels Count": 23,
-   "FIELD8": "OCD"
+   "Hint": "OCD"
  },
  {
    "Phrase": "Do not count your chickens before they are hatched",
@@ -167,7 +167,7 @@
    "Consonants": "dntcntyrchcknsbfrthyrhtchd",
    "Consonants Count": 26,
    "Vowels Count": 24,
-   "FIELD8": "They might be snakes."
+   "Hint": "They might be snakes."
  },
  {
    "Phrase": "Do unto others as you would have them do unto you",
@@ -177,7 +177,7 @@
    "Consonants": "dntthrssywldhvthmdnty",
    "Consonants Count": 21,
    "Vowels Count": 28,
-   "FIELD8": "The golden rule."
+   "Hint": "The golden rule."
  },
  {
    "Phrase": "A man with a hammer sees every problem as a nail",
@@ -187,7 +187,7 @@
    "Consonants": "mnwthhmmrssvryprblmsnl",
    "Consonants Count": 22,
    "Vowels Count": 26,
-   "FIELD8": "One tool to rule  them all."
+   "Hint": "One tool to rule  them all."
  },
  {
    "Phrase": "It needs a Hundred Lies to cover a Single Lie",
@@ -197,7 +197,7 @@
    "Consonants": "tndshndrdlstcvrsngll",
    "Consonants Count": 20,
    "Vowels Count": 25,
-   "FIELD8": "Snowball effect"
+   "Hint": "Snowball effect"
  },
  {
    "Phrase": "One law for the rich and another for the poor",
@@ -207,7 +207,7 @@
    "Consonants": "nlwfrthrchndnthrfrthpr",
    "Consonants Count": 22,
    "Vowels Count": 23,
-   "FIELD8": "It�s a hard knock life"
+   "Hint": "It�s a hard knock life"
  },
  {
    "Phrase": "If at first you do not succeed try try again",
@@ -217,7 +217,7 @@
    "Consonants": "ftfrstydntsccdtrytrygn",
    "Consonants Count": 22,
    "Vowels Count": 22,
-   "FIELD8": "Verging on insanity"
+   "Hint": "Verging on insanity"
  },
  {
    "Phrase": "Do not throw the baby out with the bathwater",
@@ -227,7 +227,7 @@
    "Consonants": "dntthrwthbbytwththbthwtr",
    "Consonants Count": 24,
    "Vowels Count": 20,
-   "FIELD8": "Page 1, parenting manual."
+   "Hint": "Page 1, parenting manual."
  },
  {
    "Phrase": "It is the squeaky wheel that gets the grease",
@@ -237,7 +237,7 @@
    "Consonants": "tsthsqkywhlthtgtsthgrs",
    "Consonants Count": 22,
    "Vowels Count": 22,
-   "FIELD8": "�or replaced."
+   "Hint": "�or replaced."
  },
  {
    "Phrase": "A nod is as good as a wink to a blind horse",
@@ -247,7 +247,7 @@
    "Consonants": "ndssgdswnktblndhrs",
    "Consonants Count": 18,
    "Vowels Count": 25,
-   "FIELD8": "Wasted efforts"
+   "Hint": "Wasted efforts"
  },
  {
    "Phrase": "Do not cut off your nose to spite your face",
@@ -257,7 +257,7 @@
    "Consonants": "dntctffyrnstsptyrfc",
    "Consonants Count": 19,
    "Vowels Count": 24,
-   "FIELD8": "Homemade plastic surgery"
+   "Hint": "Homemade plastic surgery"
  },
  {
    "Phrase": "Life is not all beer and skittles",
@@ -267,6 +267,6 @@
    "Consonants": "lfsntllbrndskttls",
    "Consonants Count": 17,
    "Vowels Count": 16,
-   "FIELD8": "But it should be."
+   "Hint": "But it should be."
  }
 ]
