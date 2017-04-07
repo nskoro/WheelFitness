@@ -178,17 +178,16 @@ angular.module('fitness.game', [])
 		});
 	};
 
-	// this will replace the existing reveal function
 	this.reveal = function(letterType) {
 		var curr;
-		if(letterType === "V" && vowelStack.length != 0) {
+		if(letterType === "V" && vowelStack.length > 1) {
 			curr = vowelStack.shift();
 			if (curr) {
 				curr.model = curr.letter;
 				curr.revealed = true;
 				vowelsRevealed++;
 			}
-		} else if(letterType === "C" && consStack.length != 0) {
+		} else if(letterType === "C" && consStack.length > 1) {
 			curr = consStack.shift();
 			if (curr) {
 				curr.model = curr.letter;
