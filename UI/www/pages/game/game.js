@@ -25,12 +25,15 @@ angular.module('fitness.game', [])
 					 if(e.key == "Backspace" || e.key == "Delete") {
 						e.preventDefault();
 						findPrevInput();
-					} else {
+					} else if(e.key.match(/^[a-z]$/i)) {
 						if(!scope.done) {
 							e.preventDefault();
 							scope.inputs[scope.index].value = e.key;
 							findNextInput(scope.index);
 						}
+					} else {
+						console.error("Incorrect key: " + e.key)
+						e.preventDefault();
 					}
 				});
 			}, 150);
