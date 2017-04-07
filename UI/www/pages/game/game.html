@@ -34,7 +34,7 @@
 			<div style="padding:8px; text-align: left;">
 				<label class="opacity">Walking reveals consonants and climbing stairs reveals vowels.</label>
 			</div>
-				<div class="word" ng-repeat="word in vm.phrase track by $index" ng-click="vm.testReveal();">
+				<div class="word" ng-repeat="word in vm.phrase track by $index">
 					<span class="character" ng-repeat="char in word track by $index">{{ vm.phrase[$parent.$index][$index].model }}</span>
 				</div>
 
