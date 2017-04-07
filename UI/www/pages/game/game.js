@@ -10,7 +10,7 @@ angular.module('fitness.game', [])
     }
   };
 })
-.directive('advanceInputArea', function($timeout) {
+.directive('advanceInputArea', function($timeout, $rootScope) {
 	return {
 		restrict: 'A',
 		link: function(scope, element, attrs) {
@@ -19,6 +19,7 @@ angular.module('fitness.game', [])
 				scope.index = 0;
 				scope.done = false;
 				scope.indexStack = [];
+				$rootScope.letters = [];
 				findInitialInput();
 
 				element.bind('keydown', function(e) {
@@ -29,6 +30,7 @@ angular.module('fitness.game', [])
 						if(!scope.done) {
 							e.preventDefault();
 							scope.inputs[scope.index].value = e.key;
+							$rootScope.letters[scope.index] = e.key;
 							findNextInput(scope.index);
 						}
 					} else {
@@ -79,7 +81,7 @@ angular.module('fitness.game', [])
 		}
 	}
 })
-.controller('GameCtrl', function($ionicPopup, $ionicModal, $timeout, $interval, gameService, $scope, $state) {
+.controller('GameCtrl', function($ionicPopup, $ionicModal, $timeout, $interval, $rootScope, gameService, $scope, $state) {
 
 	console.log('Game Controller loaded');
 
@@ -117,6 +119,9 @@ angular.module('fitness.game', [])
 					onTap: function(e) {
 						var expected = thePhrase.toUpperCase().trim();
 						var actual = self.stringifyViewModel($scope.copy).toUpperCase().trim();
+						console.warn(expected)
+						console.warn(actual)
+						console.error(actual === expected)
 						if(actual && actual === expected) {
 							guessPopup.close();
 							self.goodGuess();
@@ -133,11 +138,15 @@ angular.module('fitness.game', [])
 		var str = "";
 		for(var a = 0; a < viewModel.length; a++) {
 			for(var b = 0; b < viewModel[a].length; b++) {
-				str += viewModel[a][b].letter;
+				if(viewModel[a][b].model === ".") {
+					str += $rootScope.letters.shift();
+				} else {
+					str += viewModel[a][b].model;
+					$rootScope.letters.shift();
+				}
 			}
 			str += " ";
 		}
-
 		return str;
 	};
 
