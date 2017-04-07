@@ -10,6 +10,72 @@ angular.module('fitness.game', [])
     }
   };
 })
+.directive('advanceInputArea', function($timeout) {
+	return {
+		restrict: 'A',
+		link: function(scope, element, attrs) {
+			$timeout(function() {
+				scope.inputs = document.getElementById('popup-input-container').getElementsByTagName('input');
+				scope.index = 0;
+				scope.done = false;
+				scope.indexStack = [];
+				findInitialInput();
+
+				element.bind('keydown', function(e) {
+					 if(e.key == "Backspace" || e.key == "Delete") {
+						e.preventDefault();
+						findPrevInput();
+					} else {
+						if(!scope.done) {
+							e.preventDefault();
+							scope.inputs[scope.index].value = e.key;
+							findNextInput(scope.index);
+						}
+					}
+				});
+			}, 150);
+
+			function findInitialInput() {
+				for(var i = 0; i < scope.inputs.length; i++) {
+					if(scope.inputs[i].value == ".") {
+						scope.inputs[i].select();
+						scope.inputs[i].focus();
+						scope.index = i;
+						return;
+					}
+				}
+				scope.inputs[scope.index].blur();
+				scope.done = true;
+			}
+
+			function findPrevInput() {
+				if(scope.indexStack.length > 0) {
+					var ind = scope.indexStack.shift();
+					scope.inputs[ind].value = ".";
+					scope.inputs[ind].select();
+					scope.inputs[ind].focus();
+					scope.index = ind;
+				} else {
+					console.error("beginning reached!")
+				}
+			}
+
+			function findNextInput(startIndex) {
+				scope.indexStack.unshift(startIndex);
+				for(var i = startIndex; i < scope.inputs.length; i++) {
+					if(scope.inputs[i].value == ".") {
+						scope.inputs[i].select();
+						scope.inputs[i].focus();
+						scope.index = i;
+						return;
+					}
+				}
+				scope.inputs[scope.index].blur();
+				scope.done = true;
+			}
+		}
+	}
+})
 .controller('GameCtrl', function($ionicPopup, $ionicModal, $timeout, $interval, gameService, $scope, $state) {
 
 	console.log('Game Controller loaded');
@@ -31,7 +97,7 @@ angular.module('fitness.game', [])
 	};
 
 	this.showPopup = function() {
-		$scope.data = self.stringifyViewModel();
+		$scope.copy = _.cloneDeep(self.phrase)
 		console.info(thePhrase)
 		var guessPopup = $ionicPopup.show({
 			templateUrl: 'pages/game/guess-popup.html',
@@ -46,7 +112,9 @@ angular.module('fitness.game', [])
 					text: 'Solve The Puzzle',
 					type: 'button-positive',
 					onTap: function(e) {
-						if(self.guess && self.guess.toUpperCase() === thePhrase) {
+						var expected = thePhrase.toUpperCase().trim();
+						var actual = self.stringifyViewModel($scope.copy).toUpperCase().trim();
+						if(actual && actual === expected) {
 							guessPopup.close();
 							self.goodGuess();
 						} else {
@@ -58,17 +126,13 @@ angular.module('fitness.game', [])
 		});
 	};
 
-	this.stringifyViewModel = function() {
+	this.stringifyViewModel = function(viewModel) {
 		var str = "";
-		for(var a = 0; a < self.phrase.length; a++) {
-			for(var b = 0; b < self.phrase[a].length; b++) {
-				if(self.phrase[a][b].revealed) {
-					str += self.phrase[a][b].letter;
-				} else {
-					str += ".";
-				}
+		for(var a = 0; a < viewModel.length; a++) {
+			for(var b = 0; b < viewModel[a].length; b++) {
+				str += viewModel[a][b].letter;
 			}
-			str += "  ";
+			str += " ";
 		}
 
 		return str;
@@ -81,7 +145,6 @@ angular.module('fitness.game', [])
 	    	 template: 'Great Job! Play another.'
 	   });
 		self.revealAll();
-		self.initModal("pages/game/win-modal.html");
 		self.closeGame();
 
 	};
@@ -191,20 +254,20 @@ angular.module('fitness.game', [])
 	this.loadGame = function() {
 		console.info("game loaded!")
 		localforage.getItem("gameState").then(function(savedState) {
-			
+
 			if (savedState){
 
-					savedState = JSON.parse(savedState);
-
-					numVowels = savedState.numVowels;
-					numCons = savedState.numCons;
-					vowelsRevealed = savedState.vowelsRevealed;
-					consRevealed = savedState.consRevealed;
-					vowelStack = savedState.vowelStack;
-					consStack = savedState.consStack;
-					self.phrase = savedState.viewModel;
-					thePhrase = savedState.thePhrase;
-					noSpace = savedState.noSpace;
+				savedState = JSON.parse(savedState);
+				
+				numVowels = savedState.numVowels;
+				numCons = savedState.numCons;
+				vowelsRevealed = savedState.vowelsRevealed;
+				consRevealed = savedState.consRevealed;
+				vowelStack = savedState.vowelStack;
+				consStack = savedState.consStack;
+				self.phrase = savedState.viewModel;
+				thePhrase = savedState.thePhrase;
+				noSpace = savedState.noSpace;
 			}
 			else{
 				obj = gameService.startGame();
