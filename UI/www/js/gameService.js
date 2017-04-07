@@ -35,6 +35,10 @@ app.service('gameService', function($http) {
       else self.data.rightAnswers = 0 ;
  });
 
+  localforage.getItem("totalPenalty").then(function(result){
+      if (result)
+        self.data.goalSteps = result ;
+  });
  
  this.startGame = function() {
   var index = self.getRandomInt(0, self.dataArray.length);
@@ -225,6 +229,7 @@ this.updateTime = function(time){
   this.clearGame = function(){
      self.data.goalSteps = 0 ;
      self.data.goalFloors = 0 ;
+     localforage.setItem('totalPenalty', 0 );
   }
   this.addPenalty = function(){
      self.data.goalSteps += 400 ;
@@ -233,6 +238,7 @@ this.updateTime = function(time){
      // 
      self.data.wrongAnswers += 1 ;
      localforage.setItem("wrongAnswers", self.data.wrongAnswers);
+     localforage.setItem("totalPenalty", self.data.goalSteps);
   }
 
   this.addScore = function(){
