@@ -19,6 +19,22 @@ app.service('gameService', function($http) {
  this.data.goals.steps = 0;
  this.vowels = ['A', 'E', 'I', 'O', 'U'];
  this.activeGame = false ;
+ this.data.goalSteps = 0 ;
+ this.data.goalFloors = 0 ;
+
+ localforage.getItem("wrongAnswers").then(function(result){
+      if (result)
+        self.data.wrongAnswers = Number(result);
+      else self.data.wrongAnswers = 0 ;
+ });
+
+
+ localforage.getItem("rightAnswers").then(function(result){
+      if (result)
+        self.data.rightAnswers = Number(result);
+      else self.data.rightAnswers = 0 ;
+ });
+
  
  this.startGame = function() {
   var index = self.getRandomInt(0, self.dataArray.length);
@@ -89,6 +105,9 @@ app.service('gameService', function($http) {
     viewModel.push(temp)
   });
 
+  self.data.goalSteps = self.data.goalSteps + self.data.steps ;
+  self.data.goalFloors = self.data.goalFloors + self.data.floors;
+
   return {
     numVowels: numVowels,
     numCons: numCons,
@@ -146,6 +165,12 @@ this.updateTime = function(time){
                 self.data.summary = response.data.summary ;
 
                 self.data.goals = response.data.goals ;
+
+                if ( self.data.goalSteps == 0 ){
+                      self.data.goalSteps = self.data.goals.steps ;
+                      self.data.goalFloors = self.data.floors ;
+                }
+              
                 var date = new Date();
                 self.data.time =  24 - date.getHours(); 
                 console.log('steps are: ' + self.data.steps);
@@ -196,6 +221,27 @@ this.updateTime = function(time){
             });
 
   }
+
+  this.clearGame = function(){
+     self.data.goalSteps = 0 ;
+     self.data.goalFloors = 0 ;
+  }
+  this.addPenalty = function(){
+     self.data.goalSteps += 400 ;
+     self.data.goalFloors += 2 ;
+
+     // 
+     self.data.wrongAnswers += 1 ;
+     localforage.setItem("wrongAnswers", self.data.wrongAnswers);
+  }
+
+  this.addScore = function(){
+    self.data.rightAnswers += 1 ;
+
+    console.log('new score is ' + self.data.rightAnswers);
+    localforage.setItem("rightAnswers", self.data.rightAnswers);
+  }
+  
 
   this.dataArray = [
    {

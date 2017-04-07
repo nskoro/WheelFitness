@@ -149,6 +149,7 @@ angular.module('fitness.game', [])
 	   });
 		self.revealAll();
 		self.closeGame();
+		gameService.addScore();
 
 	};
 
@@ -156,8 +157,10 @@ angular.module('fitness.game', [])
 		self.guess = "";
 		$ionicPopup.alert({
 	     title: 'Wrong Guess!',
-	     template: 'Try again!'
+	     template: 'Penalty points were added to your goals. Try again!'
 	   });
+
+	   gameService.addPenalty();
 	};
 
 	this.timeExpired = function(){
@@ -430,6 +433,7 @@ angular.module('fitness.game', [])
 		localforage.removeItem("gameState");
 
 		gameService.activeGame = false;
+		gameService.clearGame();
 		$state.transitionTo('app.home');
 	}
 });

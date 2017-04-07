@@ -5,14 +5,23 @@
 
      <div class="margin"></div>
 
+        <div class="container leftAlign">
+       <p class="strong opacity">Overall Score:</p>
+          <div class="list">
+            	<span class="item item-icon-left activity-item wins"><i class="icon ion-checkmark"></i> Total Wins <span class="activity-note">{{vm.fitbitData.rightAnswers}}</span></span>
+				    	<span class="item item-icon-left activity-item losses"><i class="icon ion-close"></i> Total Wrong Guesses <span class="activity-note">{{vm.fitbitData.wrongAnswers}}</span></span>
+        </div>
+        
+     </div>
+
      		<div class="container leftAlign font-16">
 				
 		 		<p class="strong opacity">Today's Progress:</p>
 				
 				<div class="list">
 				
-					<span class="item item-icon-left activity-item steps"><i class="icon ion-android-walk"></i> Steps Walked <span class="activity-note">{{vm.fitbitData.steps}} / {{vm.fitbitData.goals.steps}}</span></span>
-					<span class="item item-icon-left activity-item stairs"><i class="icon ion-connection-bars"></i> Floors Climbed <span class="activity-note">{{vm.fitbitData.floors}} / {{vm.fitbitData.goals.floors}}</span></span>
+					<span class="item item-icon-left activity-item steps"><i class="icon ion-android-walk"></i> Steps Walked <span class="activity-note">{{vm.fitbitData.steps}} / {{vm.fitbitData.goalSteps}}</span></span>
+					<span class="item item-icon-left activity-item stairs"><i class="icon ion-connection-bars"></i> Floors Climbed <span class="activity-note">{{vm.fitbitData.floors}} / {{vm.fitbitData.goalFloors}}</span></span>
 					<span class="item item-icon-left activity-item time"><i class="icon ion-android-time"></i> Hours Spent <span class="activity-note">{{vm.fitbitData.time}} / 24</span></span>
 				</div>
 

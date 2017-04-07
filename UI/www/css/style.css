@@ -50,6 +50,16 @@ ion-header-bar button {
 .time{
     color: #cf2583;
 }
+.white{
+    color: #fff;
+}
+.wins{
+    color: #ccc;
+
+}
+.losses{
+    color: #ccc;
+}
 .nav-bar-block, .bar {
   background-color: #eee ;
 }
