@@ -118,14 +118,18 @@ angular.module('fitness.game', [])
 					text: 'Solve The Puzzle',
 					type: 'button-positive',
 					onTap: function(e) {
-						var actual = self.guess.toUpperCase().trim();
-						var expected = thePhrase.toUpperCase().trim();
-						console.info(actual)
-						console.info(expected)
-						if(actual === expected) {
-							self.goodGuess();
-						} else {
+						if(!self.guess) {
 							self.badGuess();
+						} else {
+							var actual = self.guess.toUpperCase().trim();
+							var expected = thePhrase.toUpperCase().trim();
+							console.info(actual)
+							console.info(expected)
+							if(actual && actual === expected) {
+								self.goodGuess();
+							} else {
+								self.badGuess();
+							}
 						}
 					}
 				}
