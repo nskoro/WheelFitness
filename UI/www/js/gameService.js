@@ -39,7 +39,13 @@ app.service('gameService', function($http) {
       if (result)
         self.data.goalSteps = result ;
   });
- 
+
+    localforage.getItem("totalPenaltyFloors").then(function(result){
+      if (result)
+        self.data.goalFloors = result ;
+  });
+
+   
  this.startGame = function() {
   var index = self.getRandomInt(0, self.dataArray.length);
   var phraseData = self.dataArray[index];
@@ -173,7 +179,7 @@ this.updateTime = function(time){
 
                 if ( self.data.goalSteps == 0 ){
                       self.data.goalSteps = self.data.goals.steps ;
-                      self.data.goalFloors = self.data.floors ;
+                      self.data.goalFloors = self.data.goals.floors ;
                 }
               
                 var date = new Date();
@@ -231,6 +237,7 @@ this.updateTime = function(time){
      self.data.goalSteps = 0 ;
      self.data.goalFloors = 0 ;
      localforage.setItem('totalPenalty', 0 );
+     localforage.setItem('totalPenaltyFloors', 0 );
   }
   this.addPenalty = function(){
      self.data.goalSteps += 400 ;
@@ -240,6 +247,7 @@ this.updateTime = function(time){
      self.data.wrongAnswers += 1 ;
      localforage.setItem("wrongAnswers", self.data.wrongAnswers);
      localforage.setItem("totalPenalty", self.data.goalSteps);
+     localforage.setItem('totalPenaltyFloors', self.data.goalFloors );
   }
 
   this.addScore = function(){
