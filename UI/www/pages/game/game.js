@@ -102,7 +102,8 @@ angular.module('fitness.game', [])
 	};
 
 	this.showPopup = function() {
-		$scope.copy = _.cloneDeep(self.phrase)
+		$scope.copy = _.cloneDeep(self.phrase);
+		$scope.data = self.stringifyViewModel(self.phrase);
 		console.info(thePhrase)
 		var guessPopup = $ionicPopup.show({
 			templateUrl: 'pages/game/guess-popup.html',
@@ -117,10 +118,11 @@ angular.module('fitness.game', [])
 					text: 'Solve The Puzzle',
 					type: 'button-positive',
 					onTap: function(e) {
+						var actual = self.guess.toUpperCase().trim();
 						var expected = thePhrase.toUpperCase().trim();
-						var actual = self.stringifyViewModel($scope.copy).toUpperCase().trim();
-						if(actual && actual === expected) {
-							guessPopup.close();
+						console.info(actual)
+						console.info(expected)
+						if(actual === expected) {
 							self.goodGuess();
 						} else {
 							self.badGuess();
@@ -135,14 +137,13 @@ angular.module('fitness.game', [])
 		var str = "";
 		for(var a = 0; a < viewModel.length; a++) {
 			for(var b = 0; b < viewModel[a].length; b++) {
-				if(viewModel[a][b].model === ".") {
-					str += $rootScope.letters.shift();
+				if(viewModel[a][b].revealed) {
+					str += viewModel[a][b].letter;
 				} else {
-					str += viewModel[a][b].model;
-					$rootScope.letters.shift();
+					str += ".";
 				}
 			}
-			str += " ";
+			str += "  ";
 		}
 		return str;
 	};
