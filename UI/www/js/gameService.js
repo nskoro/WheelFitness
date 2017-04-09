@@ -307,7 +307,7 @@ this.updateTime = function(time){
    "Consonants": "lghndthwrldlghswthywpndywpln",
    "Consonants Count": 28,
    "Vowels Count": 31,
-   "Hint": "One is the loneliest number�"
+   "Hint": "One is the loneliest number"
  },
  {
    "Phrase": "Those who do not learn from history are doomed to repeat it",
@@ -380,11 +380,11 @@ this.updateTime = function(time){
    "Hint": "Crystalline condo"
  },
  {
-   "Phrase": "A�journey�of a�thousand�miles begins with a single step",
+   "Phrase": "A journey of a thousand miles begins with a single step",
    "Word Count": 7,
    "Character Count": 55,
-   "Phrase Without Spaces": "a�journey�ofa�thousand�milesbeginswithasinglestep",
-   "Consonants": "�jrny�f�thsnd�mlsbgnswthsnglstp",
+   "Phrase Without Spaces": "ajourneyofathousandmilesbeginswithasinglestep",
+   "Consonants": "jrnyfthsndmlsbgnswthsnglstp",
    "Consonants Count": 31,
    "Vowels Count": 24,
    "Hint": "Unless your prefer to fly."
@@ -467,7 +467,7 @@ this.updateTime = function(time){
    "Consonants": "nlwfrthrchndnthrfrthpr",
    "Consonants Count": 22,
    "Vowels Count": 23,
-   "Hint": "It�s a hard knock life"
+   "Hint": "It's a hard knock life"
  },
  {
    "Phrase": "If at first you do not succeed try try again",
@@ -497,7 +497,7 @@ this.updateTime = function(time){
    "Consonants": "tsthsqkywhlthtgtsthgrs",
    "Consonants Count": 22,
    "Vowels Count": 22,
-   "Hint": "�or replaced."
+   "Hint": "Or replaced."
  },
  {
    "Phrase": "A nod is as good as a wink to a blind horse",
