@@ -115,8 +115,8 @@ app.service('gameService', function($http) {
     viewModel.push(temp)
   });
 
-  self.data.goalSteps = self.data.goalSteps + self.data.steps ;
-  self.data.goalFloors = self.data.goalFloors + self.data.floors;
+ // self.data.goalSteps = self.data.goalSteps + self.data.steps ;
+ // self.data.goalFloors = self.data.goalFloors + self.data.floors;
 
   return {
     numVowels: numVowels,

@@ -3,13 +3,29 @@
 
      <div class="centerAlign padding">
 
+      <div class="margin"></div>
+
+            <div class="container">
+            
+                <button class="button margin fullWidth button-dark" ng-click="vm.logout()">Logout</button>
+            </div>
+  
+
      <div class="margin"></div>
 
           <div class="container">
           
-              <button class="button margin fullWidth button-dark" ng-click="vm.logout()">Logout</button>
+              <p class="margin fullWidth leftAlign">Make sure your FitBit is set to "All-Day Sync" for best performance. 
+                <br /><br />Open the FitBit app, go to dashboard, and select your device. 
+                Then scroll down and enable "All-Day Sync". <br /><br /> 
+                FitBit will sync every twenty minutes or so if there are new steps made.
+	
+              </p>
           </div>
+     
      </div>
+     
+
 
   </ion-content>
 </ion-view>

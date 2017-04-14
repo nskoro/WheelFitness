@@ -1,6 +1,6 @@
 angular.module('fitness.home', [])
 
-.controller('HomeCtrl', function($scope, gameService, $state, $ionicModal, $timeout, $http) {
+.controller('HomeCtrl', function($scope, gameService, $state, $ionicModal, $ionicPopup, $timeout, $http) {
 
     var self = this ;
 
@@ -60,7 +60,13 @@ angular.module('fitness.home', [])
   this.loadNewGame = function(length){
 
       $state.go('app.game');
-  }
+
+      if(gameService.data.rightAnswers == 0) // only if user never won
+        $ionicPopup.alert({
+                title: 'Game Tip',
+                template: 'Make sure your FitBit is set to "All-Day Sync" for best performance. <br /><br />Open the FitBit app, go to dashboard, and select your device. Then scroll down and enable "All-Day Sync". <br /><br /> FitBit will sync every twenty minutes or so if there are new steps made.'
+        });
+   }
 
   this.continueGame = function(){
 
