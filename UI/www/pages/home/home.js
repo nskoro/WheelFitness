@@ -61,7 +61,7 @@ angular.module('fitness.home', [])
 
       $state.go('app.game');
 
-      if(gameService.data.rightAnswers == 0) // only if user never won
+      if(gameService.data.rightAnswers == 0 && gameService.data.wrongAnswers == 0) // only if user never won or lost
         $ionicPopup.alert({
                 title: 'Game Tip',
                 template: 'Make sure your FitBit is set to "All-Day Sync" for best performance. <br /><br />Open the FitBit app, go to dashboard, and select your device. Then scroll down and enable "All-Day Sync". <br /><br /> FitBit will sync every twenty minutes or so if there are new steps made.'

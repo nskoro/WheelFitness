@@ -331,8 +331,8 @@ angular.module('fitness.game', [])
 				'font-size': 14,
 				'size': 100,
 				'data': [
-					{'color': "#2DB1E4", 'range': [0, self.fitbitData.goals.steps]}, // steps
-					{'color': "#9CCA13", 'range': [0, self.fitbitData.goals.floors]}, // floors
+					{'color': "#2DB1E4", 'range': [0, gameService.data.goalSteps]}, // steps
+					{'color': "#9CCA13", 'range': [0, gameService.data.goalFloors]}, // floors
 					{'color': "#cf2583", 'range': [0, 24]} // time
 				]
 			});
@@ -387,6 +387,7 @@ angular.module('fitness.game', [])
 			console.log('saving token to game service: ' + token);
 			gameService.getFitbitData();
 			$timeout( self.computeGameLogic, 4000);
+			
 		});
 
 		self.init();
@@ -394,8 +395,10 @@ angular.module('fitness.game', [])
 		$interval.cancel(self.queryInterval);
 
 		self.queryInterval = $interval( function(){ self.refreshData(); } , 260000);
-	
+
 		$timeout( self.drawFriendly, 1000);
+	
+		
 	});
 
 	this.refreshData = function(){

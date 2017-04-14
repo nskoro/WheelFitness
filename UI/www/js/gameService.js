@@ -36,6 +36,7 @@ app.service('gameService', function($http) {
  });
 
   localforage.getItem("totalPenalty").then(function(result){
+    console.log('total steps from memory ' + result);
       if (result)
         self.data.goalSteps = result ;
   });
@@ -115,8 +116,11 @@ app.service('gameService', function($http) {
     viewModel.push(temp)
   });
 
- // self.data.goalSteps = self.data.goalSteps + self.data.steps ;
- // self.data.goalFloors = self.data.goalFloors + self.data.floors;
+  self.data.goalSteps = self.data.goalSteps + self.data.steps ;
+  self.data.goalFloors = self.data.goalFloors + self.data.floors;
+
+  localforage.setItem("totalPenalty", self.data.goalSteps);
+  localforage.setItem('totalPenaltyFloors', self.data.goalFloors );
 
   return {
     numVowels: numVowels,
