@@ -1,7 +1,8 @@
-<p style="font-size:14px; text-align:center; font-family: monospace;">{{ data }}</p>
-<textArea focus-me class="popup-input" ng-model="vm.guess"></textArea>
-<!-- <div id="popup-input-container" style="text-align: center;" advance-input-area>
-	<div class="word" ng-repeat="word in copy track by $index">
-		<input class="character phrase-input" ng-repeat="char in word track by $index" ng-model="copy[$parent.$index][$index].model" style="text-decoration: none;" />
+<!-- <p style="font-size:14px; text-align:center; font-family: monospace;">{{ data }}</p>
+<textArea focus-me class="popup-input" ng-model="vm.guess"></textArea> -->
+<div id="popup-input-container" style="text-align: center;">
+	<div class="word" ng-repeat="word in $root.copy track by $index">
+		<span class="character" ng-repeat="char in word track by $index" style="text-decoration: none;">{{ copy[$parent.$index][$index].model }}</span>
 	</div>
-</div> -->
+	<input focus-me advance-input-area class="phrase-input" />
+</div>

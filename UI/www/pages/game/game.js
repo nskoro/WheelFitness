@@ -15,7 +15,7 @@ angular.module('fitness.game', [])
 		restrict: 'A',
 		link: function(scope, element, attrs) {
 			$timeout(function() {
-				scope.inputs = document.getElementById('popup-input-container').getElementsByTagName('input');
+				scope.spans = document.getElementById('popup-input-container').getElementsByTagName('span');
 				scope.index = 0;
 				scope.done = false;
 				scope.indexStack = [];
@@ -29,8 +29,8 @@ angular.module('fitness.game', [])
 					} else if(e.key.match(/^[a-z]$/i)) {
 						if(!scope.done) {
 							e.preventDefault();
-							scope.inputs[scope.index].value = e.key;
-							$rootScope.letters[scope.index] = e.key;
+							scope.spans[scope.index].innerHTML = e.key.toUpperCase();
+							$rootScope.letters[scope.index] = e.key.toUpperCase();
 							findNextInput(scope.index);
 						}
 					} else {
@@ -41,25 +41,24 @@ angular.module('fitness.game', [])
 			}, 150);
 
 			function findInitialInput() {
-				for(var i = 0; i < scope.inputs.length; i++) {
-					if(scope.inputs[i].value == ".") {
-						scope.inputs[i].select();
-						scope.inputs[i].focus();
+				for(var i = 0; i < scope.spans.length; i++) {
+					if(scope.spans[i].innerHTML == ".") {
 						scope.index = i;
+						scope.spans[scope.index].className += " char-selected";
 						return;
 					}
 				}
-				scope.inputs[scope.index].blur();
 				scope.done = true;
 			}
 
 			function findPrevInput() {
+				scope.done = false;
+				scope.spans[scope.index].classList.remove("char-selected");
 				if(scope.indexStack.length > 0) {
 					var ind = scope.indexStack.shift();
-					scope.inputs[ind].value = ".";
-					scope.inputs[ind].select();
-					scope.inputs[ind].focus();
+					scope.spans[ind].innerHTML = ".";
 					scope.index = ind;
+					scope.spans[scope.index].className += " char-selected";
 				} else {
 					console.error("beginning reached!")
 				}
@@ -67,15 +66,14 @@ angular.module('fitness.game', [])
 
 			function findNextInput(startIndex) {
 				scope.indexStack.unshift(startIndex);
-				for(var i = startIndex; i < scope.inputs.length; i++) {
-					if(scope.inputs[i].value == ".") {
-						scope.inputs[i].select();
-						scope.inputs[i].focus();
+				scope.spans[scope.index].classList.remove("char-selected");
+				for(var i = startIndex; i < scope.spans.length; i++) {
+					if(scope.spans[i].innerHTML == ".") {
 						scope.index = i;
+						scope.spans[scope.index].className += " char-selected";
 						return;
 					}
 				}
-				scope.inputs[scope.index].blur();
 				scope.done = true;
 			}
 		}
@@ -102,7 +100,7 @@ angular.module('fitness.game', [])
 	};
 
 	this.showPopup = function() {
-		$scope.copy = _.cloneDeep(self.phrase);
+		$rootScope.copy = _.cloneDeep(self.phrase);
 		$scope.data = self.stringifyViewModel(self.phrase);
 		console.info(thePhrase)
 		var guessPopup = $ionicPopup.show({
@@ -118,18 +116,14 @@ angular.module('fitness.game', [])
 					text: 'Solve The Puzzle',
 					type: 'button-positive',
 					onTap: function(e) {
-						if(!self.guess) {
-							self.badGuess();
+						var actual = self.translateViewModel($rootScope.copy).toUpperCase().replace(/\s/g, '');
+						var expected = thePhrase.toUpperCase().replace(/\s/g, '');;
+						console.info(actual)
+						console.info(expected)
+						if(actual && actual === expected) {
+							self.goodGuess();
 						} else {
-							var actual = self.guess.toUpperCase().trim();
-							var expected = thePhrase.toUpperCase().trim();
-							console.info(actual)
-							console.info(expected)
-							if(actual && actual === expected) {
-								self.goodGuess();
-							} else {
-								self.badGuess();
-							}
+							self.badGuess();
 						}
 					}
 				}
@@ -145,6 +139,22 @@ angular.module('fitness.game', [])
 					str += viewModel[a][b].letter;
 				} else {
 					str += ".";
+				}
+			}
+			str += "  ";
+		}
+		return str;
+	};
+
+	this.translateViewModel = function(viewModel) {
+		var str = "";
+		for(var a = 0; a < viewModel.length; a++) {
+			for(var b = 0; b < viewModel[a].length; b++) {
+				if(viewModel[a][b].model == ".") {
+					str += $rootScope.letters.shift();
+				} else {
+					str += viewModel[a][b].letter;
+					$rootScope.letters.shift();
 				}
 			}
 			str += "  ";
