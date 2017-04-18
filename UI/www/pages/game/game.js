@@ -16,6 +16,8 @@ angular.module('fitness.game', [])
 		link: function(scope, element, attrs) {
 			$timeout(function() {
 				scope.spans = document.getElementById('popup-input-container').getElementsByTagName('span');
+				scope.input = document.getElementById('hidden-input');
+				scope.input.focus();
 				scope.index = 0;
 				scope.done = false;
 				scope.indexStack = [];
@@ -40,6 +42,10 @@ angular.module('fitness.game', [])
 				});
 			}, 150);
 
+			$rootScope.clickedPopup = function() {
+				scope.input.focus();
+			};
+
 			function findInitialInput() {
 				for(var i = 0; i < scope.spans.length; i++) {
 					if(scope.spans[i].innerHTML == ".") {
@@ -53,8 +59,8 @@ angular.module('fitness.game', [])
 
 			function findPrevInput() {
 				scope.done = false;
-				scope.spans[scope.index].classList.remove("char-selected");
 				if(scope.indexStack.length > 0) {
+					scope.spans[scope.index].classList.remove("char-selected");
 					var ind = scope.indexStack.shift();
 					scope.spans[ind].innerHTML = ".";
 					scope.index = ind;
@@ -117,7 +123,7 @@ angular.module('fitness.game', [])
 					type: 'button-positive',
 					onTap: function(e) {
 						var actual = self.translateViewModel($rootScope.copy).toUpperCase().replace(/\s/g, '');
-						var expected = thePhrase.toUpperCase().replace(/\s/g, '');;
+						var expected = thePhrase.toUpperCase().replace(/\s/g, '');
 						console.info(actual)
 						console.info(expected)
 						if(actual && actual === expected) {
