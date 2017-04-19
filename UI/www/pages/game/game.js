@@ -23,11 +23,32 @@ angular.module('fitness.game', [])
 				scope.indexStack = [];
 				$rootScope.letters = [];
 				findInitialInput();
+				scope.previousLength = 0 ;
 
 				element.bind('keyup', function(e) {
-					 if(e.key == "Backspace" || e.key == "Delete") {
+
+					scope.entirePhrase = String(scope.input.value);
+
+					if (scope.entirePhrase.length == 0){
+						findPrevInput();
+					}
+
+					if ( scope.previousLength <= scope.entirePhrase.length)
+						scope.previousLength = scope.entirePhrase.length ;
+					
+					e.key = String(scope.entirePhrase).substr(scope.entirePhrase.length-1, 1);
+
+					console.log(e.key);
+
+					console.log('key change');
+
+					if ( scope.previousLength > scope.entirePhrase.length ){
+						console.log('prev ' + scope.previousLength + ' current ' + scope.entirePhrase.length);
+						console.log('delete a char');
+				//	 if(e.key == "Backspace" || e.key == "Delete") {
 						e.preventDefault();
 						findPrevInput();
+						scope.previousLength = scope.entirePhrase.length ;
 					} else if(e.key.match(/^[a-z]$/i)) {
 						if(!scope.done) {
 							e.preventDefault();
@@ -60,13 +81,14 @@ angular.module('fitness.game', [])
 			function findPrevInput() {
 				scope.done = false;
 				if(scope.indexStack.length > 0) {
+					console.log('moving back index');
 					scope.spans[scope.index].classList.remove("char-selected");
 					var ind = scope.indexStack.shift();
 					scope.spans[ind].innerHTML = ".";
 					scope.index = ind;
 					scope.spans[scope.index].className += " char-selected";
 				} else {
-					console.error("beginning reached!")
+					console.error("beginning reached!");
 				}
 			}
 
