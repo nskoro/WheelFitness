@@ -24,7 +24,7 @@ angular.module('fitness.game', [])
 				$rootScope.letters = [];
 				findInitialInput();
 
-				element.bind('keydown', function(e) {
+				element.bind('keyup', function(e) {
 					 if(e.key == "Backspace" || e.key == "Delete") {
 						e.preventDefault();
 						findPrevInput();
