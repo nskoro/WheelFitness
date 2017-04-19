@@ -181,6 +181,7 @@ ion-header-bar button {
     background-color: #000;
     border: 1px solid white;
     color: #fff;
+    border-radius: 0px;
     text-transform: uppercase;
 }
 .char-selected {
