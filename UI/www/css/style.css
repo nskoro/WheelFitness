@@ -176,13 +176,10 @@ ion-header-bar button {
     font-size: 14px;
 }
 .phrase-input {
-    width: 0px !important;
+    margin-top:5px; 
     text-align: center;
     background-color: #000;
-    border-top: 0px;
-    border-left: 0px;
-    border-right: 0px;
-    border-bottom: 1px solid white;
+    border: 1px solid white;
     color: #fff;
     text-transform: uppercase;
 }
