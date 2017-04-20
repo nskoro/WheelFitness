@@ -88,10 +88,10 @@ var app = angular.module('starter', ['ionic', 'LocalForageModule', 'fitness.spla
       console.log('loading fitbit auth');
 
       // production
-      window.location.replace('https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=2288CR&redirect_uri=https%3A%2F%2Fwheelfitness.herokuapp.com&expires_in=31536000&scope=activity%20nutrition%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight');
+      //window.location.replace('https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=2288CR&redirect_uri=https%3A%2F%2Fwheelfitness.herokuapp.com&expires_in=31536000&scope=activity%20nutrition%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight');
   
       // local
-      //window.location.replace('https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=228D84&redirect_uri=http%3A%2F%2Flocalhost%3A8100&expires_in=31536000&scope=activity%20nutrition%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight');
+      window.location.replace('https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=228D84&redirect_uri=http%3A%2F%2Flocalhost%3A8100&expires_in=31536000&scope=activity%20nutrition%20heartrate%20location%20nutrition%20profile%20settings%20sleep%20social%20weight');
   } else {
     //http%3A%2F%2Flocalhost%3A8100
       console.log('loading access token');
