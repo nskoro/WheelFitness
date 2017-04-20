@@ -424,8 +424,7 @@ angular.module('fitness.game', [])
 			gameService.fitbitToken = token;
 			console.log('saving token to game service: ' + token);
 			gameService.getFitbitData();
-			$timeout( self.computeGameLogic, 1000);
-			
+			$timeout( self.computeGameLogic, 3000);
 		});
 
 		self.init();
@@ -464,6 +463,10 @@ angular.module('fitness.game', [])
 			vowelCount = 0;
 		if (consCount < 0)
 			consCount = 0 ;
+
+	    console.log('letters revealed: ' + vowelsRevealed + ", "+ consRevealed);
+		console.log('vowelWorth: ' + vowelWorth);
+		console.log('consWorth: ' + consWorth);
 
 		self.catchUp( vowelCount, consCount );
 	}
