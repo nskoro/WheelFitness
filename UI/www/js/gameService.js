@@ -22,6 +22,9 @@ app.service('gameService', function($http) {
  this.data.goalSteps = 0 ;
  this.data.goalFloors = 0 ;
 
+ this.data.preExistingFloors = 0;
+ this.data.preExistingSteps = 0;
+
  localforage.getItem("wrongAnswers").then(function(result){
       if (result)
         self.data.wrongAnswers = Number(result);
@@ -46,6 +49,16 @@ app.service('gameService', function($http) {
         self.data.goalFloors = result ;
   });
 
+  localforage.getItem("preExistingSteps").then(function(result){
+    console.log('previous steps from memory ' + result);
+      if (result)
+        self.data.preExistingSteps = result ;
+  });
+
+    localforage.getItem("preExistingFloors").then(function(result){
+      if (result)
+        self.data.preExistingFloors = result ;
+  });
    
  this.startGame = function() {
   var index = self.getRandomInt(0, self.dataArray.length);
@@ -116,11 +129,16 @@ app.service('gameService', function($http) {
     viewModel.push(temp)
   });
 
-  self.data.goalSteps = self.data.goalSteps + self.data.steps ;
-  self.data.goalFloors = self.data.goalFloors + self.data.floors;
+  //self.data.goalSteps = self.data.goalSteps + self.data.steps ;
+ // self.data.goalFloors = self.data.goalFloors + self.data.floors;
+
+  self.data.preExistingSteps = self.data.steps;
+  self.data.preExistingFloors = self.data.floors;
 
   localforage.setItem("totalPenalty", self.data.goalSteps);
   localforage.setItem('totalPenaltyFloors', self.data.goalFloors );
+  localforage.setItem("preExistingSteps", self.data.steps);
+  localforage.setItem('preExistingFloors', self.data.floors );
 
   return {
     numVowels: numVowels,
@@ -174,9 +192,9 @@ this.updateTime = function(time){
             }).then(function successCallback(response) {
                 
                 console.log(JSON.stringify(response));
-
-                self.data.steps = response.data.summary.steps ;
-                self.data.floors = response.data.summary.floors ;
+               
+                self.data.steps = response.data.summary.steps - self.data.preExistingSteps ;
+                self.data.floors = response.data.summary.floors - self.data.preExistingFloors ;
                 self.data.summary = response.data.summary ;
 
                 self.data.goals = response.data.goals ;
@@ -242,6 +260,8 @@ this.updateTime = function(time){
      self.data.goalFloors = 0 ;
      localforage.setItem('totalPenalty', 0 );
      localforage.setItem('totalPenaltyFloors', 0 );
+     localforage.setItem('preExistingSteps', 0 );
+     localforage.setItem('preExistingFloors', 0 );
   }
   this.addPenalty = function(){
      self.data.goalSteps += 400 ;
