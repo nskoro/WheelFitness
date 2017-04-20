@@ -389,10 +389,10 @@ angular.module('fitness.game', [])
 			console.log('hours is ' + h);
 
 	    	self.friendlyProgress.radialMultiProgress("to", {
-	      		"index": 0, 'perc': self.fitbitData.steps - self.fitbitData.preExistingSteps, 'time': 10
+	      		"index": 0, 'perc': self.fitbitData.steps, 'time': 10
 	      	});
 	    	self.friendlyProgress.radialMultiProgress("to", {
-	    		"index": 1, 'perc': self.fitbitData.floors - self.fitbitData.preExistingFloors, 'time': 10
+	    		"index": 1, 'perc': self.fitbitData.floors, 'time': 10
 	    	});
 	    	self.friendlyProgress.radialMultiProgress("to", {
 	    		"index": 2, 'perc': h, 'time': 10
@@ -424,7 +424,7 @@ angular.module('fitness.game', [])
 			gameService.fitbitToken = token;
 			console.log('saving token to game service: ' + token);
 			gameService.getFitbitData();
-			$timeout( self.computeGameLogic, 4000);
+			$timeout( self.computeGameLogic, 1000);
 			
 		});
 
