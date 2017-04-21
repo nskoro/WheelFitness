@@ -1,5 +1,5 @@
 // Game logic service
-app.service('gameService', function($http) {
+app.service('gameService', function($http, $q) {
 
  console.log('game service loaded!');
  var self = this;
@@ -181,6 +181,9 @@ this.updateTime = function(time){
     }
 
   this.getFitbitData = function(){
+
+         var deferred = $q.defer();
+
         $http.defaults.headers.common['Authorization'] = 'Bearer ' + self.fitbitToken;
         $http.defaults.headers.common['Content-Type'] = 'application/x-www-form-urlencoded';
 
@@ -209,19 +212,24 @@ this.updateTime = function(time){
                   //    self.data.penaltyFloors = self.data.goals.floors ;
                 }
 
-             //   self.data.steps = 400 ;
-             //   self.data.floors = 4
+                self.data.steps = 800 ;
+                self.data.floors = 25;
                 
                 var date = new Date();
                 self.data.time =  24 - date.getHours(); 
                 console.log('steps are: ' + self.data.steps);
                 console.log('floors are: ' + self.data.floors);
 
+                deferred.resolve(response);
+
             },function errorCallback(response) {
                 console.log(response.statusText);
+                 deferred.reject(response);
                 if ( response.statusText != "Too Many Requests")
                    self.reload();
             });
+
+          return deferred.promise;
   }
 
   this.reload = function(){

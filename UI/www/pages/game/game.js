@@ -428,19 +428,17 @@ angular.module('fitness.game', [])
 
 			gameService.fitbitToken = token;
 			console.log('saving token to game service: ' + token);
-			gameService.getFitbitData();
-			$timeout( self.computeGameLogic, 3000);
+			gameService.getFitbitData().then(function(result){
+				self.init();
+				$timeout( self.computeGameLogic, 1000);	
+				$timeout( self.drawFriendly, 1000);
+				self.autoSave();
+			})
 		});
-
-		self.init();
 
 		$interval.cancel(self.queryInterval);
 
 		self.queryInterval = $interval( function(){ self.refreshData(); } , 260000);
-
-		$timeout( self.drawFriendly, 1000);
-
-		self.autoSave();
 	
 	});
 
