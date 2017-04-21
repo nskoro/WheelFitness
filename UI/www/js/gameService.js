@@ -19,8 +19,8 @@ app.service('gameService', function($http) {
  this.data.goals.steps = 0;
  this.vowels = ['A', 'E', 'I', 'O', 'U'];
  this.activeGame = false ;
- this.data.goalSteps = 0 ;
- this.data.goalFloors = 0 ;
+ this.data.penaltySteps = 0 ;
+ this.data.penaltyFloors = 0 ;
 
  this.data.preExistingFloors = 0;
  this.data.preExistingSteps = 0;
@@ -41,12 +41,12 @@ app.service('gameService', function($http) {
   localforage.getItem("totalPenalty").then(function(result){
     console.log('total steps from memory ' + result);
       if (result)
-        self.data.goalSteps = result ;
+        self.data.penaltySteps = result ;
   });
 
     localforage.getItem("totalPenaltyFloors").then(function(result){
       if (result)
-        self.data.goalFloors = result ;
+        self.data.penaltyFloors = result ;
   });
 
   localforage.getItem("preExistingSteps").then(function(result){
@@ -129,14 +129,14 @@ app.service('gameService', function($http) {
     viewModel.push(temp)
   });
 
-  //self.data.goalSteps = self.data.goalSteps + self.data.steps ;
- // self.data.goalFloors = self.data.goalFloors + self.data.floors;
+  //self.data.penaltySteps = self.data.penaltySteps + self.data.steps ;
+ // self.data.penaltyFloors = self.data.penaltyFloors + self.data.floors;
 
   self.data.preExistingSteps = self.data.summary.steps;
   self.data.preExistingFloors = self.data.summary.floors;
 
-  localforage.setItem("totalPenalty", self.data.goalSteps);
-  localforage.setItem('totalPenaltyFloors', self.data.goalFloors );
+  localforage.setItem("totalPenalty", self.data.penaltySteps);
+  localforage.setItem('totalPenaltyFloors', self.data.penaltyFloors );
   localforage.setItem("preExistingSteps", self.data.preExistingSteps);
   localforage.setItem('preExistingFloors', self.data.preExistingFloors );
 
@@ -204,11 +204,14 @@ this.updateTime = function(time){
 
                 self.data.goals = response.data.goals ;
 
-                if ( self.data.goalSteps == 0 ){
-                      self.data.goalSteps = self.data.goals.steps ;
-                      self.data.goalFloors = self.data.goals.floors ;
+                if ( self.data.penaltySteps == 0 ){
+                   //   self.data.penaltySteps = self.data.goals.steps ;
+                  //    self.data.penaltyFloors = self.data.goals.floors ;
                 }
-              
+
+             //   self.data.steps = 400 ;
+             //   self.data.floors = 4
+                
                 var date = new Date();
                 self.data.time =  24 - date.getHours(); 
                 console.log('steps are: ' + self.data.steps);
@@ -261,22 +264,22 @@ this.updateTime = function(time){
   }
 
   this.clearGame = function(){
-     self.data.goalSteps = 0 ;
-     self.data.goalFloors = 0 ;
+     self.data.penaltySteps = 0 ;
+     self.data.penaltyFloors = 0 ;
      localforage.setItem('totalPenalty', 0 );
      localforage.setItem('totalPenaltyFloors', 0 );
      localforage.setItem('preExistingSteps', self.data.summary.steps );
      localforage.setItem('preExistingFloors', self.data.summary.floors );
+
   }
   this.addPenalty = function(){
-     self.data.goalSteps += 400 ;
-     self.data.goalFloors += 2 ;
+     self.data.penaltySteps += 200 ;
+     self.data.penaltyFloors += 2 ;
 
-     // 
      self.data.wrongAnswers += 1 ;
      localforage.setItem("wrongAnswers", self.data.wrongAnswers);
-     localforage.setItem("totalPenalty", self.data.goalSteps);
-     localforage.setItem('totalPenaltyFloors', self.data.goalFloors );
+     localforage.setItem("totalPenalty", self.data.penaltySteps);
+     localforage.setItem('totalPenaltyFloors', self.data.penaltyFloors );
   }
 
   this.addScore = function(){

@@ -119,10 +119,10 @@ angular.module('fitness.game', [])
 	var consRevealed;
 	var vowelStack, consStack, thePhrase, noSpace;
 	var thePhrase;
+	var obj = {} ; // game save obj
 
 	this.init = function(){
 		console.log('init game function');
-		var obj = {} ;
 
 		self.loadGame();
 	};
@@ -309,8 +309,10 @@ angular.module('fitness.game', [])
 	this.loadGame = function() {
 		console.info("game loaded!")
 		localforage.getItem("gameState").then(function(savedState) {
-
+			
 			if (savedState){
+
+				console.log(savedState);
 
 				savedState = JSON.parse(savedState);
 				
@@ -465,6 +467,7 @@ angular.module('fitness.game', [])
 	//	if (vowelWorth < 2) // min floors required
 	//		vowelWorth = 2 ;
 		
+		console.log('steps walked ' + self.fitbitData.steps);
 		var vowelCount = parseInt(self.fitbitData.floors / vowelWorth ) - vowelsRevealed;
 		var consCount = parseInt(self.fitbitData.steps / consWorth ) - consRevealed;
 		
