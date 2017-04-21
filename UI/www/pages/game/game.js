@@ -331,7 +331,7 @@ angular.module('fitness.game', [])
 				obj = gameService.startGame();
 				self.guess = "" ;
 
-				gameService.activeGame = obj ;
+			//	gameService.activeGame = obj ;
 				gameService.activeGameFlag = true ;
 
 				numVowels = obj.numVowels;
@@ -439,8 +439,9 @@ angular.module('fitness.game', [])
 		self.queryInterval = $interval( function(){ self.refreshData(); } , 260000);
 
 		$timeout( self.drawFriendly, 1000);
+
+		self.autoSave();
 	
-		
 	});
 
 	this.refreshData = function(){
@@ -505,5 +506,13 @@ angular.module('fitness.game', [])
 		gameService.activeGame = false;
 		gameService.clearGame();
 		$state.transitionTo('app.home');
+	}
+
+	this.autoSave = function(){
+
+		$interval.cancel(self.autoSaveInterval);
+
+		self.autoSaveInterval = $interval( function(){ self.saveGame(); }, 2000);
+	
 	}
 });
