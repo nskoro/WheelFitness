@@ -347,6 +347,9 @@ angular.module('fitness.game', [])
 
 			}
 			gameService.activeGame = true;
+
+			self.fitbitData.gameGoalVowels = 2 * numVowels ;
+			self.fitbitData.gameGoalCons = 100 * numCons ;
 		});
 	};
 
@@ -369,8 +372,8 @@ angular.module('fitness.game', [])
 				'font-size': 14,
 				'size': 100,
 				'data': [
-					{'color': "#2DB1E4", 'range': [0, gameService.data.goalSteps]}, // steps
-					{'color': "#9CCA13", 'range': [0, gameService.data.goalFloors]}, // floors
+					{'color': "#2DB1E4", 'range': [0, gameService.data.gameGoalCons]}, // steps
+					{'color': "#9CCA13", 'range': [0, gameService.data.gameGoalVowels]}, // floors
 					{'color': "#cf2583", 'range': [0, 24]} // time
 				]
 			});
@@ -447,14 +450,20 @@ angular.module('fitness.game', [])
 	}
 
 	this.computeGameLogic = function(){
-		var vowelWorth = parseInt( self.fitbitData.goalFloors /  numVowels);
-		var consWorth = parseInt(self.fitbitData.goalSteps /  numCons) ;
+	//	var vowelWorth = parseInt( self.fitbitData.goalFloors /  numVowels);
+	//	var consWorth = parseInt(self.fitbitData.goalSteps /  numCons) ;
 
-		if (consWorth < 200) // min steps required
-			consWorth = 200 ;
+		var consWorth = 100 ;
+		var vowelWorth = 2;
 
-		if (vowelWorth < 1) // min floors required
-			vowelWorth = 1 ;
+		self.fitbitData.gameGoalVowels = vowelWorth * numVowels ;
+		self.fitbitData.gameGoalCons = consWorth * numCons
+
+		if (consWorth < 100) // min steps required
+			consWorth = 100 ;
+
+		if (vowelWorth < 2) // min floors required
+			vowelWorth = 2 ;
 		
 		var vowelCount = parseInt(self.fitbitData.floors / vowelWorth ) - vowelsRevealed;
 		var consCount = parseInt(self.fitbitData.steps / consWorth ) - consRevealed;
