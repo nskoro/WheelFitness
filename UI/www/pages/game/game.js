@@ -285,6 +285,18 @@ angular.module('fitness.game', [])
 		}
 	};
 
+	this.resetRevealed = function() {
+		var vmCopy = _.cloneDeep(self.phrase);
+		for(var i = 0; i < vmCopy.length; i++) {
+			for(var j = 0; j < vmCopy[i].length; j++) {
+				vmCopy[i][j].revealed = false;
+				vmCopy[i][j].model = ".";
+			}
+		}
+
+		return vmCopy;
+	};
+
 	this.saveGame = function() {
 		console.info("game saved!")
 
@@ -294,7 +306,7 @@ angular.module('fitness.game', [])
 		var state = {
 			numVowels: numVowels,
 			numCons: numCons,
-			viewModel: self.phrase,
+			viewModel: self.resetRevealed(),
 			thePhrase: thePhrase,
 			noSpace: noSpace,
 			hint: self.hint
