@@ -115,8 +115,6 @@ angular.module('fitness.game', [])
 	var vowels = ['A', 'E', 'I', 'O', 'U'];
 	var numVowels;
 	var numCons;
-	var vowelsRevealed;
-	var consRevealed;
 	var vowelStack, consStack, thePhrase, noSpace;
 	var thePhrase;
 	var obj = {} ; // game save obj
@@ -159,6 +157,7 @@ angular.module('fitness.game', [])
 		});
 	};
 
+	// Convert view model to string representation
 	this.stringifyViewModel = function(viewModel) {
 		var str = "";
 		for(var a = 0; a < viewModel.length; a++) {
@@ -174,6 +173,7 @@ angular.module('fitness.game', [])
 		return str;
 	};
 
+	// convert the viewmodel + letters the user entered into an answer
 	this.translateViewModel = function(viewModel) {
 		var str = "";
 		for(var a = 0; a < viewModel.length; a++) {
@@ -223,35 +223,23 @@ angular.module('fitness.game', [])
 
 	}
 
-	this.initModal = function(template) {
-		$ionicModal.fromTemplateUrl(template, {
-			scope: $scope,
-			animation: 'slide-in-up'
-		}).then(function(modal) {
-			self.modal = modal;
-			self.modal.show();
-		});
-	};
-
-	this.reveal = function(letterType) {
+	this.reveal = function(letterType, index) {
 		var curr;
-		if(letterType === "V" && vowelStack.length > 1) {
-			curr = vowelStack.shift();
+		if(letterType === "V" && index < vowelStack.length - 1) {
+			curr = vowelStack[index];
 			if (curr) {
 				curr.model = curr.letter;
 				curr.revealed = true;
-				vowelsRevealed++;
 			}
-		} else if(letterType === "C" && consStack.length > 1) {
-			curr = consStack.shift();
+		} else if(letterType === "C" && index < consStack.length - 1) {
+			curr = consStack[index];
 			if (curr) {
 				curr.model = curr.letter;
 				curr.revealed = true;
-				consRevealed++;
 			}
 		} else {
-			console.error("something went wrong")
 			// either we have a bad lettertype or both stacks are empty
+			console.warn("Reached end of " + letterType + " stack");
 		}
 	};
 
@@ -274,14 +262,27 @@ angular.module('fitness.game', [])
 		}
 
 		for(var a = 0; a < vowels; a++) {
-			self.reveal("V");
+			self.reveal("V", a);
 		}
 
 		for(var b = 0; b < consonants; b++) {
-			self.reveal("C");
+			self.reveal("C", b);
 		}
 
 		self.saveGame();
+	};
+
+	// rebuilds stacks
+	this.reconstruct = function(viewModel) {
+		for(var i = 0; i < viewModel.length; i++) {
+			for(var j = 0; j < viewModel[i].length; j++) {
+				if(viewModel[i][j].letterType == "V") {
+					vowelStack[viewModel[i][j].order] = viewModel[i][j];
+				} else {
+					consStack[viewModel[i][j].order] = viewModel[i][j];
+				}
+			}
+		}
 	};
 
 	this.saveGame = function() {
@@ -293,10 +294,6 @@ angular.module('fitness.game', [])
 		var state = {
 			numVowels: numVowels,
 			numCons: numCons,
-			vowelsRevealed: vowelsRevealed,
-			consRevealed: consRevealed,
-			vowelStack: vowelStack,
-			consStack: consStack,
 			viewModel: self.phrase,
 			thePhrase: thePhrase,
 			noSpace: noSpace,
@@ -312,20 +309,18 @@ angular.module('fitness.game', [])
 			
 			if (savedState){
 
-				console.log(savedState);
-
 				savedState = JSON.parse(savedState);
 				
 				numVowels = savedState.numVowels;
 				numCons = savedState.numCons;
-				vowelsRevealed = savedState.vowelsRevealed;
-				consRevealed = savedState.consRevealed;
-				vowelStack = savedState.vowelStack;
-				consStack = savedState.consStack;
 				self.phrase = savedState.viewModel;
 				thePhrase = savedState.thePhrase;
 				noSpace = savedState.noSpace;
 				self.hint = savedState.hint;
+
+				consStack = [];
+				vowelStack = [];
+				self.reconstruct(self.phrase);
 			}
 			else{
 				obj = gameService.startGame();
@@ -336,8 +331,6 @@ angular.module('fitness.game', [])
 
 				numVowels = obj.numVowels;
 				numCons = obj.numCons;
-				vowelsRevealed = 0;
-				consRevealed = 0;
 				vowelStack = obj.vowelStack;
 				consStack = obj.consStack;
 				self.phrase = obj.viewModel;
@@ -354,14 +347,6 @@ angular.module('fitness.game', [])
 			self.fitbitData.gameGoalCons = 100 * numCons ;
 		});
 	};
-
-	this.testReveal = function() {
-		if(vowelStack.length > 0) {
-			self.reveal("V");
-		} else {
-			self.reveal("C");
-		}
-	}
 
 	this.drawFriendly = function() {
 
@@ -467,15 +452,14 @@ angular.module('fitness.game', [])
 	//		vowelWorth = 2 ;
 		
 		console.log('steps walked ' + self.fitbitData.steps);
-		var vowelCount = parseInt(self.fitbitData.floors / vowelWorth ) - vowelsRevealed;
-		var consCount = parseInt(self.fitbitData.steps / consWorth ) - consRevealed;
+		var vowelCount = parseInt(self.fitbitData.floors / vowelWorth );
+		var consCount = parseInt(self.fitbitData.steps / consWorth );
 		
 		if (vowelCount < 0)
 			vowelCount = 0;
 		if (consCount < 0)
 			consCount = 0 ;
 
-	    console.log('letters revealed: ' + vowelsRevealed + ", "+ consRevealed);
 		console.log('vowelWorth: ' + vowelWorth);
 		console.log('consWorth: ' + consWorth);
 
