@@ -216,7 +216,7 @@ this.updateTime = function(time){
                 self.data.floors = 25;
                 
                 var date = new Date();
-                self.data.time =  24 - date.getHours(); 
+                self.data.time =  date.getHours(); 
                 console.log('steps are: ' + self.data.steps);
                 console.log('floors are: ' + self.data.floors);
 
