@@ -414,7 +414,6 @@ angular.module('fitness.game', [])
 		self.fitbitData.goals = {} ;
 
 		self.fitbitData = gameService.data ;
-
 	
 		console.log('steps in game.js: ' + self.fitbitData.steps);
     
@@ -496,7 +495,7 @@ angular.module('fitness.game', [])
 		// needs a prompt
 
 		localforage.removeItem("gameState");
-
+		$interval.cancel(self.autoSaveInterval);
 		gameService.activeGame = false;
 		gameService.clearGame();
 		$state.transitionTo('app.home');
