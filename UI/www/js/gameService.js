@@ -212,8 +212,8 @@ this.updateTime = function(time){
                   //    self.data.penaltyFloors = self.data.goals.floors ;
                 }
 
-                self.data.steps = 800 ;
-                self.data.floors = 25;
+               // self.data.steps = 800 ;
+               // self.data.floors = 25;
                 
                 var date = new Date();
                 self.data.time =  date.getHours(); 
@@ -281,8 +281,11 @@ this.updateTime = function(time){
 
   }
   this.addPenalty = function(){
-     self.data.penaltySteps += 200 ;
+     self.data.penaltySteps += 100 ;
      self.data.penaltyFloors += 2 ;
+    
+     self.data.steps = self.data.steps - 100;
+     self.data.floors = self.data.floors - 2 ;
 
      self.data.wrongAnswers += 1 ;
      localforage.setItem("wrongAnswers", self.data.wrongAnswers);
