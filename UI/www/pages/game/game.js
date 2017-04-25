@@ -298,10 +298,11 @@ angular.module('fitness.game', [])
 	};
 
 	this.saveGame = function() {
-		console.info("game saved!")
 
 		if (!gameService.activeGame)
 			return null ;
+
+		console.info("game saved!")
 
 		var state = {
 			numVowels: numVowels,
@@ -312,7 +313,7 @@ angular.module('fitness.game', [])
 			hint: self.hint
 		};
 
-		return localforage.setItem("gameState", JSON.stringify(state));
+		return localforage.setItem("gameState", state);
 	};
 
 	this.loadGame = function() {
@@ -321,7 +322,7 @@ angular.module('fitness.game', [])
 			
 			if (savedState){
 
-				savedState = JSON.parse(savedState);
+				//savedState = JSON.parse(savedState);
 				
 				numVowels = savedState.numVowels;
 				numCons = savedState.numCons;
