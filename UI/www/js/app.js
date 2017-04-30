@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-var app = angular.module('starter', ['ionic', 'LocalForageModule', 'fitness.splash','fitness.home','fitness.login','fitness.menu', 'fitness.settings', 'fitness.rankings', 'fitness.game'])
+var app = angular.module('starter', ['ionic', 'LocalForageModule', 'ngCordovaOauth', 'fitness.splash','fitness.home','fitness.login','fitness.menu', 'fitness.settings', 'fitness.rankings', 'fitness.game'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -82,8 +82,9 @@ var app = angular.module('starter', ['ionic', 'LocalForageModule', 'fitness.spla
   //console.log(window.location.hash);
   var fitbitAccessToken;
 
-  console.log(window.location.hash);
+ // console.log(window.location.hash);
 
+/*
   if (!window.location.hash) {
       console.log('loading fitbit auth');
 
@@ -107,5 +108,7 @@ var app = angular.module('starter', ['ionic', 'LocalForageModule', 'fitness.spla
 
       $urlRouterProvider.otherwise('/splash');
   }
+  */
+   $urlRouterProvider.otherwise('/splash');
   
 });

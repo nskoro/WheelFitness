@@ -427,8 +427,8 @@ angular.module('fitness.game', [])
 			console.log('saving token to game service: ' + token);
 			gameService.getFitbitData().then(function(result){
 				self.init();
-				$timeout( self.computeGameLogic, 1000);	
-				$timeout( self.drawFriendly, 1000);
+				$timeout( self.computeGameLogic, 1500);	
+				$timeout( self.drawFriendly, 2000);
 				self.autoSave();
 			})
 		});

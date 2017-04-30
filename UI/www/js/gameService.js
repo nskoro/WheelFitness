@@ -234,10 +234,13 @@ this.updateTime = function(time){
 
   this.reload = function(){
       // local
-      window.location.replace('http://localhost:8100');
+     // window.location.replace('http://localhost:8100');
       
       //production
       //window.location.replace('https://wheelfitness.herokuapp.com');
+      
+      $state.reload();
+
   }
 
   this.logout = function(){
