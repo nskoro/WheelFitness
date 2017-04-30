@@ -84,7 +84,11 @@ var app = angular.module('starter', ['ionic', 'LocalForageModule', 'ngCordovaOau
 
  // console.log(window.location.hash);
 
-/*
+ if(window.cordova){
+    $urlRouterProvider.otherwise('/splash');
+ }
+ else{
+
   if (!window.location.hash) {
       console.log('loading fitbit auth');
 
@@ -106,9 +110,8 @@ var app = angular.module('starter', ['ionic', 'LocalForageModule', 'ngCordovaOau
       window.fitbitAccessToken = fitbitAccessToken ;
       console.log('accessToken is : ' + fitbitAccessToken );
 
-      $urlRouterProvider.otherwise('/splash');
+      $urlRouterProvider.otherwise('app/home');
   }
-  */
-   $urlRouterProvider.otherwise('/splash');
+ }
   
 });
