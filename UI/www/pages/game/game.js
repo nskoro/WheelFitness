@@ -5,11 +5,12 @@ angular.module('fitness.game', [])
   return {
     link: function(scope, element, attrs) {
       $timeout(function() {
-        element[0].focus(); 
+        element[0].focus();
       }, 150);
     }
   };
 })
+// directive for moving visual cursor through the popup input
 .directive('advanceInputArea', function($timeout, $rootScope) {
 	return {
 		restrict: 'A',
@@ -35,7 +36,7 @@ angular.module('fitness.game', [])
 
 					if ( scope.previousLength <= scope.entirePhrase.length)
 						scope.previousLength = scope.entirePhrase.length ;
-					
+
 					e.key = String(scope.entirePhrase).substr(scope.entirePhrase.length-1, 1);
 
 					console.log(e.key);
@@ -67,6 +68,7 @@ angular.module('fitness.game', [])
 				scope.input.focus();
 			};
 
+            // find first place for the cursor
 			function findInitialInput() {
 				for(var i = 0; i < scope.spans.length; i++) {
 					if(scope.spans[i].innerHTML == ".") {
@@ -78,6 +80,7 @@ angular.module('fitness.game', [])
 				scope.done = true;
 			}
 
+            // go back to a previous input
 			function findPrevInput() {
 				scope.done = false;
 				if(scope.indexStack.length > 0) {
@@ -92,6 +95,7 @@ angular.module('fitness.game', [])
 				}
 			}
 
+            // find the next spot for the cursor
 			function findNextInput(startIndex) {
 				scope.indexStack.unshift(startIndex);
 				scope.spans[scope.index].classList.remove("char-selected");
@@ -119,12 +123,14 @@ angular.module('fitness.game', [])
 	var thePhrase;
 	var obj = {} ; // game save obj
 
+    // start the game
 	this.init = function(){
 		console.log('init game function');
 
 		self.loadGame();
 	};
 
+    // show the input popup to the user and check their guess
 	this.showPopup = function() {
 		$rootScope.copy = _.cloneDeep(self.phrase);
 		$scope.data = self.stringifyViewModel(self.phrase);
@@ -134,11 +140,11 @@ angular.module('fitness.game', [])
 			title: 'Enter Phrase',
 			scope: $scope,
 			buttons: [
-				{ 
+				{
 					text: 'Cancel',
-					type: 'button-dark' 
+					type: 'button-dark'
 				},
-				{ 
+				{
 					text: 'Solve The Puzzle',
 					type: 'button-positive',
 					onTap: function(e) {
@@ -190,6 +196,7 @@ angular.module('fitness.game', [])
 		return str;
 	};
 
+    // the user guessed correctly
 	this.goodGuess = function() {
 		console.log("good guess!")
 		$ionicPopup.alert({
@@ -202,6 +209,7 @@ angular.module('fitness.game', [])
 
 	};
 
+    // the user guessed incorrectly
 	this.badGuess = function() {
 		self.guess = "";
 		$ionicPopup.alert({
@@ -212,6 +220,7 @@ angular.module('fitness.game', [])
 	   gameService.addPenalty();
 	};
 
+    // ran out of time
 	this.timeExpired = function(){
 		self.guess = "";
 			$ionicPopup.alert({
@@ -223,6 +232,7 @@ angular.module('fitness.game', [])
 
 	}
 
+    // reveal the next letter given a type of letter (vowel or consonant) and the index of the letter
 	this.reveal = function(letterType, index) {
 		var curr;
 		if(letterType === "V" && index < vowelStack.length - 1) {
@@ -249,7 +259,7 @@ angular.module('fitness.game', [])
 				vowelStack.forEach(function(d) {
 					d.model = d.letter;
 				});
-				
+
 	    if (consStac)
 			consStack.forEach(function(d) {
 				d.model = d.letter;
@@ -287,6 +297,7 @@ angular.module('fitness.game', [])
 		}
 	};
 
+    // start over with no letters revealed
 	this.resetRevealed = function() {
 		var vmCopy = _.cloneDeep(self.phrase);
 		for(var i = 0; i < vmCopy.length; i++) {
@@ -299,6 +310,7 @@ angular.module('fitness.game', [])
 		return vmCopy;
 	};
 
+    // save the game to the local cache
 	this.saveGame = function() {
 
 		if (!gameService.activeGame)
@@ -318,14 +330,15 @@ angular.module('fitness.game', [])
 		return localforage.setItem("gameState", state);
 	};
 
+    // load the game from the cache
 	this.loadGame = function() {
 		console.info("game loaded!")
 		localforage.getItem("gameState").then(function(savedState) {
-			
+
 			if (savedState){
 
 				//savedState = JSON.parse(savedState);
-				
+
 				numVowels = savedState.numVowels;
 				numCons = savedState.numCons;
 				self.phrase = savedState.viewModel;
@@ -363,12 +376,13 @@ angular.module('fitness.game', [])
 		});
 	};
 
+    // draws the "friendly" (your) progress circle
 	this.drawFriendly = function() {
 
 		console.log('goal steps ' + self.fitbitData.goals.steps);
 
 		jQuery("#friend-progress").empty();
-		
+
 			self.friendlyProgress = jQuery("#friend-progress").radialMultiProgress("init", {
 				'fill': 25,
 				'font-size': 14,
@@ -379,7 +393,7 @@ angular.module('fitness.game', [])
 					{'color': "#cf2583", 'range': [0, 24]} // time
 				]
 			});
-			
+
 		var dh, dm, ds;
 	//	setInterval(function() {
 			console.log('in the draw circle func.');
@@ -390,7 +404,7 @@ angular.module('fitness.game', [])
 	        s = date.getSeconds();
 
 			self.fitbitData.time = gameService.updateTime(h);
-			
+
 			console.log('hours is ' + h);
 
 	    	self.friendlyProgress.radialMultiProgress("to", {
@@ -406,20 +420,21 @@ angular.module('fitness.game', [])
 //	  }, 1000);
 	};
 
+    // save the game when we leave the view
 	$scope.$on('$ionicView.leave', function(e) {
 		self.saveGame();
 	});
 
-
+    // initialize the game when we enter the view
 	$scope.$on('$ionicView.enter', function(e) {
-	
+
 		self.fitbitData = {} ;
 		self.fitbitData.goals = {} ;
 
 		self.fitbitData = gameService.data ;
-	
+
 		console.log('steps in game.js: ' + self.fitbitData.steps);
-    
+
 		console.log('getting access token from storage');
 		localforage.getItem('fitbitToken').then(function(token){
 			if (!token)
@@ -429,7 +444,7 @@ angular.module('fitness.game', [])
 			console.log('saving token to game service: ' + token);
 			gameService.getFitbitData().then(function(result){
 				self.init();
-				$timeout( self.computeGameLogic, 1500);	
+				$timeout( self.computeGameLogic, 1500);
 				$timeout( self.drawFriendly, 2000);
 				self.autoSave();
 			})
@@ -438,9 +453,10 @@ angular.module('fitness.game', [])
 		$interval.cancel(self.queryInterval);
 
 		self.queryInterval = $interval( function(){ self.refreshData(); } , 260000);
-	
+
 	});
 
+    // refresh steps and stairs
 	this.refreshData = function(){
 
 		gameService.getFitbitData();
@@ -449,6 +465,7 @@ angular.module('fitness.game', [])
 		$scope.$broadcast('scroll.refreshComplete');
 	}
 
+    // figure out how many letters steps and stairs are worth
 	this.computeGameLogic = function(){
 	//	var vowelWorth = parseInt( self.fitbitData.goalFloors /  numVowels);
 	//	var consWorth = parseInt(self.fitbitData.goalSteps /  numCons) ;
@@ -464,11 +481,11 @@ angular.module('fitness.game', [])
 
 	//	if (vowelWorth < 2) // min floors required
 	//		vowelWorth = 2 ;
-		
+
 		console.log('steps walked ' + self.fitbitData.steps);
 		var vowelCount = parseInt(self.fitbitData.floors / vowelWorth );
 		var consCount = parseInt(self.fitbitData.steps / consWorth );
-		
+
 		if (vowelCount < 0)
 			vowelCount = 0;
 		if (consCount < 0)
@@ -480,6 +497,7 @@ angular.module('fitness.game', [])
 		self.catchUp( vowelCount, consCount );
 	}
 
+    // prompt the user before giving up
 	this.openGiveUpAlert = function() {
 		$ionicPopup.confirm({
 	     title: 'Aww You\'re Ready To Give Up Already?',
@@ -494,6 +512,7 @@ angular.module('fitness.game', [])
 	   });
 	};
 
+    // clear the local cache
 	this.closeGame = function(){
 		// needs a prompt
 
@@ -504,11 +523,12 @@ angular.module('fitness.game', [])
 		$state.transitionTo('app.home');
 	}
 
+    // save the game periodically
 	this.autoSave = function(){
 
 		$interval.cancel(self.autoSaveInterval);
 
 		self.autoSaveInterval = $interval( function(){ self.saveGame(); }, 2000);
-	
+
 	}
 });

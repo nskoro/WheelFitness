@@ -4,5 +4,6 @@
 	<div class="word" ng-repeat="word in $root.copy track by $index">
 		<span class="character" ng-repeat="char in word track by $index" style="text-decoration: none;">{{ copy[$parent.$index][$index].model }}</span>
 	</div>
+	<!-- directive input for inputting the phrase -->
 	<input advance-input-area id="hidden-input" class="phrase-input" placeholder="Enter Missing Letters" autocomplete="off" />
 </div>
