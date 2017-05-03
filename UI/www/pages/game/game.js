@@ -245,13 +245,15 @@ angular.module('fitness.game', [])
 
 	// reveals the entire phrase
 	this.revealAll = function() {
-		vowelStack.forEach(function(d) {
-			d.model = d.letter;
-		});
-
-		consStack.forEach(function(d) {
-			d.model = d.letter;
-		});
+		if (vowelStack)
+				vowelStack.forEach(function(d) {
+					d.model = d.letter;
+				});
+				
+	    if (consStac)
+			consStack.forEach(function(d) {
+				d.model = d.letter;
+			});
 	}
 
 	// takes the number of vowels and consonants that should be revealed and reveals them
