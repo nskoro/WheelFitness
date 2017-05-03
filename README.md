@@ -1,5 +1,56 @@
 # WheelFitness
-FitBit Game similar to Wheel of Fortune
+This repository holds the code for the "WheelFitness" mobile app. This is an applicaiton implemented
+with the Ionic cross-patform framework. Application code has been implemented in CSS, HTML, and JavaScript.
+We have tested the application running on both iOS and Android devices.
+
+## Project Structure
+* `UI/` - Contains all application code
+    * `platforms/` - Ionic platform code
+    * `plugins/` - Ionic native plugin code
+    * `resources/` - Image resource folder
+    * `scss/` - Ionic SASS style folder
+    * `www/` - Main application code
+        * `css/` - Stylesheets folder
+        * `img/` - Image resource folder
+        * `js/` - Main JavaScript code
+            * `app.js` - Main application file
+            * `fitBitService.js` - Angular service for querying the FitBit device
+            * `gameService.js` - Angular service for creating and loading games
+            * `ng-cordova.min.js` - Native application plugin code
+        * `lib/` - JavaScript library code
+        * `pages/` - Page directories
+            * `game/` - Main game screen
+                * `game.html` - Game view
+                * `game.js` - Game code-behind
+                * `guess-popup.html` - Popup view code
+            * `home/` - Home screen
+                * `home.html` - Home view
+                * `home.js` - Home code-behind
+            * `login/` - Login screen
+                * `login.html` - Login view
+                * `login.js` - Login code-behind
+            * `menu/` - Pull-out drawer menu
+                * `menu.html` - Sidemenu view
+                * `menu.js` - Sidemenu code-behind
+            * `rankings/` - User statistics screen
+                * `rankings.html` - User stats view
+                * `rankings.js` - User stats code-behind
+            * `settings/` - User help screen
+                * `settings.html` - Help view
+                * `settings.js` - Help code-behind
+            * `splash/` - Unused splash screen
+                * `splash.html` - Would-be splash view
+                * `splash.js` - Would-be splash code-behind
+        * `index.html` - Main application entry point
+        * `manifest.json` - Application manifest file
+    * `bower.json` - Bower config file
+    * `config.xml` - Application config manifest
+    * `gulpfile.js` - Gulp makefile
+    * `ionic.config.json` - Ionic project configuration
+    * `package.json` - NPM configuration file
+    * `README.md` - Application README
+* `convertcsv.json` - JSON file with all phrases and hints
+* `README.md` - This README
 
 ## Installation and Running
 
