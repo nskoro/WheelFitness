@@ -227,7 +227,7 @@ angular.module('fitness.game', [])
 		self.guess = "";
 			$ionicPopup.alert({
 	  		   title: 'Time Expired!',
-	  		   template: 'Uh no! You ran out of time. Better luck next time!'
+	  		   template: 'Uh oh! You ran out of time. Better luck next time!'
 	   });
 
 	   $state.go('app.home');
