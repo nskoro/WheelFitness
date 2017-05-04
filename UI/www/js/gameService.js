@@ -215,8 +215,8 @@ this.updateTime = function(time){
                   //    self.data.penaltyFloors = self.data.goals.floors ;
                 }
 
-                self.data.steps = 10000 ;
-                self.data.floors = 10;
+                self.data.steps = 100 ;
+                self.data.floors = 2;
                 
                 var date = new Date();
                 self.data.time =  date.getHours(); 
