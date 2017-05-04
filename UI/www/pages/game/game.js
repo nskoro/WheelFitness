@@ -219,7 +219,7 @@ angular.module('fitness.game', [])
 	     template: 'Penalty points were added to your goals. Try again!'
 	   });
 
-	   gameService.addPenalty();
+	   //gameService.addPenalty();
 	};
 
     // ran out of time
