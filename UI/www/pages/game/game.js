@@ -139,7 +139,7 @@ angular.module('fitness.game', [])
 			templateUrl: 'pages/game/guess-popup.html',
 			title: 'Enter Phrase',
 			scope: $scope,
-			cssClass: 'gamePopup',
+		//	cssClass: 'gamePopup',
 			buttons: [
 				{
 					text: 'Cancel',

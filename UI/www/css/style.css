@@ -84,9 +84,6 @@ ion-header-bar button {
 	background-color: #000 !important;
 	border: 1.5px solid #2a94cb;
 }
-.gamePopup{
-    margin-bottom:50%;
-}
 
 #hidden-input{
     opacity:0;
