@@ -3,7 +3,7 @@ This repository holds the code for the "CodeFit" mobile game app. This is an app
 with the Ionic cross-patform framework. Application code has been implemented in CSS, HTML, and JavaScript.
 We have tested the application running on both iOS and Android devices.
 
-You can download the unofficial Android app here - > [Android App](https://drive.google.com/drive/folders/0B91-7NFLpAiydHNBRVBvNTU2cGM?usp=sharing)
+You can download the unofficial Android app here - > [CodeFit App](https://drive.google.com/drive/folders/0B91-7NFLpAiydHNBRVBvNTU2cGM?usp=sharing)
 
 The official game will be avaiable on iTunes App Store and Google Play Store.
 
@@ -99,11 +99,19 @@ To turn your device into a development device, go to `Settings`->`About Phone`->
 
 Once this is done, go into `Developer Options` and enable `USB Debugging`, this will allow your computer to connect to the device.
 
-Connect your device to your computer via USB. Open a command prompt and `cd` into the repository. Run the command `adb devices` - this should display your device connected to the computer. Once you've located your device, simply run `ionic run android` - this will compile the application and deploy it to your device.
+Connect your device to your computer via USB. Open a command prompt and `cd` into the repository. 
+
+Run the command `adb devices` - this should display your device connected to the computer. Once you've located your device,simply run `ionic run android` - this will compile the application and deploy it to your device.
+
 
 ### Installing from Provided .apk
 
 Alternatively, you can download a precompiled binary [here](https://drive.google.com/drive/folders/0B91-7NFLpAiydHNBRVBvNTU2cGM?usp=sharing). To install, ensure that you are able to download and install software from unknown sources. Simply download the .apk file and tap on it by going to the download location in your phone's file manager. This will bring up a simple prompt which will allow you to install the app on your phone.
+
+
+#### iOS & Mac
+
+For iOs, on your mac open terminal app and simply type `ionic emulate ios` or `ionic build ios` in the project folder and then open the project in xcode and run it.
 
 ----
 More info on this can be found on the Ionic [Getting Started](http://ionicframework.com/getting-started) page and the [Ionic CLI](https://github.com/driftyco/ionic-cli) repo.
