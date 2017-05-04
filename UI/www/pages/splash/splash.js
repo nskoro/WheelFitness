@@ -11,8 +11,9 @@ angular.module('fitness.splash', [])
 
  console.log(window.location.hash);
 
-  //$state.go('app.home');
-$scope.$on('$ionicView.enter', function(e) {
+ var self = this ;
+
+ this.startOauth = function(){
 
   fitBitService.oauthfitBit('228D84', ["email"], {redirect_uri: ''})
 
@@ -26,6 +27,14 @@ $scope.$on('$ionicView.enter', function(e) {
           function(error){
                 console.log("Fitbit Login Error: " + error);
         });
-  });
+  }
 
-});
+
+  //$state.go('app.home');
+  $scope.$on('$ionicView.enter', function(e) {
+
+     self.startOauth();
+
+    });
+
+ });
