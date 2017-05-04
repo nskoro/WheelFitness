@@ -73,4 +73,10 @@ angular.module('fitness.home', [])
         $state.go('app.game');
       
   }
+
+  this.refreshData = function(){
+
+		gameService.getFitbitData();
+		$scope.$broadcast('scroll.refreshComplete');
+	}
 });

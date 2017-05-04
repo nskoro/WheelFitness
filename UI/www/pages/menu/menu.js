@@ -1,6 +1,6 @@
 angular.module('fitness.menu', [])
 
-.controller('AppCtrl', function($scope, gameService, $ionicModal, $timeout) {
+.controller('AppCtrl', function($scope, gameService, $ionicPopup, $ionicModal, $timeout) {
 
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
@@ -10,6 +10,19 @@ angular.module('fitness.menu', [])
   //});
 
   this.logout = function(){
-    gameService.logout();
+    	$ionicPopup.confirm({
+	     title: 'Logout',
+	     template: 'Are you sure you want to logout? Current game progress will be lost.',
+		 okText: 'Logout'
+	   }).then(function(res) {
+	   	if(res) {
+         	localforage.removeItem("gameState");	     
+		      gameService.activeGame = false;
+	      	gameService.clearGame();
+	   		  gameService.logout();
+	   	} else {
+	   		// do nothing
+	   	}
+	   });
   }
 })

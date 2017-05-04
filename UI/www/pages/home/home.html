@@ -1,6 +1,12 @@
 <ion-view class="backgroundImage" view-title="Home" hide-back-button="true">
 
   <ion-content>
+
+       <ion-refresher
+	    	pulling-text="Pull to refresh..."
+	    	on-refresh="vm.refreshData()">
+	    </ion-refresher>
+
     <div class="centerAlign padding">
 
      <div class="margin"></div>

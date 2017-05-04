@@ -15,4 +15,11 @@ angular.module('fitness.rankings', [])
     self.data = {} ;
     self.data.summary = gameService.data.summary;
   });
+
+
+  this.refreshData = function(){
+
+		gameService.getFitbitData();
+		$scope.$broadcast('scroll.refreshComplete');
+	}
 })

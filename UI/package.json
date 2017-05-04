@@ -1,7 +1,7 @@
 {
-  "name": "wheelfitness",
-  "version": "1.1.1",
-  "description": "WheelFitness: An Ionic project",
+  "name": "CodeFit",
+  "version": "1.0",
+  "description": "CodeFit: An Ionic project",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-concat": "^2.2.0",
