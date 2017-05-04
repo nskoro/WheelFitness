@@ -57,6 +57,14 @@ angular.module('fitness.home', [])
   
   });
 
+  this.refreshData = function(){
+
+		gameService.getFitbitData();
+		$timeout( self.computeGameLogic, 2000);
+		$timeout( self.drawFriendly, 750);
+		$scope.$broadcast('scroll.refreshComplete');
+	}
+
   this.loadNewGame = function(length){
 
       $state.go('app.game');

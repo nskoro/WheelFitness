@@ -135,6 +135,9 @@ app.service('gameService', function($http, $q) {
   self.data.preExistingSteps = self.data.summary.steps;
   self.data.preExistingFloors = self.data.summary.floors;
 
+  self.data.steps = 0 ;
+  self.data.floors = 0 ;
+
   localforage.setItem("totalPenalty", self.data.penaltySteps);
   localforage.setItem('totalPenaltyFloors', self.data.penaltyFloors );
   localforage.setItem("preExistingSteps", self.data.preExistingSteps);
