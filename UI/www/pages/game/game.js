@@ -225,7 +225,7 @@ angular.module('fitness.game', [])
 		self.guess = "";
 			$ionicPopup.alert({
 	  		   title: 'Time Expired!',
-	  		   template: 'Uh no! You ran out of time. Better luck next time!'
+	  		   template: 'Uh oh! You ran out of time. Better luck next time!'
 	   });
 
 	   $state.go('app.home');
@@ -500,7 +500,7 @@ angular.module('fitness.game', [])
     // prompt the user before giving up
 	this.openGiveUpAlert = function() {
 		$ionicPopup.confirm({
-	     title: 'Aww You\'re Ready To Give Up Already?',
+	     title: 'Really Give Up?',
 	     template: 'Are you sure you want to give up on this puzzle? All progress will be lost.',
 		 okText: 'Give Up'
 	   }).then(function(res) {
