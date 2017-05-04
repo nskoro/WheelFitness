@@ -203,7 +203,8 @@ angular.module('fitness.game', [])
 	     	title: 'You are correct!',
 	    	 template: 'Great Job! Play another.'
 	   });
-		self.revealAll();
+
+		//self.revealAll();
 		self.closeGame();
 		gameService.addScore();
 
@@ -527,9 +528,9 @@ angular.module('fitness.game', [])
 		// needs a prompt
 
 		localforage.removeItem("gameState");
-		$interval.cancel(self.autoSaveInterval);
 		gameService.activeGame = false;
 		gameService.clearGame();
+		$interval.cancel(self.autoSaveInterval);
 		$state.transitionTo('app.home');
 	}
 
