@@ -196,6 +196,10 @@ this.updateTime = function(time){
               method: 'GET',
               url: 'https://api.fitbit.com/1/user/-/activities/date/today.json'
             }).then(function successCallback(response) {
+
+                // HACK FOR OLDER FITBITS WITHOUT FLOOR SUPPORT
+                if (!response.data.summary.floors)
+                  response.data.summary.floors = 0 ;
                 
                 console.log(JSON.stringify(response));
                 console.log('pre existing steps are ' + self.data.preExistingSteps);

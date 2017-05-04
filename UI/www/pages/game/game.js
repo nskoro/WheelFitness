@@ -481,6 +481,15 @@ angular.module('fitness.game', [])
 
 	//	if (vowelWorth < 2) // min floors required
 	//		vowelWorth = 2 ;
+	
+		if (!self.fitbitData.floors){
+				$ionicPopup.alert({
+					title: 'Incompatible Device',
+					template: 'Your FitBit Device must support floor counting in order to play this game :('
+	  		 });
+
+			return ;
+		}
 
 		console.log('steps walked ' + self.fitbitData.steps);
 		var vowelCount = parseInt(self.fitbitData.floors / vowelWorth );
@@ -500,8 +509,8 @@ angular.module('fitness.game', [])
     // prompt the user before giving up
 	this.openGiveUpAlert = function() {
 		$ionicPopup.confirm({
-	     title: 'Aww You\'re Ready To Give Up Already?',
-	     template: 'Are you sure you want to give up on this puzzle? All progress will be lost.',
+	     title: 'Give Up',
+	     template: 'Are you sure you want to give up on this puzzle? Your current game progress will be lost.',
 		 okText: 'Give Up'
 	   }).then(function(res) {
 	   	if(res) {
