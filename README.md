@@ -109,9 +109,9 @@ Run the command `adb devices` - this should display your device connected to the
 Alternatively, you can download a precompiled binary [here](https://drive.google.com/drive/folders/0B91-7NFLpAiydHNBRVBvNTU2cGM?usp=sharing). To install, ensure that you are able to download and install software from unknown sources. Simply download the .apk file and tap on it by going to the download location in your phone's file manager. This will bring up a simple prompt which will allow you to install the app on your phone.
 
 
-#### iOS & Mac
+### iOS & Mac
 
-For iOs, on your mac open terminal app and simply type `ionic emulate ios` or `ionic build ios` in the project folder and then open the project in xcode and run it.
+For iOS, on your mac open terminal app and simply type `ionic emulate ios` or `ionic build ios` in the project folder and then open the project in xcode and run it.
 
 ----
 More info on this can be found on the Ionic [Getting Started](http://ionicframework.com/getting-started) page and the [Ionic CLI](https://github.com/driftyco/ionic-cli) repo.
