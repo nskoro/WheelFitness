@@ -481,7 +481,7 @@ angular.module('fitness.game', [])
 
 	//	if (vowelWorth < 2) // min floors required
 	//		vowelWorth = 2 ;
-	
+	/*
 		if (!self.fitbitData.floors){
 				$ionicPopup.alert({
 					title: 'Incompatible Device',
@@ -490,6 +490,7 @@ angular.module('fitness.game', [])
 
 			return ;
 		}
+		*/
 
 		console.log('steps walked ' + self.fitbitData.steps);
 		var vowelCount = parseInt(self.fitbitData.floors / vowelWorth );
