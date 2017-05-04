@@ -203,7 +203,7 @@ angular.module('fitness.game', [])
 	     	title: 'You are correct!',
 	    	 template: 'Great Job! Play another.'
 	   });
-		self.revealAll();
+		//self.revealAll();
 		self.closeGame();
 		gameService.addScore();
 
@@ -217,7 +217,7 @@ angular.module('fitness.game', [])
 	     template: 'Penalty points were added to your goals. Try again!'
 	   });
 
-	   gameService.addPenalty();
+	   //gameService.addPenalty();
 	};
 
     // ran out of time
