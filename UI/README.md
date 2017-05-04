@@ -1,5 +1,5 @@
-# WheelFitness
-FitBit Game similar to Wheel of Fortune
+# CodeFit
+a FitBit Game
 
 
 ### Install `ionic` utility with the following command:

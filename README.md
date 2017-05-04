@@ -1,7 +1,12 @@
-# WheelFitness
-This repository holds the code for the "WheelFitness" mobile app. This is an applicaiton implemented
+# CodeFit
+This repository holds the code for the "CodeFit" mobile game app. This is an application implemented
 with the Ionic cross-patform framework. Application code has been implemented in CSS, HTML, and JavaScript.
 We have tested the application running on both iOS and Android devices.
+
+You can download the unofficial Android app here - > [Android App](https://drive.google.com/drive/folders/0B91-7NFLpAiydHNBRVBvNTU2cGM?usp=sharing)
+
+The official game will be avaiable on iTunes App Store and Google Play Store.
+
 
 ## Project Structure
 * `UI/` - Contains all application code
