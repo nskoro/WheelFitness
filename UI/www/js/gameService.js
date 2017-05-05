@@ -306,6 +306,11 @@ this.updateTime = function(time){
      localforage.setItem('totalPenaltyFloors', self.data.penaltyFloors );
   }
 
+  this.incrWrongGuesses = function() {
+    self.data.wrongAnswers += 1 ;
+    localforage.setItem("wrongAnswers", self.data.wrongAnswers);
+  }
+
   this.addScore = function(){
     self.data.rightAnswers += 1 ;
 
