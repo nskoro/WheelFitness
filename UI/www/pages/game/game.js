@@ -220,6 +220,7 @@ angular.module('fitness.game', [])
 	   });
 
 	   //gameService.addPenalty();
+	   gameService.incrWrongGuesses();
 	};
 
     // ran out of time
