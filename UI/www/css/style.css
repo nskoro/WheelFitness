@@ -64,7 +64,7 @@ ion-header-bar button {
   background-color: #eee ;
 }
 .character {
-	font-size: 18px;
+	font-size: 16px !important;
 	font-family: monospace;
 	margin-left:3px;
 	margin-right:3px;
@@ -81,6 +81,7 @@ ion-header-bar button {
 }
 .popup {
 	width: 90% !important;
+    margin-bottom: 60%;
 	background-color: #000 !important;
 	border: 1.5px solid #2a94cb;
 }
